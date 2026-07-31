@@ -3,7 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NÚCLEO 1 — Pronóstico futbolístico V0.8</title>
+<meta name="theme-color" content="#102a43">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon-192.png">
+<link rel="apple-touch-icon" href="./icon-192.png">
+<title>NÚCLEO 1 — Pronóstico futbolístico V1.0</title>
 <style>
 :root{--bg:#f4f6f8;--card:#fff;--ink:#15202b;--muted:#5f6b76;--line:#dce2e7;--accent:#0d6efd;--good:#137333;--bad:#b3261e;--warn:#8a5a00}
 *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
@@ -32,7 +38,7 @@ table{border-collapse:collapse;width:100%;font-size:.9rem}th,td{padding:8px;bord
 input[type="file"]{display:none}
 textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border-radius:8px;font:inherit;resize:vertical;margin-top:4px}
 .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
-.stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:12px 0}
+.stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin:12px 0}
 .stat{background:#fafcfe;border:1px solid var(--line);border-radius:10px;padding:10px}
 .stat small{display:block;color:var(--muted)}.stat strong{font-size:1.15rem}
 .badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:.75rem;font-weight:700}
@@ -54,6 +60,23 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
 .state-muy-feliz{color:#087f23}.state-motivado{color:#007a3d}.state-complaciente{color:#7a6500}
 .state-triste{color:#b06a00}.state-infeliz{color:#b3261e}.state-origen{color:#8b008b}
 .tactical-box{margin-top:12px;padding:12px;border-radius:10px;background:#f5f1fc;border:1px solid #d7c7f5}
+.collapsible{display:none;margin-top:10px}.collapsible.open{display:block}
+.module-card{margin-top:18px;border-top:5px solid #102a43}
+.module-card h2{display:flex;align-items:center;gap:8px}
+.module-tag{font-size:.72rem;padding:3px 8px;border-radius:999px;background:#e8eef5;color:#102a43}
+.list-card{border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0;background:#fff}
+.recommendation{border-left:5px solid #137333;background:#f2fbf5;padding:12px;border-radius:8px;margin:8px 0}
+.recommendation.warnbox{border-left-color:#8a5a00;background:#fffaf0}
+.form-three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.version-row{border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0}
+.version-active{border-color:#137333;background:#f2fbf5}
+.inline-check{display:flex;align-items:center;gap:7px;color:var(--ink)}
+.inline-check input{width:auto;margin:0}
+.hidden{display:none!important}
+.loaded-banner{padding:10px;border-radius:9px;background:#e8f1ff;border:1px solid #9bc2ff;margin-top:10px}
+.progress-note{font-size:.82rem;color:var(--muted);margin-top:5px}
+@media(max-width:800px){.form-three{grid-template-columns:1fr}}
+
 
 
 
@@ -61,7 +84,7 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
 </style>
 </head>
 <body>
-<header><h1>NÚCLEO 1 — Versión de validación 0.8</h1><p>Motor local, sin conexión a internet. Introduce los últimos seis partidos de cada equipo.</p></header>
+<header><h1>NÚCLEO 1 — Versión 1.0</h1><p>Motor local, sin conexión a internet. Introduce los últimos seis partidos de cada equipo.</p></header>
 <main>
 <div class="notice"><strong>Objetivo de esta versión:</strong> reproducir la matriz original, guardar la liga como dato independiente y mostrar todo el recorrido. La app normaliza las ubicaciones al intervalo más cercano de 0,25 y lo deja registrado en la trazabilidad.</div>
 
@@ -152,9 +175,19 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
     <textarea id="predictionNotes" placeholder="Ej.: diferencia entre cálculo manual y digital, lesión, expulsión, penal fallado, comportamiento extraño del partido..."></textarea>
   </label>
   <label style="margin-top:10px;color:var(--ink)"><input id="exceptionalMatch" type="checkbox" style="width:auto;margin-right:7px">Marcar como partido excepcional</label>
-  <div class="actions"><button class="success" onclick="savePrediction()">AGREGAR AL HISTORIAL</button></div>
+  <div id="loadedRecordBanner" class="loaded-banner hidden">Estás revisando un partido del historial. Puedes guardarlo como nuevo o actualizar el registro original.</div>
+  <div class="actions">
+    <button class="success" onclick="savePrediction()">AGREGAR COMO NUEVO</button>
+    <button id="updateHistoryBtn" class="primary hidden" onclick="updateLoadedPrediction()">ACTUALIZAR PARTIDO CARGADO</button>
+    <button class="secondary" onclick="addCurrentToAnalysis()">AGREGAR A LISTA DE ANÁLISIS</button>
+  </div>
 </div>
-<br><h2>Trazabilidad completa</h2><div id="trace" class="trace"></div>
+<br>
+<button class="secondary" id="traceToggle" onclick="toggleTrace()">VER PROCESO INTERNO</button>
+<div id="traceWrap" class="collapsible">
+  <h2 style="margin-top:12px">Trazabilidad completa</h2>
+  <div id="trace" class="trace"></div>
+</div>
 </section>
 
 <section class="card history-panel" id="historySection">
@@ -168,6 +201,7 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
     <div class="stat"><small>Acierto ganador</small><strong id="stWinner">—</strong></div>
     <div class="stat"><small>Acierto goles por suma</small><strong id="stSum">—</strong></div>
     <div class="stat"><small>Acierto goles por resta</small><strong id="stDiff">—</strong></div>
+    <div class="stat"><small>Cualitativo: no derrota</small><strong id="stQual">—</strong></div>
   </div>
   <div class="history-toolbar">
     <button class="secondary small-btn" onclick="exportHistory()">Exportar respaldo</button>
@@ -196,6 +230,53 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
     </div>
   </div>
 </section>
+
+<section class="card module-card" id="analysisListSection">
+  <h2>NÚCLEO 4 — Lista de análisis <span class="module-tag">DECIDE</span></h2>
+  <p>Agrega varios partidos calculados. El módulo compara el historial de suma, resta, favorito y cualitativo, y propone cuáles conviene considerar. No modifica NÚCLEO 1.</p>
+  <div class="history-toolbar">
+    <button class="primary" onclick="addCurrentToAnalysis()">Agregar partido actual</button>
+    <button class="secondary" onclick="generateCombinedRecommendation()">Generar recomendación</button>
+    <button class="danger" onclick="clearAnalysisList()">Vaciar lista</button>
+  </div>
+  <div id="analysisList"></div>
+  <div id="combinedRecommendation" class="analysis-box">Aún no hay una recomendación generada.</div>
+</section>
+
+<section class="card module-card" id="bankrollSection">
+  <h2>NÚCLEO 5 — Calculadora de apuesta <span class="module-tag">ADMINISTRA</span></h2>
+  <p>La decisión final siempre es tuya. La calculadora compara el porcentaje que eliges con el nivel de riesgo estimado por NÚCLEO 4.</p>
+  <div class="form-three">
+    <label>Capital disponible (COP)<input id="bankroll" type="number" min="0" step="1000" placeholder="100000"></label>
+    <label>Porcentaje mínimo<input id="stakeMin" type="number" min="0" max="100" step="0.5" value="5"></label>
+    <label>Porcentaje máximo<input id="stakeMax" type="number" min="0" max="100" step="0.5" value="10"></label>
+  </div>
+  <div class="form-three" style="margin-top:10px">
+    <label>Porcentaje elegido<input id="stakeChosen" type="number" min="0" max="100" step="0.5" value="5"></label>
+    <label>Nivel de riesgo
+      <select id="riskLevel" style="width:100%;padding:10px;border:1px solid #b8c2cc;border-radius:8px;margin-top:4px">
+        <option value="low">Bajo</option>
+        <option value="medium" selected>Medio</option>
+        <option value="high">Alto</option>
+        <option value="very-high">Muy alto</option>
+      </select>
+    </label>
+    <div style="display:flex;align-items:end"><button class="primary" onclick="calculateStake()">CALCULAR MONTO</button></div>
+  </div>
+  <div id="stakeResult" class="analysis-box">Introduce el capital y el porcentaje que deseas utilizar.</div>
+</section>
+
+<section class="card module-card" id="settingsSection">
+  <h2>Configuración y versiones <span class="module-tag">PROTEGE NÚCLEO 1</span></h2>
+  <div class="notice"><strong>Regla:</strong> NÚCLEO 1 no cambia automáticamente. Solo puede generarse una propuesta con al menos 70 % de respaldo y siempre requiere aprobación manual.</div>
+  <div class="history-toolbar">
+    <button class="secondary" onclick="createManualSnapshot()">Guardar copia de la versión actual</button>
+    <button class="secondary" onclick="reviewOldVersions()">Revisar versiones de más de 6 meses</button>
+    <button class="secondary" onclick="exportFullBackup()">Exportar respaldo completo</button>
+  </div>
+  <div id="versionList"></div>
+  <div id="proposalBox" class="analysis-box">No hay propuestas pendientes para modificar NÚCLEO 1.</div>
+</section>
 </main>
 <script>
 const DATA = {"origin": {"gfA": {"0": null, "1": 6.75, "2": 7.0, "3": 7.25, "4": 7.5, "5": 7.75, "6": 8.0, "7": 8.25, "8": 8.5, "9": 8.75, "10": 9.0}, "gfB": {"0": null, "1": 7.75, "2": 8.0, "3": 8.25, "4": 8.5, "5": 8.75, "6": 9.0, "7": 9.25, "8": 9.5, "9": 9.75, "10": 10.0}, "gcA": {"0": null, "1": -6.75, "2": -7.0, "3": -7.25, "4": -7.5, "5": -7.75, "6": -8.0, "7": -8.25, "8": -8.5, "9": -8.75, "10": -9.0}, "gcB": {"0": null, "1": -7.75, "2": -8.0, "3": -8.25, "4": -8.5, "5": -8.75, "6": -9.0, "7": -9.25, "8": -9.5, "9": -9.75, "10": -10.0}, "wins": {"0": -10.0, "1": 8.75, "2": 9.0, "3": 9.25, "4": 9.5, "5": 9.75, "6": 10.0}, "draws": {"0": 7.0, "1": -5.75, "2": -6.0, "3": -6.25, "4": -6.5, "5": -6.75, "6": -7.0}, "losses": {"0": 10.0, "1": -8.75, "2": -9.0, "3": -9.25, "4": -9.5, "5": -9.75, "6": -10.0}, "reds": {"0": 6.0, "1": -4.75, "2": -5.0, "3": -5.25, "4": -5.5, "5": -5.75, "6": -6.0, "7": -6.25, "8": -6.5, "9": -6.75, "10": -7.0}}, "master": [{"ubicacion": -22.0, "numero": 1.0, "letra": "A", "puntajeB": 2.2, "puntajeA": 2.0, "tablaA": 1.5, "tablaB": 3.0, "tablaC": 2.25, "cualificacion": "SUMAR"}, {"ubicacion": -21.0, "numero": 5.0, "letra": "B", "puntajeB": 0.3, "puntajeA": 2.4, "tablaA": 0.5, "tablaB": 1.0, "tablaC": 2.25, "cualificacion": "IGUAL"}, {"ubicacion": -20.0, "numero": 3.0, "letra": "C", "puntajeB": 1.1, "puntajeA": 0.3, "tablaA": 2.5, "tablaB": 1.5, "tablaC": 2.25, "cualificacion": "RESTAR"}, {"ubicacion": -19.0, "numero": 1.0, "letra": "A", "puntajeB": 1.9, "puntajeA": 0.7, "tablaA": 1.5, "tablaB": 2.0, "tablaC": 2.25, "cualificacion": "SUMAR"}, {"ubicacion": -18.0, "numero": 5.0, "letra": "B", "puntajeB": 0.2, "puntajeA": 1.2, "tablaA": 0.5, "tablaB": 2.5, "tablaC": 2.25, "cualificacion": "IGUAL"}, {"ubicacion": -17.0, "numero": 3.0, "letra": "C", "puntajeB": 1.0, "puntajeA": 1.0, "tablaA": 2.5, "tablaB": 3.0, "tablaC": 2.25, "cualificacion": "RESTAR"}, {"ubicacion": -16.0, "numero": 1.0, "letra": "A", "puntajeB": 1.8, "puntajeA": 0.8, "tablaA": 1.5, "tablaB": 1.0, "tablaC": 2.25, "cualificacion": "SUMAR"}, {"ubicacion": -15.0, "numero": 5.0, "letra": "B", "puntajeB": 0.1, "puntajeA": 1.2, "tablaA": 0.5, "tablaB": 1.5, "tablaC": 2.25, "cualificacion": "IGUAL"}, {"ubicacion": -14.0, "numero": 5.0, "letra": "B", "puntajeB": 1.3, "puntajeA": 1.8, "tablaA": 2.0, "tablaB": 1.0, "tablaC": 0.75, "cualificacion": "IGUAL"}, {"ubicacion": -13.0, "numero": 3.0, "letra": "C", "puntajeB": 2.1, "puntajeA": 2.2, "tablaA": 1.0, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "RESTAR"}, {"ubicacion": -12.0, "numero": 1.0, "letra": "A", "puntajeB": 0.4, "puntajeA": 0.1, "tablaA": 3.0, "tablaB": 2.0, "tablaC": 0.75, "cualificacion": "SUMAR"}, {"ubicacion": -11.0, "numero": 5.0, "letra": "B", "puntajeB": 1.2, "puntajeA": 0.5, "tablaA": 2.0, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "IGUAL"}, {"ubicacion": -10.0, "numero": 3.0, "letra": "C", "puntajeB": 2.0, "puntajeA": 0.9, "tablaA": 1.0, "tablaB": 3.0, "tablaC": 0.75, "cualificacion": "RESTAR"}, {"ubicacion": -9.0, "numero": 1.0, "letra": "A", "puntajeB": 0.3, "puntajeA": 1.4, "tablaA": 3.0, "tablaB": 1.0, "tablaC": 0.75, "cualificacion": "SUMAR"}, {"ubicacion": -8.0, "numero": 5.0, "letra": "B", "puntajeB": 1.1, "puntajeA": 1.8, "tablaA": 2.0, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "IGUAL"}, {"ubicacion": -7.0, "numero": 3.0, "letra": "C", "puntajeB": 1.9, "puntajeA": 2.2, "tablaA": 1.0, "tablaB": 2.0, "tablaC": 0.75, "cualificacion": "RESTAR"}, {"ubicacion": -6.0, "numero": 1.0, "letra": "A", "puntajeB": 0.2, "puntajeA": 0.1, "tablaA": 3.0, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "SUMAR"}, {"ubicacion": -5.0, "numero": 5.0, "letra": "B", "puntajeB": 1.0, "puntajeA": 0.5, "tablaA": 2.0, "tablaB": 3.0, "tablaC": 0.75, "cualificacion": "IGUAL"}, {"ubicacion": -4.0, "numero": 3.0, "letra": "C", "puntajeB": 1.8, "puntajeA": 0.9, "tablaA": 1.0, "tablaB": 1.0, "tablaC": 0.75, "cualificacion": "RESTAR"}, {"ubicacion": -3.0, "numero": 1.0, "letra": "A", "puntajeB": 0.1, "puntajeA": 1.3, "tablaA": 3.0, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "SUMAR"}, {"ubicacion": -2.0, "numero": 5.0, "letra": "B", "puntajeB": 0.9, "puntajeA": 1.7, "tablaA": 2.0, "tablaB": 2.0, "tablaC": 0.75, "cualificacion": "IGUAL"}, {"ubicacion": -1.0, "numero": 3.0, "letra": "C", "puntajeB": 1.7, "puntajeA": 2.1, "tablaA": 1.0, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "RESTAR"}, {"ubicacion": 0.0, "numero": 1.0, "letra": "A", "puntajeB": 0.0, "puntajeA": 2.5, "tablaA": 0.0, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 1.0, "numero": 5.0, "letra": "B", "puntajeB": 0.8, "puntajeA": 0.4, "tablaA": 1.0, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 2.0, "numero": 3.0, "letra": "C", "puntajeB": 1.6, "puntajeA": 0.8, "tablaA": 2.0, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 3.0, "numero": 1.0, "letra": "A", "puntajeB": 2.4, "puntajeA": 1.2, "tablaA": 3.0, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 4.0, "numero": 5.0, "letra": "B", "puntajeB": 0.7, "puntajeA": 1.6, "tablaA": 0.75, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 5.0, "numero": 3.0, "letra": "C", "puntajeB": 1.5, "puntajeA": 2.0, "tablaA": 1.75, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 6.0, "numero": 1.0, "letra": "A", "puntajeB": 2.3, "puntajeA": 2.4, "tablaA": 2.75, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 7.0, "numero": 5.0, "letra": "B", "puntajeB": 0.6, "puntajeA": 0.3, "tablaA": 0.5, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 8.0, "numero": 3.0, "letra": "C", "puntajeB": 1.4, "puntajeA": 0.7, "tablaA": 1.5, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 9.0, "numero": 1.0, "letra": "A", "puntajeB": 2.2, "puntajeA": 1.1, "tablaA": 2.5, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 10.0, "numero": 5.0, "letra": "B", "puntajeB": 0.5, "puntajeA": 1.5, "tablaA": 0.25, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 11.0, "numero": 3.0, "letra": "C", "puntajeB": 1.3, "puntajeA": 1.9, "tablaA": 1.25, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 12.0, "numero": 1.0, "letra": "A", "puntajeB": 2.1, "puntajeA": 2.3, "tablaA": 2.25, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 13.0, "numero": 5.0, "letra": "B", "puntajeB": 0.4, "puntajeA": 0.2, "tablaA": 0.0, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 14.0, "numero": 3.0, "letra": "C", "puntajeB": 1.2, "puntajeA": 0.6, "tablaA": 1.0, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 15.0, "numero": 1.0, "letra": "A", "puntajeB": 2.0, "puntajeA": 1.0, "tablaA": 2.0, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 16.0, "numero": 5.0, "letra": "B", "puntajeB": 0.3, "puntajeA": 1.4, "tablaA": 3.0, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 17.0, "numero": 3.0, "letra": "C", "puntajeB": 1.1, "puntajeA": 1.8, "tablaA": 0.75, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 18.0, "numero": 1.0, "letra": "A", "puntajeB": 1.9, "puntajeA": 2.2, "tablaA": 1.75, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 19.0, "numero": 5.0, "letra": "B", "puntajeB": 0.2, "puntajeA": 0.1, "tablaA": 2.75, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 20.0, "numero": 3.0, "letra": "C", "puntajeB": 1.0, "puntajeA": 0.5, "tablaA": 0.5, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 21.0, "numero": 1.0, "letra": "A", "puntajeB": 1.8, "puntajeA": 0.9, "tablaA": 1.5, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 22.0, "numero": 5.0, "letra": "B", "puntajeB": 0.1, "puntajeA": 1.3, "tablaA": 2.5, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 23.0, "numero": 3.0, "letra": "C", "puntajeB": 0.9, "puntajeA": 1.7, "tablaA": 0.25, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 24.0, "numero": 1.0, "letra": "A", "puntajeB": 1.7, "puntajeA": 2.1, "tablaA": 1.25, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 25.0, "numero": 5.0, "letra": "B", "puntajeB": 0.0, "puntajeA": 2.5, "tablaA": 2.25, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 26.0, "numero": 3.0, "letra": "C", "puntajeB": 0.8, "puntajeA": 0.4, "tablaA": 0.0, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 27.0, "numero": 1.0, "letra": "A", "puntajeB": 1.6, "puntajeA": 0.8, "tablaA": 1.0, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 28.0, "numero": 5.0, "letra": "B", "puntajeB": 2.4, "puntajeA": 1.2, "tablaA": 2.0, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 29.0, "numero": 3.0, "letra": "C", "puntajeB": 0.7, "puntajeA": 1.6, "tablaA": 3.0, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 30.0, "numero": 1.0, "letra": "A", "puntajeB": 1.5, "puntajeA": 2.0, "tablaA": 0.75, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 31.0, "numero": 5.0, "letra": "B", "puntajeB": 2.3, "puntajeA": 2.4, "tablaA": 1.75, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 32.0, "numero": 3.0, "letra": "C", "puntajeB": 0.6, "puntajeA": 0.3, "tablaA": 2.75, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 33.0, "numero": 1.0, "letra": "A", "puntajeB": 1.4, "puntajeA": 0.7, "tablaA": 0.5, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 34.0, "numero": 5.0, "letra": "B", "puntajeB": 2.2, "puntajeA": 1.1, "tablaA": 1.5, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 35.0, "numero": 3.0, "letra": "C", "puntajeB": 0.5, "puntajeA": 1.5, "tablaA": 2.5, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 36.0, "numero": 1.0, "letra": "A", "puntajeB": 1.3, "puntajeA": 1.9, "tablaA": 0.25, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 37.0, "numero": 5.0, "letra": "B", "puntajeB": 2.1, "puntajeA": 2.3, "tablaA": 1.25, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 38.0, "numero": 3.0, "letra": "C", "puntajeB": 0.4, "puntajeA": 0.2, "tablaA": 2.25, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 39.0, "numero": 1.0, "letra": "A", "puntajeB": 1.2, "puntajeA": 0.6, "tablaA": 0.0, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 40.0, "numero": 5.0, "letra": "B", "puntajeB": 2.0, "puntajeA": 1.0, "tablaA": 1.0, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 41.0, "numero": 3.0, "letra": "C", "puntajeB": 0.3, "puntajeA": 1.4, "tablaA": 2.0, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 42.0, "numero": 1.0, "letra": "A", "puntajeB": 1.1, "puntajeA": 1.8, "tablaA": 3.0, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 43.0, "numero": 5.0, "letra": "B", "puntajeB": 1.9, "puntajeA": 2.2, "tablaA": 0.75, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 44.0, "numero": 3.0, "letra": "C", "puntajeB": 0.2, "puntajeA": 0.1, "tablaA": 1.75, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 45.0, "numero": 1.0, "letra": "A", "puntajeB": 1.0, "puntajeA": 0.5, "tablaA": 2.75, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 46.0, "numero": 5.0, "letra": "B", "puntajeB": 1.8, "puntajeA": 0.9, "tablaA": 0.5, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 47.0, "numero": 3.0, "letra": "C", "puntajeB": 0.1, "puntajeA": 1.3, "tablaA": 1.5, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 48.0, "numero": 1.0, "letra": "A", "puntajeB": 0.9, "puntajeA": 1.7, "tablaA": 2.5, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 49.0, "numero": 5.0, "letra": "B", "puntajeB": 1.7, "puntajeA": 2.1, "tablaA": 0.25, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 50.0, "numero": 3.0, "letra": "C", "puntajeB": 0.0, "puntajeA": 2.5, "tablaA": 1.25, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 51.0, "numero": 1.0, "letra": "A", "puntajeB": 0.8, "puntajeA": 0.4, "tablaA": 2.25, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 52.0, "numero": 5.0, "letra": "B", "puntajeB": 1.6, "puntajeA": 0.8, "tablaA": null, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": "NO"}, {"ubicacion": 53.0, "numero": 3.0, "letra": "C", "puntajeB": 2.4, "puntajeA": 1.2, "tablaA": null, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": "PERMITIDO"}, {"ubicacion": 54.0, "numero": 1.0, "letra": "A", "puntajeB": 0.7, "puntajeA": 1.6, "tablaA": null, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 55.0, "numero": 5.0, "letra": "B", "puntajeB": 1.5, "puntajeA": 2.0, "tablaA": null, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 56.0, "numero": 3.0, "letra": "C", "puntajeB": 2.3, "puntajeA": 2.4, "tablaA": null, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 57.0, "numero": 1.0, "letra": "A", "puntajeB": 0.6, "puntajeA": 0.3, "tablaA": null, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 58.0, "numero": 5.0, "letra": "B", "puntajeB": 1.4, "puntajeA": 0.7, "tablaA": null, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 59.0, "numero": 3.0, "letra": "C", "puntajeB": 2.2, "puntajeA": 1.1, "tablaA": null, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 60.0, "numero": 1.0, "letra": "A", "puntajeB": 0.5, "puntajeA": 1.5, "tablaA": null, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 61.0, "numero": 5.0, "letra": "B", "puntajeB": 1.3, "puntajeA": 1.9, "tablaA": null, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 62.0, "numero": 3.0, "letra": "C", "puntajeB": 2.1, "puntajeA": 2.3, "tablaA": null, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 63.0, "numero": 1.0, "letra": "A", "puntajeB": 0.4, "puntajeA": 0.2, "tablaA": null, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 64.0, "numero": 5.0, "letra": "B", "puntajeB": 1.2, "puntajeA": 0.6, "tablaA": null, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 65.0, "numero": 3.0, "letra": "C", "puntajeB": 2.0, "puntajeA": 1.0, "tablaA": null, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 66.0, "numero": 1.0, "letra": "A", "puntajeB": 0.3, "puntajeA": 1.4, "tablaA": null, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 67.0, "numero": 5.0, "letra": "B", "puntajeB": 1.1, "puntajeA": 1.8, "tablaA": null, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 68.0, "numero": 3.0, "letra": "C", "puntajeB": 1.9, "puntajeA": 2.2, "tablaA": null, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 69.0, "numero": 1.0, "letra": "A", "puntajeB": 0.2, "puntajeA": 0.1, "tablaA": null, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 70.0, "numero": 5.0, "letra": "B", "puntajeB": 1.0, "puntajeA": 0.5, "tablaA": null, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 71.0, "numero": 3.0, "letra": "C", "puntajeB": 1.8, "puntajeA": 0.9, "tablaA": null, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 72.0, "numero": 1.0, "letra": "A", "puntajeB": 0.1, "puntajeA": 1.3, "tablaA": null, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 73.0, "numero": 5.0, "letra": "B", "puntajeB": 0.9, "puntajeA": 1.7, "tablaA": null, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 74.0, "numero": 3.0, "letra": "C", "puntajeB": 1.7, "puntajeA": 2.1, "tablaA": null, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 75.0, "numero": 1.0, "letra": "A", "puntajeB": 0.0, "puntajeA": 2.5, "tablaA": null, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 76.0, "numero": 5.0, "letra": "B", "puntajeB": 0.8, "puntajeA": 0.4, "tablaA": null, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 77.0, "numero": 3.0, "letra": "C", "puntajeB": 1.6, "puntajeA": 0.8, "tablaA": null, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 78.0, "numero": 1.0, "letra": "A", "puntajeB": null, "puntajeA": 1.2, "tablaA": null, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 79.0, "numero": 5.0, "letra": "B", "puntajeB": null, "puntajeA": 1.6, "tablaA": null, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 80.0, "numero": 3.0, "letra": "C", "puntajeB": null, "puntajeA": 2.0, "tablaA": null, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 81.0, "numero": 1.0, "letra": "A", "puntajeB": null, "puntajeA": 2.4, "tablaA": null, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 82.0, "numero": 5.0, "letra": "B", "puntajeB": null, "puntajeA": 0.3, "tablaA": null, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 83.0, "numero": 3.0, "letra": "C", "puntajeB": null, "puntajeA": 0.7, "tablaA": null, "tablaB": 1.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 84.0, "numero": 1.0, "letra": "A", "puntajeB": null, "puntajeA": 1.1, "tablaA": null, "tablaB": 0.5, "tablaC": 0.75, "cualificacion": null}, {"ubicacion": 85.0, "numero": 5.0, "letra": "B", "puntajeB": null, "puntajeA": 1.5, "tablaA": null, "tablaB": 2.5, "tablaC": 0.75, "cualificacion": null}], "colors": {"redScored": {"1": 1.8, "2": 2.2, "3": 2.7, "4": 3.3, "5": 4.0, "6": 4.8, "7": 5.7, "8": 6.7, "9": 7.8, "10": 9.0, "11": 10.3, "12": 11.7, "13": 13.2, "14": 14.8, "15": 16.5, "16": 18.3, "17": 20.2, "18": 22.2, "19": 24.3, "20": 26.5, "21": 28.8, "22": 31.2, "23": 33.7, "24": 36.3, "25": 39.0, "26": 41.8, "27": 44.7, "28": 47.7, "29": 50.8, "30": 54.0, "31": 57.3, "32": 60.7}, "redReceived": {"1": 0.9, "2": 1.1, "3": 1.35, "4": 1.65, "5": 2.0, "6": 2.4, "7": 2.85, "8": 3.35, "9": 3.9, "10": 4.5, "11": 5.15, "12": 5.85, "13": 6.6, "14": 7.4, "15": 8.25, "16": 9.15, "17": 10.1, "18": 11.1, "19": 12.15, "20": 13.25, "21": 14.4, "22": 15.6, "23": 16.85, "24": 18.15, "25": 19.5, "26": 20.9, "27": 22.35, "28": 23.85, "29": 25.4, "30": 27.0, "31": 28.65, "32": 30.35}, "greenScored": {"1": 1.3, "2": 1.65, "3": 2.0, "4": 2.5, "5": 3.0, "6": 3.5, "7": 4.0, "8": 4.6, "9": 5.1, "10": 5.6, "11": 6.1, "12": 6.3, "13": 6.8, "14": 7.0, "15": 7.5, "16": 7.7, "17": 8.2, "18": 8.3, "19": 8.8, "20": 9.1, "21": 9.5, "22": 9.7, "23": 10.2, "24": 10.3, "25": 10.8, "26": 11.2, "27": 11.5, "28": 11.9, "29": 12.3, "30": 12.7, "31": 13.1, "32": 13.5}, "greenReceived": {"1": 3.9, "2": 4.5, "3": 6.0, "4": 7.6, "5": 9.1, "6": 10.7, "7": 12.2, "8": 13.8, "9": 15.3, "10": 16.9, "11": 18.4, "12": 20.0, "13": 21.5, "14": 23.1, "15": 24.6, "16": 26.2, "17": 27.7, "18": 29.3, "19": 30.8, "20": 32.4, "21": 33.9, "22": 35.5, "23": 37.0, "24": 38.6, "25": 40.1, "26": 41.7, "27": 43.2, "28": 44.8, "29": 46.3, "30": 47.9, "31": 49.4, "32": 51.0}}};
@@ -203,7 +284,11 @@ const DATA = {"origin": {"gfA": {"0": null, "1": 6.75, "2": 7.0, "3": 7.25, "4":
 
 const HISTORY_KEY="nucleo1_history_v03";
 const ADAPTIVE_KEY="nucleo1_adaptive_v04";
+const ANALYSIS_LIST_KEY="nucleo1_analysis_list_v10";
+const VERSION_KEY="nucleo1_versions_v10";
+const ACTIVE_VERSION_KEY="nucleo1_active_version_v10";
 let currentPrediction=null;
+let editingHistoryId=null;
 
 function getHistory(){
  try{return JSON.parse(localStorage.getItem(HISTORY_KEY)||"[]");}
@@ -326,8 +411,38 @@ const fields=[
  ["losses","Derrotas (0–6)","number"],
  ["reds","Tarjetas rojas (6 partidos)","number"]
 ];
-function build(prefix,card){const box=document.querySelector(card+" .fields");fields.forEach(([k,l,t])=>{box.insertAdjacentHTML("beforeend",`<label>${l}<input id="${prefix}_${k}" type="${t}" ${t==="number"?'min="0" step="1"':''}></label>`)});}
+function build(prefix,card){
+ const box=document.querySelector(card+" .fields");
+ fields.forEach(([k,l,t])=>{
+   let attrs="";
+   if(t==="number"){
+     const max=["gfA","gfB","gcA","gcB"].includes(k)?10:["wins","draws","losses"].includes(k)?6:"";
+     attrs=`min="0" step="1" ${max!==""?`max="${max}"`:""}`;
+   }
+   box.insertAdjacentHTML("beforeend",`<label>${l}<input id="${prefix}_${k}" type="${t}" ${attrs}></label>`);
+ });
+}
 build("L","#localCard"); build("V","#visitorCard");
+function clampField(input,max){
+ let v=Math.max(0,Math.round(Number(input.value||0)));
+ if(max!==null&&v>max)v=max;
+ input.value=v;
+}
+["L","V"].forEach(prefix=>{
+ ["gfA","gfB","gcA","gcB"].forEach(k=>{
+   const el=document.getElementById(`${prefix}_${k}`);
+   el.addEventListener("change",()=>clampField(el,10));
+   el.addEventListener("blur",()=>clampField(el,10));
+ });
+ ["wins","draws","losses"].forEach(k=>{
+   const el=document.getElementById(`${prefix}_${k}`);
+   el.addEventListener("change",()=>clampField(el,6));
+   el.addEventListener("blur",()=>clampField(el,6));
+ });
+ const red=document.getElementById(`${prefix}_reds`);
+ red.addEventListener("change",()=>clampField(red,null));
+ red.addEventListener("blur",()=>clampField(red,null));
+});
 
 const fmt=x=>x===null||x===undefined||Number.isNaN(x)?"—":(typeof x==="number"?Math.round(x*100)/100:x);
 const num=(id)=>Number(document.getElementById(id).value||0);
@@ -344,12 +459,19 @@ function colorValue(map,x){const k=nearestKey(map,x);return {input:x,key:k,value
 function team(prefix,log){
  const name=document.getElementById(prefix+"_name").value.trim()||(prefix==="L"?"Local":"Visitante");
  const x={name,gfA:num(prefix+"_gfA"),gfB:num(prefix+"_gfB"),gcA:num(prefix+"_gcA"),gcB:num(prefix+"_gcB"),wins:num(prefix+"_wins"),draws:num(prefix+"_draws"),losses:num(prefix+"_losses"),reds:num(prefix+"_reds")};
+ ["gfA","gfB","gcA","gcB"].forEach(k=>{
+   if(x[k]<0||x[k]>10||!Number.isInteger(x[k]))throw new Error(`${name}: los goles por bloque deben ser números enteros entre 0 y 10.`);
+ });
+ ["wins","draws","losses"].forEach(k=>{
+   if(x[k]<0||x[k]>6||!Number.isInteger(x[k]))throw new Error(`${name}: victorias, empates y derrotas deben estar entre 0 y 6.`);
+ });
+ if(x.reds<0||!Number.isInteger(x.reds))throw new Error(`${name}: las tarjetas rojas deben ser un número entero igual o mayor que 0.`);
  if(x.wins+x.draws+x.losses!==6) throw new Error(`${name}: victorias + empates + derrotas debe ser igual a 6.`);
  const entries=[
   ["GF A",DATA.origin.gfA[cap10(x.gfA)]],["GF B",DATA.origin.gfB[cap10(x.gfB)]],
   ["GC AC",DATA.origin.gcA[cap10(x.gcA)]],["GC BC",DATA.origin.gcB[cap10(x.gcB)]],
   ["Victorias",DATA.origin.wins[x.wins]],["Empates",DATA.origin.draws[x.draws]],
-  ["Derrotas",DATA.origin.losses[x.losses]],["Rojas",DATA.origin.reds[Math.min(10,x.reds)]]
+  ["Derrotas",DATA.origin.losses[x.losses]],["Rojas",x.reds===0?6:(-4.5-(0.25*x.reds))]
  ];
  const originSum=entries.reduce((s,[,v])=>s+(v==null?0:Number(v)),0);
  log.push(`\n${name.toUpperCase()}`);
@@ -423,9 +545,9 @@ function renderQualitative(teamObj,prefix){
  return {...q,code};
 }
 function compareQualitative(localState,visitorState,localName,visitorName){
- const rank={INFELIZ:1,TRISTE:2,ORIGEN:3,COMPLACIENTE:3,MOTIVADO:4,"MUY FELIZ":5};
- const a=rank[localState.name]??3,b=rank[visitorState.name]??3;
- if(a===b)return `${localName} y ${visitorName} aparecen en un nivel cualitativo semejante (${localState.name}). No hay ventaja cualitativa clara.`;
+ const lg=qualitativeGroup(localState.name),vg=qualitativeGroup(visitorState.name);
+ if(lg.id===vg.id)return `${localName} (${localState.name}) y ${visitorName} (${visitorState.name}) pertenecen a la misma ${lg.label.toLowerCase()}. La diferencia cualitativa es ajustada y queda a juicio del usuario.`;
+ const a=lg.rank,b=vg.rank;
  const better=a>b?localName:visitorName;
  const worse=a>b?visitorName:localName;
  const high=a>b?localState:visitorState;
@@ -528,7 +650,251 @@ function resetAll(){
  document.getElementById("exceptionalMatch").checked=false;
  document.getElementById("results").style.display="none";
  currentPrediction=null;
+ editingHistoryId=null;
+ document.getElementById("loadedRecordBanner").classList.add("hidden");
+ document.getElementById("updateHistoryBtn").classList.add("hidden");
 }
+
+
+function toggleTrace(){
+ const wrap=document.getElementById("traceWrap"),btn=document.getElementById("traceToggle");
+ const open=wrap.classList.toggle("open");
+ btn.textContent=open?"OCULTAR PROCESO INTERNO":"VER PROCESO INTERNO";
+}
+function qualitativeRank(name){
+ return {"INFELIZ":1,"TRISTE":2,"ORIGEN":3,"COMPLACIENTE":3,"MOTIVADO":4,"MUY FELIZ":5}[name]??3;
+}
+function qualitativeGroup(name){
+ if(["MUY FELIZ","MOTIVADO"].includes(name))return {id:"favorable",rank:3,label:"Condición favorable"};
+ if(["COMPLACIENTE","ORIGEN"].includes(name))return {id:"media",rank:2,label:"Condición media"};
+ if(["TRISTE","INFELIZ"].includes(name))return {id:"desfavorable",rank:1,label:"Condición desfavorable"};
+ return {id:"media",rank:2,label:"Condición media"};
+}
+function qualitativeEvaluation(item){
+ if(item.status!=="cerrado"||!item.localQualitative||!item.visitorQualitative)return null;
+ const lg=qualitativeGroup(item.localQualitative.name),vg=qualitativeGroup(item.visitorQualitative.name);
+ if(lg.id===vg.id)return {clear:false,hit:null,label:`Estados cercanos: ${lg.label}`};
+ const better=lg.rank>vg.rank?item.localName:item.visitorName;
+ const real=winnerFromScore(item.homeGoals,item.awayGoals,item.localName,item.visitorName);
+ return {clear:true,better,hit:real===better||real==="Empate",label:`${better} no pierde`};
+}
+function loadHistoryItem(id){
+ const item=getHistory().find(x=>x.id===id);
+ if(!item){alert("No se encontró el partido.");return;}
+ const L=item.inputs?.local,V=item.inputs?.visitor;
+ if(!L||!V){alert("Este registro antiguo no contiene todos los datos de entrada.");return;}
+ const assign=(prefix,x)=>{
+   document.getElementById(prefix+"_name").value=x.name||"";
+   ["gfA","gfB","gcA","gcB","wins","draws","losses","reds"].forEach(k=>document.getElementById(`${prefix}_${k}`).value=x[k]??"");
+ };
+ assign("L",L);assign("V",V);
+ document.getElementById("competition").value=item.competition||"";
+ document.getElementById("matchDate").value=item.matchDate||new Date().toISOString().slice(0,10);
+ document.getElementById("predictionNotes").value=item.notes||"";
+ document.getElementById("exceptionalMatch").checked=!!item.exceptional;
+ editingHistoryId=id;
+ document.getElementById("loadedRecordBanner").classList.remove("hidden");
+ document.getElementById("updateHistoryBtn").classList.remove("hidden");
+ calculate();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function updateLoadedPrediction(){
+ if(!editingHistoryId||!currentPrediction){alert("Primero carga un partido del historial y vuelve a calcularlo.");return;}
+ const competition=document.getElementById("competition").value.trim();
+ if(!competition){alert("Escribe la competición o liga.");return;}
+ const items=getHistory(),index=items.findIndex(x=>x.id===editingHistoryId);
+ if(index<0){alert("No se encontró el registro original.");return;}
+ const old=items[index];
+ items[index]={
+   ...old,...currentPrediction,id:old.id,
+   competition,
+   matchDate:document.getElementById("matchDate").value||old.matchDate||"",
+   notes:document.getElementById("predictionNotes").value.trim(),
+   exceptional:document.getElementById("exceptionalMatch").checked,
+   status:old.status,homeGoals:old.homeGoals,awayGoals:old.awayGoals,
+   resultNotes:old.resultNotes,closedAt:old.closedAt,
+   updatedAt:new Date().toISOString()
+ };
+ setHistory(items);renderHistory();
+ alert("Partido actualizado sin perder el marcador real ni las observaciones posteriores.");
+}
+function getAnalysisList(){
+ try{return JSON.parse(localStorage.getItem(ANALYSIS_LIST_KEY)||"[]");}catch(_){return [];}
+}
+function setAnalysisList(items){localStorage.setItem(ANALYSIS_LIST_KEY,JSON.stringify(items));renderAnalysisList();}
+function addCurrentToAnalysis(){
+ if(!currentPrediction){alert("Primero calcula un partido.");return;}
+ const item={
+   ...currentPrediction,
+   analysisId:(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random()),
+   competition:document.getElementById("competition").value.trim()||"Sin liga",
+   matchDate:document.getElementById("matchDate").value||"",
+   addedAt:new Date().toISOString()
+ };
+ const list=getAnalysisList();
+ list.push(item);setAnalysisList(list);
+ document.getElementById("analysisListSection").scrollIntoView({behavior:"smooth"});
+}
+function removeAnalysisItem(id){setAnalysisList(getAnalysisList().filter(x=>x.analysisId!==id));}
+function clearAnalysisList(){
+ if(confirm("¿Vaciar la lista temporal de análisis?")){setAnalysisList([]);document.getElementById("combinedRecommendation").textContent="Lista vacía.";}
+}
+function overallRates(){
+ const closed=getHistory().filter(x=>x.status==="cerrado"&&!x.exceptional);
+ let sumN=0,sumH=0,diffN=0,diffH=0,wN=0,wH=0,qN=0,qH=0;
+ closed.forEach(item=>{
+   const e=evaluation(item),q=qualitativeEvaluation(item);
+   if(e.sum!==null){sumN++;if(e.sum)sumH++;}
+   if(e.diff!==null){diffN++;if(e.diff)diffH++;}
+   if(e.winner!==null){wN++;if(e.winner)wH++;}
+   if(q?.clear){qN++;if(q.hit)qH++;}
+ });
+ return {
+   sample:closed.length,
+   sum:sumN?sumH/sumN:null,diff:diffN?diffH/diffN:null,
+   winner:wN?wH/wN:null,qual:qN?qH/qN:null
+ };
+}
+function renderAnalysisList(){
+ const list=getAnalysisList(),box=document.getElementById("analysisList");
+ box.innerHTML=list.length?list.map((x,i)=>`<div class="list-card">
+   <strong>${i+1}. ${escapeHtml(x.localName)} vs ${escapeHtml(x.visitorName)}</strong>
+   <div class="goal-detail">${escapeHtml(x.competition)} · Suma ${escapeHtml(x.sumGoals)} · Resta ${escapeHtml(x.diffGoals)} · Favorito ${escapeHtml(x.favored)}</div>
+   <button class="danger small-btn" onclick="removeAnalysisItem('${x.analysisId}')">Quitar</button>
+ </div>`).join(""):"<p>No hay partidos agregados.</p>";
+}
+function generateCombinedRecommendation(){
+ const list=getAnalysisList();
+ if(!list.length){alert("Agrega partidos a la lista.");return;}
+ const rates=overallRates(),out=[];
+ list.forEach(x=>{
+   const candidates=[];
+   if(rates.sum!==null)candidates.push({label:`${goalMarket(x.sumGoals)?.label||x.sumGoals} (suma)`,rate:rates.sum});
+   if(rates.diff!==null)candidates.push({label:`${goalMarket(x.diffGoals)?.label||x.diffGoals} (resta)`,rate:rates.diff});
+   if(x.favored!=="Sin selección"&&rates.winner!==null)candidates.push({label:`${x.favored} no pierde / favorito`,rate:rates.winner});
+   const lg=qualitativeGroup(x.localQualitative?.name),vg=qualitativeGroup(x.visitorQualitative?.name);
+   if(lg.id!==vg.id&&rates.qual!==null){
+     const better=lg.rank>vg.rank?x.localName:x.visitorName;
+     candidates.push({label:`${better} no pierde (cualitativo)`,rate:rates.qual});
+   }
+   candidates.sort((a,b)=>b.rate-a.rate);
+   const best=candidates[0];
+   out.push({match:`${x.localName} vs ${x.visitorName}`,best});
+ });
+ const usable=out.filter(x=>x.best&&x.best.rate>=.60).sort((a,b)=>b.best.rate-a.best.rate);
+ const lines=[`Muestra histórica disponible: ${rates.sample} partidos cerrados no excepcionales.`];
+ if(!rates.sample)lines.push("Todavía no existe historial cerrado suficiente. La lista queda como organizador, no como recomendación estadística.");
+ else if(!usable.length)lines.push("Ningún partido alcanza el mínimo provisional de 60 %. Conviene no formar combinada.");
+ else{
+   lines.push("Recomendación provisional (prioriza calidad, no cantidad):");
+   usable.slice(0,5).forEach((x,i)=>lines.push(`${i+1}. ${x.match}: ${x.best.label} — ${Math.round(x.best.rate*1000)/10}% histórico.`));
+   if(out.length>usable.length)lines.push(`${out.length-usable.length} partido(s) descartados por confianza inferior al mínimo.`);
+ }
+ document.getElementById("combinedRecommendation").textContent=lines.join("\n");
+}
+function calculateStake(){
+ const capital=Number(document.getElementById("bankroll").value||0);
+ const min=Number(document.getElementById("stakeMin").value||0);
+ const max=Number(document.getElementById("stakeMax").value||0);
+ const chosen=Number(document.getElementById("stakeChosen").value||0);
+ const risk=document.getElementById("riskLevel").value;
+ if(capital<=0||min<0||max<min||chosen<0||chosen>100){alert("Revisa el capital y los porcentajes.");return;}
+ const ranges={low:[3,8],medium:[1.5,5],high:[.5,2], "very-high":[0,0]};
+ const [rmin,rmax]=ranges[risk],amount=capital*chosen/100;
+ const minAmount=capital*min/100,maxAmount=capital*max/100,remaining=capital-amount;
+ let warning="";
+ if(risk==="very-high"&&chosen>0)warning=" Riesgo muy alto: el sistema recomienda no apostar.";
+ else if(chosen>rmax)warning=` Advertencia: supera el rango prudente orientativo para este riesgo (${rmin}%–${rmax}%).`;
+ document.getElementById("stakeResult").textContent=
+   `Rango elegido: $${Math.round(minAmount).toLocaleString("es-CO")} a $${Math.round(maxAmount).toLocaleString("es-CO")}. `+
+   `Con ${chosen}% apostarías $${Math.round(amount).toLocaleString("es-CO")} y quedarían $${Math.round(remaining).toLocaleString("es-CO")}.${warning}`;
+}
+function defaultVersion(){
+ return {id:"n1-v1.0-base",name:"NÚCLEO 1 v1.0 base",createdAt:new Date().toISOString(),protected:true,
+ description:"Matriz original: tablas de origen, colores, ubicación, puntajes A/B, ABC, cualificación y reglas algebraicas.",active:true,config:{engine:"base"}};
+}
+function getVersions(){
+ try{
+   const v=JSON.parse(localStorage.getItem(VERSION_KEY)||"[]");
+   if(v.length)return v;
+ }catch(_){}
+ const initial=[defaultVersion()];localStorage.setItem(VERSION_KEY,JSON.stringify(initial));localStorage.setItem(ACTIVE_VERSION_KEY,initial[0].id);return initial;
+}
+function setVersions(v){localStorage.setItem(VERSION_KEY,JSON.stringify(v));renderVersions();}
+function createManualSnapshot(){
+ const versions=getVersions(),active=versions.find(v=>v.id===localStorage.getItem(ACTIVE_VERSION_KEY))||versions[0];
+ const desc=prompt("Describe qué hacía esta versión:",active.description||"");
+ if(desc===null)return;
+ versions.push({id:"n1-"+Date.now(),name:`Copia ${new Date().toLocaleDateString("es-CO")}`,createdAt:new Date().toISOString(),protected:false,description:desc,active:false,config:{...active.config}});
+ setVersions(versions);
+}
+function activateVersion(id){
+ const versions=getVersions();
+ versions.forEach(v=>v.active=v.id===id);
+ localStorage.setItem(ACTIVE_VERSION_KEY,id);setVersions(versions);
+ alert("Versión restaurada/activada. El historial no fue eliminado.");
+}
+function deleteVersion(id){
+ const versions=getVersions(),v=versions.find(x=>x.id===id);
+ if(!v||v.protected||v.active){alert("No se puede eliminar la versión base protegida ni la versión activa.");return;}
+ if(confirm("¿Eliminar esta versión archivada?"))setVersions(versions.filter(x=>x.id!==id));
+}
+function toggleProtectVersion(id){
+ const versions=getVersions(),v=versions.find(x=>x.id===id);if(!v)return;
+ v.protected=!v.protected;setVersions(versions);
+}
+function reviewOldVersions(){
+ const cutoff=Date.now()-183*24*3600*1000;
+ const old=getVersions().filter(v=>!v.active&&!v.protected&&new Date(v.createdAt).getTime()<cutoff);
+ alert(old.length?`${old.length} versión(es) superan seis meses y pueden eliminarse manualmente.`:"No hay versiones antiguas candidatas para limpieza.");
+}
+function renderVersions(){
+ const versions=getVersions();
+ document.getElementById("versionList").innerHTML=versions.map(v=>`<div class="version-row ${v.active?"version-active":""}">
+   <strong>${escapeHtml(v.name)}</strong> ${v.active?"— ACTIVA":""} ${v.protected?"🔒":""}
+   <div class="goal-detail">${escapeHtml(v.description)}<br>Creada: ${new Date(v.createdAt).toLocaleString("es-CO")}</div>
+   <div class="history-toolbar">
+     ${!v.active?`<button class="primary small-btn" onclick="activateVersion('${v.id}')">Restaurar / activar</button>`:""}
+     <button class="secondary small-btn" onclick="toggleProtectVersion('${v.id}')">${v.protected?"Desproteger":"Proteger"}</button>
+     ${!v.active&&!v.protected?`<button class="danger small-btn" onclick="deleteVersion('${v.id}')">Eliminar</button>`:""}
+   </div>
+ </div>`).join("");
+}
+function exportFullBackup(){
+ const data={
+   app:"NUCLEO 1 V1.0",exportedAt:new Date().toISOString(),
+   history:getHistory(),adaptive:getAdaptive(),analysisList:getAnalysisList(),
+   versions:getVersions(),activeVersion:localStorage.getItem(ACTIVE_VERSION_KEY)
+ };
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+ a.download=`nucleo1_respaldo_completo_${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(a.href);
+}
+function maybeCreateN1Proposal(support,description,config){
+ if(support<.70)return;
+ const proposal={support,description,config,createdAt:new Date().toISOString()};
+ localStorage.setItem("nucleo1_pending_proposal_v10",JSON.stringify(proposal));
+ renderProposal();
+}
+function renderProposal(){
+ let p=null;try{p=JSON.parse(localStorage.getItem("nucleo1_pending_proposal_v10")||"null");}catch(_){}
+ const box=document.getElementById("proposalBox");
+ if(!p){box.textContent="No hay propuestas pendientes para modificar NÚCLEO 1.";return;}
+ box.innerHTML=`<strong>Propuesta pendiente — respaldo ${Math.round(p.support*1000)/10}%</strong><br>${escapeHtml(p.description)}
+ <div class="history-toolbar"><button class="primary small-btn" onclick="approveProposal()">Aprobar y crear nueva versión</button>
+ <button class="danger small-btn" onclick="rejectProposal()">Rechazar</button></div>`;
+}
+function approveProposal(){
+ let p=null;try{p=JSON.parse(localStorage.getItem("nucleo1_pending_proposal_v10")||"null");}catch(_){}
+ if(!p)return;
+ const versions=getVersions(),active=versions.find(v=>v.active)||versions[0];
+ versions.forEach(v=>v.active=false);
+ versions.push({id:"n1-"+Date.now(),name:`NÚCLEO 1 propuesta ${versions.length+1}`,createdAt:new Date().toISOString(),protected:false,
+ description:p.description,active:true,config:{...active.config,...p.config},evidence:p.support});
+ localStorage.setItem(ACTIVE_VERSION_KEY,versions.at(-1).id);
+ localStorage.removeItem("nucleo1_pending_proposal_v10");setVersions(versions);renderProposal();
+}
+function rejectProposal(){localStorage.removeItem("nucleo1_pending_proposal_v10");renderProposal();}
 
 function savePrediction(){
  if(!currentPrediction){alert("Primero calcula un pronóstico.");return;}
@@ -598,18 +964,21 @@ function evaluation(item){
 function pct(a,b){return b?`${Math.round(a*1000/b)/10}%`:"—";}
 function renderHistory(){
  const items=getHistory(),closed=items.filter(x=>x.status==="cerrado");
- let winnerHits=0,winnerN=0,sumHits=0,sumN=0,diffHits=0,diffN=0;
+ let winnerHits=0,winnerN=0,sumHits=0,sumN=0,diffHits=0,diffN=0,qualHits=0,qualN=0;
  closed.forEach(item=>{
    const e=evaluation(item);
    if(e.winner!==null){winnerN++;if(e.winner)winnerHits++;}
    if(e.sum!==null){sumN++;if(e.sum)sumHits++;}
    if(e.diff!==null){diffN++;if(e.diff)diffHits++;}
+   const q=qualitativeEvaluation(item);
+   if(q?.clear){qualN++;if(q.hit)qualHits++;}
  });
  document.getElementById("stTotal").textContent=items.length;
  document.getElementById("stClosed").textContent=closed.length;
  document.getElementById("stWinner").textContent=pct(winnerHits,winnerN);
  document.getElementById("stSum").textContent=pct(sumHits,sumN);
  document.getElementById("stDiff").textContent=pct(diffHits,diffN);
+ document.getElementById("stQual").textContent=pct(qualHits,qualN);
  const btn=document.getElementById("autoAdjustBtn");
  btn.disabled=closed.length<50;btn.classList.toggle("locked",closed.length<50);
  btn.textContent=closed.length<50?`ANALIZAR POSIBLES AJUSTES (${closed.length}/50)`:"ANALIZAR POSIBLES AJUSTES";
@@ -626,6 +995,7 @@ function renderHistory(){
     <td>${escapeHtml(item.diffGoals)}<br><small>${escapeHtml(item.diffCode)}</small><br><small>${escapeHtml(goalMarket(item.diffGoals)?.label||"—")}</small></td>
     <td>${score}</td><td>${escapeHtml(e.text)}</td><td>${escapeHtml(notes||"—")}</td>
     <td>
+      <button class="primary small-btn" onclick="loadHistoryItem('${item.id}')">Cargar</button>
       <button class="success small-btn" onclick="closeMatch('${item.id}')">${item.status==="cerrado"?"Editar marcador":"Registrar resultado"}</button>
       <button class="secondary small-btn" onclick="editNotes('${item.id}')">Observación</button>
       <button class="secondary small-btn" onclick="toggleExceptional('${item.id}')">${item.exceptional?"Quitar excepcional":"Marcar excepcional"}</button>
@@ -658,7 +1028,8 @@ function analyzeAdjustments(){
    `Solo acertó la resta: ${pct(onlyDiff,sample.length)}.`,
    `Ninguna acertó: ${pct(neither,sample.length)}.`,
    `Acierto del favorito, cuando hubo selección: ${pct(winnerHits,winnerN)}.`,
-   `Partidos sin favorito: ${noFavorite}.`,"","PROPUESTA:",
+   `Partidos sin favorito: ${noFavorite}.`,
+   `El porcentaje cualitativo se muestra en el panel histórico y se conserva sin modificar su matriz.`,"","PROPUESTA:",
    sumHits>diffHits+Math.max(3,sample.length*.08)
     ?"Dar prioridad experimental a la salida por suma cuando las dos rutas no coincidan."
     :diffHits>sumHits+Math.max(3,sample.length*.08)
@@ -682,10 +1053,18 @@ function analyzeAdjustments(){
  }else{
    const current=getAdaptive();current.rule=null;current.enabled=false;setAdaptive(current);
  }
- renderAdaptive();
+ const bestRate=Math.max(sample.length?sumHits/sample.length:0,sample.length?diffHits/sample.length:0,winnerN?winnerHits/winnerN:0);
+ if(bestRate>=.70){
+   maybeCreateN1Proposal(
+     bestRate,
+     "El historial detectó una regla con respaldo superior al 70 %. La propuesta no cambia las tablas automáticamente; archiva la versión actual y aplica solo la configuración aprobada.",
+     {evidenceBasedReview:true,reviewedAt:new Date().toISOString()}
+   );
+ }
+ renderAdaptive();renderProposal();
 }
 function exportHistory(){
- const data={app:"NUCLEO 1 V0.8",exportedAt:new Date().toISOString(),history:getHistory()};
+ const data={app:"NUCLEO 1 V1.0",exportedAt:new Date().toISOString(),history:getHistory()};
  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
  const a=document.createElement("a");a.href=URL.createObjectURL(blob);
  a.download=`nucleo1_historial_${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(a.href);
@@ -698,7 +1077,13 @@ function importHistory(event){
      const parsed=JSON.parse(reader.result),incoming=Array.isArray(parsed)?parsed:parsed.history;
      if(!Array.isArray(incoming))throw new Error();
      if(!confirm(`¿Importar ${incoming.length} registros y reemplazar el historial actual?`))return;
-     setHistory(incoming);renderHistory();alert("Historial importado.");
+     setHistory(incoming);
+     if(parsed.adaptive)setAdaptive(parsed.adaptive);
+     if(parsed.analysisList) localStorage.setItem(ANALYSIS_LIST_KEY,JSON.stringify(parsed.analysisList));
+     if(parsed.versions) localStorage.setItem(VERSION_KEY,JSON.stringify(parsed.versions));
+     if(parsed.activeVersion) localStorage.setItem(ACTIVE_VERSION_KEY,parsed.activeVersion);
+     renderHistory();renderAnalysisList();renderVersions();renderAdaptive();
+     alert("Historial y datos compatibles importados.");
    }catch(_){alert("El archivo no contiene un respaldo válido.");}
    event.target.value="";
  };
@@ -707,6 +1092,12 @@ function importHistory(event){
 document.getElementById("matchDate").value=new Date().toISOString().slice(0,10);
 renderHistory();
 renderAdaptive();
+renderAnalysisList();
+renderVersions();
+renderProposal();
+if("serviceWorker" in navigator){
+ window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(()=>{}));
+}
 if(!document.getElementById("matchDate").value){
  document.getElementById("matchDate").value=new Date().toISOString().slice(0,10);
 }
