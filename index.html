@@ -9,7 +9,7 @@
 <link rel="manifest" href="./manifest.json">
 <link rel="icon" href="./icon-192.png">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>NÚCLEO 1 — Pronóstico futbolístico V1.1 MÓDULO 1</title>
+<title>NÚCLEO 1 — Pronóstico futbolístico V1.2.3 FINAL REPARADA</title>
 <style>
 :root{--bg:#f4f6f8;--card:#fff;--ink:#15202b;--muted:#5f6b76;--line:#dce2e7;--accent:#0d6efd;--good:#137333;--bad:#b3261e;--warn:#8a5a00}
 *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
@@ -80,6 +80,44 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
 .module-status{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
 .module-chip{padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff}
 .module-chip strong{display:block}
+.intel-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.intel-stat{padding:14px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.intel-stat small{display:block;color:var(--muted)}.intel-stat strong{font-size:1.35rem}
+.strategy-report{white-space:pre-wrap;border-left:5px solid #6f42c1;background:#fbf8ff;padding:14px;border-radius:10px;min-height:120px}
+.league-table{width:100%;border-collapse:collapse}.league-table th,.league-table td{padding:8px;border-bottom:1px solid var(--line);text-align:left}
+.confidence-low{color:#b3261e}.confidence-medium{color:#8a5a00}.confidence-high{color:#137333}
+.qual-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.qual-card{padding:14px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.qual-card small{display:block;color:var(--muted)}.qual-card strong{font-size:1.25rem}
+.qual-report{white-space:pre-wrap;border-left:5px solid #137333;background:#f3fbf5;padding:14px;border-radius:10px;min-height:120px}
+.bet-tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.bet-tier{border:2px solid var(--line);border-radius:12px;padding:14px;background:#fff}
+.bet-tier-a{border-color:#137333;background:#f2fbf5}.bet-tier-b{border-color:#b26a00;background:#fffaf0}.bet-tier-c{border-color:#b3261e;background:#fff7f6}
+.bet-tier h3{margin:0 0 8px}.tier-score{font-size:1.4rem;font-weight:800}
+.evidence-list{margin:8px 0 0;padding-left:18px}.evidence-list li{margin:4px 0}
+.finance-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.finance-card{padding:14px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.finance-card small{display:block;color:var(--muted)}.finance-card strong{font-size:1.25rem}
+.allocation-table{width:100%;border-collapse:collapse}.allocation-table th,.allocation-table td{padding:9px;border-bottom:1px solid var(--line);text-align:left}
+.finance-report{white-space:pre-wrap;border-left:5px solid #2f80ed;background:#f4f8ff;padding:14px;border-radius:10px;min-height:100px}
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.memory-card{padding:14px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.memory-card small{display:block;color:var(--muted)}.memory-card strong{font-size:1.25rem}
+.restore-card{border:1px solid var(--line);border-radius:10px;padding:12px;margin:8px 0;background:#fff}
+.memory-report{white-space:pre-wrap;border-left:5px solid #6f42c1;background:#fbf8ff;padding:14px;border-radius:10px}
+.trend-up{color:#137333;font-weight:800}.trend-down{color:#b3261e;font-weight:800}.trend-flat{color:#8a5a00;font-weight:800}
+
+@media(max-width:900px){.memory-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.memory-grid{grid-template-columns:1fr}}
+
+@media(max-width:900px){.finance-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.finance-grid{grid-template-columns:1fr}}
+
+@media(max-width:900px){.bet-tier-grid{grid-template-columns:1fr}}
+
+.qual-table{width:100%;border-collapse:collapse}.qual-table th,.qual-table td{padding:8px;border-bottom:1px solid var(--line);text-align:left}
+@media(max-width:900px){.qual-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.qual-grid{grid-template-columns:1fr}}
+
+@media(max-width:900px){.intel-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.intel-grid{grid-template-columns:1fr}}
+
 @media(max-width:800px){.module-status{grid-template-columns:1fr}}
 
 @media(max-width:800px){.form-three{grid-template-columns:1fr}}
@@ -91,7 +129,7 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
 </style>
 </head>
 <body>
-<header><h1>NÚCLEO 1 — Versión 1.1 · Módulo 1</h1><p>Motor local, sin conexión a internet. Introduce los últimos seis partidos de cada equipo.</p></header>
+<header><h1>NÚCLEO 1 — Versión 1.2.3 · Final reparada</h1><p>Motor local, sin conexión a internet. Introduce los últimos seis partidos de cada equipo.</p></header>
 <main>
 <div class="notice"><strong>Objetivo de esta versión:</strong> reproducir la matriz original, guardar la liga como dato independiente y mostrar todo el recorrido. La app normaliza las ubicaciones al intervalo más cercano de 0,25 y lo deja registrado en la trazabilidad.</div>
 
@@ -109,8 +147,14 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
 </section>
 
 <div class="grid">
-  <section class="card" id="localCard"><h2>Equipo local</h2><div class="fields"></div></section>
-  <section class="card" id="visitorCard"><h2>Equipo visitante</h2><div class="fields"></div></section>
+  <section class="card" id="localCard">
+    <div class="fold-head"><h2 style="margin:0">Equipo local</h2><button class="secondary small-btn" onclick="toggleFold('localTeamTray',this,'ABRIR','OCULTAR')">ABRIR</button></div>
+    <div id="localTeamTray" class="fold-body"><div class="fields"></div></div>
+  </section>
+  <section class="card" id="visitorCard">
+    <div class="fold-head"><h2 style="margin:0">Equipo visitante</h2><button class="secondary small-btn" onclick="toggleFold('visitorTeamTray',this,'ABRIR','OCULTAR')">ABRIR</button></div>
+    <div id="visitorTeamTray" class="fold-body"><div class="fields"></div></div>
+  </section>
 </div>
 <div class="actions">
 <button class="primary" onclick="calculate()">CALCULAR PRONÓSTICO</button>
@@ -203,6 +247,64 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
 </div>
 </section>
 
+<section class="card module-card" id="nucleus2Section">
+  <div class="fold-head">
+    <h2 style="margin:0">NÚCLEO 2 — Inteligencia estratégica <span class="module-tag">APRENDE Y ORIENTA</span></h2>
+    <button class="secondary" onclick="toggleFold('nucleus2Tray',this,'ABRIR NÚCLEO 2','OCULTAR NÚCLEO 2')">ABRIR NÚCLEO 2</button>
+  </div>
+  <div id="nucleus2Tray" class="fold-body"><div class="notice"><strong>NÚCLEO 1 permanece intacto.</strong> Este núcleo analiza el historial cerrado, las ligas, la suma, la resta, el favorito y la lectura cualitativa. Sus recomendaciones orientan, pero no cambian las tablas originales.</div>
+  <div class="intel-grid">
+    <div class="intel-stat"><small>Partidos cerrados analizados</small><strong id="n2Sample">0</strong></div>
+    <div class="intel-stat"><small>Estado de la muestra</small><strong id="n2Confidence">Sin datos</strong></div>
+    <div class="intel-stat"><small>Mejor criterio actual</small><strong id="n2Best">—</strong></div>
+    <div class="intel-stat"><small>Última actualización</small><strong id="n2Updated">—</strong></div>
+  </div>
+  <div class="history-toolbar">
+    <button class="primary" onclick="generateStrategy()">GENERAR / ACTUALIZAR ESTRATEGIA</button>
+    <button class="secondary" onclick="showCurrentStrategy()">VER ESTRATEGIA GUARDADA</button>
+  </div>
+  <div id="n2StatusMessage" class="goal-detail" style="margin:8px 0">Listo para analizar el historial.</div>
+  <div id="n2Report" class="strategy-report">Todavía no se ha generado una estrategia. Puedes hacerlo con cualquier cantidad de partidos cerrados; mientras mayor sea la muestra, mayor será la confianza.</div>
+  <div class="fold-head" style="margin-top:12px">
+    <h3 style="margin:0">Análisis por liga</h3>
+    <button class="secondary small-btn" onclick="toggleFold('leagueAnalysisTray',this,'ABRIR','OCULTAR')">ABRIR</button>
+  </div>
+  <div id="leagueAnalysisTray" class="fold-body">
+    <div id="n2LeagueTable">Aún no hay análisis por liga.</div>
+  </div>
+</div>
+</section>
+
+<section class="card module-card" id="nucleus3Section">
+  <div class="fold-head">
+    <h2 style="margin:0">NÚCLEO 3 — Análisis cualitativo <span class="module-tag">INTERPRETA</span></h2>
+    <button class="secondary" onclick="toggleFold('nucleus3Tray',this,'ABRIR NÚCLEO 3','OCULTAR NÚCLEO 3')">ABRIR NÚCLEO 3</button>
+  </div>
+  <div id="nucleus3Tray" class="fold-body"><div class="notice"><strong>La matriz cualitativa permanece protegida.</strong> El NÚCLEO 3 conserva Muy feliz, Motivado, Complaciente, Triste e Infeliz. El NÚCLEO 2 solamente ajusta la confianza asignada a cada comparación según la evidencia histórica y la liga.</div>
+  <div class="qual-grid">
+    <div class="qual-card"><small>Comparaciones cualitativas claras</small><strong id="n3Sample">0</strong></div>
+    <div class="qual-card"><small>Acierto cualitativo global</small><strong id="n3Global">—</strong></div>
+    <div class="qual-card"><small>Mejor enfrentamiento</small><strong id="n3BestPair">—</strong></div>
+    <div class="qual-card"><small>Confianza de la lectura</small><strong id="n3Confidence">Sin datos</strong></div>
+  </div>
+  <div class="history-toolbar">
+    <button class="primary" onclick="generateQualitativeAnalysis()">ANALIZAR NÚCLEO 3</button>
+    <button class="secondary" onclick="showQualitativeAnalysis()">VER ANÁLISIS GUARDADO</button>
+  </div>
+  <div id="n3Report" class="qual-report">Todavía no se ha generado el análisis cualitativo. Primero conviene generar o actualizar la estrategia del NÚCLEO 2.</div>
+  <div class="fold-head" style="margin-top:12px">
+    <h3 style="margin:0">Rendimiento por enfrentamiento cualitativo</h3>
+    <button class="secondary small-btn" onclick="toggleFold('qualPairTray',this,'ABRIR','OCULTAR')">ABRIR</button>
+  </div>
+  <div id="qualPairTray" class="fold-body"><div id="n3PairTable">Sin datos.</div></div>
+  <div class="fold-head" style="margin-top:12px">
+    <h3 style="margin:0">Rendimiento cualitativo por liga</h3>
+    <button class="secondary small-btn" onclick="toggleFold('qualLeagueTray',this,'ABRIR','OCULTAR')">ABRIR</button>
+  </div>
+  <div id="qualLeagueTray" class="fold-body"><div id="n3LeagueTable">Sin datos.</div></div>
+</div>
+</section>
+
 <section class="card history-panel" id="historySection">
   <div class="fold-head"><h2 style="margin:0">Historial y NÚCLEO 2 experimental</h2><button class="secondary" onclick="toggleFold('historyTray',this,'ABRIR HISTORIAL','OCULTAR HISTORIAL')">ABRIR HISTORIAL</button></div>
   <div id="historyTray" class="fold-body">
@@ -221,7 +323,7 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
     <button class="secondary small-btn" onclick="exportHistory()">Exportar respaldo</button>
     <label class="secondary small-btn" style="cursor:pointer">Importar respaldo<input id="importFile" type="file" accept=".json" onchange="importHistory(event)"></label>
     <button class="secondary small-btn" onclick="renderHistory()">Actualizar historial</button>
-    <button id="autoAdjustBtn" class="primary small-btn locked" disabled onclick="analyzeAdjustments()">ANALIZAR POSIBLES AJUSTES (0/50)</button>
+    <button id="autoAdjustBtn" class="primary small-btn locked" disabled onclick="generateStrategy()">GENERAR ESTRATEGIA</button>
   </div>
   <div class="history-wrap">
     <table>
@@ -247,53 +349,118 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
 </section>
 
 <section class="card module-card" id="analysisListSection">
-  <h2>NÚCLEO 4 — Lista de análisis <span class="module-tag">DECIDE</span></h2>
-  <p>Agrega varios partidos calculados. El módulo compara el historial de suma, resta, favorito y cualitativo, y propone cuáles conviene considerar. No modifica NÚCLEO 1.</p>
+  <h2>NÚCLEO 4 — Constructor de apuestas <span class="module-tag">DECIDE</span></h2>
+  <div class="notice"><strong>Este núcleo no inventa resultados.</strong> Solo trabaja con los partidos que agregues y con la evidencia disponible en los NÚCLEOS 2 y 3. Puede dejar un nivel vacío si no encuentra una opción suficiente.</div>
+  <p>Agrega los partidos que quieras comparar. Después pulsa <strong>GENERAR TRES APUESTAS</strong>. El sistema clasificará las mejores alternativas como A (alta), B (media) y C (baja).</p>
   <div class="history-toolbar">
-    <button class="primary" onclick="addCurrentToAnalysis()">Agregar partido actual</button>
-    <button class="secondary" onclick="generateCombinedRecommendation()">Generar recomendación</button>
-    <button class="danger" onclick="clearAnalysisList()">Vaciar lista</button>
+    <button class="primary" onclick="addCurrentToAnalysis()">AGREGAR PARTIDO ACTUAL</button>
+    <button class="secondary" onclick="generateThreeBets()">GENERAR TRES APUESTAS</button>
+    <button class="danger" onclick="clearAnalysisList()">VACIAR LISTA</button>
   </div>
   <div id="analysisList"></div>
-  <div id="combinedRecommendation" class="analysis-box">Aún no hay una recomendación generada.</div>
+  <div id="combinedRecommendation" class="analysis-box">Todavía no se han generado apuestas.</div>
+  <div id="threeBetResults" class="bet-tier-grid"></div>
+  <div class="fold-head" style="margin-top:12px">
+    <h3 style="margin:0">Detalle técnico de las tres apuestas</h3>
+    <button class="secondary small-btn" onclick="toggleFold('threeBetDetail',this,'ABRIR','OCULTAR')">ABRIR</button>
+  </div>
+  <div id="threeBetDetail" class="fold-body"><div id="threeBetTechnical" class="analysis-box">Sin detalle técnico.</div></div>
 </section>
 
 <section class="card module-card" id="bankrollSection">
-  <h2>NÚCLEO 5 — Calculadora de apuesta <span class="module-tag">ADMINISTRA</span></h2>
-  <p>La decisión final siempre es tuya. La calculadora compara el porcentaje que eliges con el nivel de riesgo estimado por NÚCLEO 4.</p>
+  <h2>NÚCLEO 5 — Gerente financiero <span class="module-tag">ADMINISTRA EL CAPITAL</span></h2>
+  <div class="notice"><strong>Función:</strong> convertir la confianza de A, B y C en montos concretos. El sistema conserva una parte del capital como reserva y nunca aumenta automáticamente una apuesta para recuperar pérdidas.</div>
   <div class="form-three">
-    <label>Capital disponible (COP)<input id="bankroll" type="number" min="0" step="1000" placeholder="100000"></label>
-    <label>Porcentaje mínimo<input id="stakeMin" type="number" min="0" max="100" step="0.5" value="5"></label>
-    <label>Porcentaje máximo<input id="stakeMax" type="number" min="0" max="100" step="0.5" value="10"></label>
-  </div>
-  <div class="form-three" style="margin-top:10px">
-    <label>Porcentaje elegido<input id="stakeChosen" type="number" min="0" max="100" step="0.5" value="5"></label>
-    <label>Nivel de riesgo
-      <select id="riskLevel" style="width:100%;padding:10px;border:1px solid #b8c2cc;border-radius:8px;margin-top:4px">
-        <option value="low">Bajo</option>
-        <option value="medium" selected>Medio</option>
-        <option value="high">Alto</option>
-        <option value="very-high">Muy alto</option>
+    <label>Capital disponible (COP)<input id="bankroll" type="number" min="0" step="1000" placeholder="20000"></label>
+    <label>Máximo del capital que puede utilizarse (%)<input id="maxExposure" type="number" min="1" max="100" step="1" value="50"></label>
+    <label>Perfil financiero
+      <select id="financeProfile" style="width:100%;padding:10px;border:1px solid #b8c2cc;border-radius:8px;margin-top:4px">
+        <option value="conservative">Conservador</option>
+        <option value="balanced" selected>Equilibrado</option>
+        <option value="aggressive">Agresivo</option>
       </select>
     </label>
-    <div style="display:flex;align-items:end"><button class="primary" onclick="calculateStake()">CALCULAR MONTO</button></div>
   </div>
-  <div id="stakeResult" class="analysis-box">Introduce el capital y el porcentaje que deseas utilizar.</div>
+  <div class="history-toolbar">
+    <button class="primary" onclick="calculateAutomaticAllocation()">DISTRIBUIR CAPITAL AUTOMÁTICAMENTE</button>
+    <button class="secondary" onclick="showSavedFinancialPlan()">VER ÚLTIMO PLAN</button>
+    <button class="success" onclick="saveFinancialPlan()">GUARDAR PLAN</button>
+  </div>
+  <div class="finance-grid">
+    <div class="finance-card"><small>Capital disponible</small><strong id="fCapital">—</strong></div>
+    <div class="finance-card"><small>Total recomendado</small><strong id="fInvested">—</strong></div>
+    <div class="finance-card"><small>Reserva</small><strong id="fReserve">—</strong></div>
+    <div class="finance-card"><small>Riesgo conjunto</small><strong id="fRisk">—</strong></div>
+  </div>
+  <div id="stakeResult" class="analysis-box">Primero genera las apuestas A, B y C en el NÚCLEO 4.</div>
+  <div id="financeExplanation" class="finance-report">Todavía no existe una distribución financiera.</div>
+  <div class="fold-head" style="margin-top:12px">
+    <h3 style="margin:0">Historial de planes financieros</h3>
+    <button class="secondary small-btn" onclick="toggleFold('financeHistoryTray',this,'ABRIR','OCULTAR')">ABRIR</button>
+  </div>
+  <div id="financeHistoryTray" class="fold-body">
+    <div class="history-toolbar">
+      <button class="secondary small-btn" onclick="exportFinanceHistory()">EXPORTAR HISTORIAL</button>
+      <button class="danger small-btn" onclick="clearFinanceHistory()">BORRAR HISTORIAL</button>
+    </div>
+    <div id="financeHistory">Sin planes guardados.</div>
+  </div>
 </section>
 
 <section class="card module-card" id="settingsSection">
-  <div class="fold-head"><h2 style="margin:0">NÚCLEO 6 — Conservación y versiones</h2><button class="secondary" onclick="toggleFold('nucleus6Tray',this,'ABRIR NÚCLEO 6','OCULTAR NÚCLEO 6')">ABRIR NÚCLEO 6</button></div>
-  <div id="nucleus6Tray" class="fold-body">
-  <h2>Configuración y versiones <span class="module-tag">PROTEGE NÚCLEO 1</span></h2>
-  <div class="notice"><strong>Regla:</strong> NÚCLEO 1 no cambia automáticamente. Solo puede generarse una propuesta con al menos 70 % de respaldo y siempre requiere aprobación manual.</div>
-  <div class="history-toolbar">
-    <button class="secondary" onclick="createManualSnapshot()">Guardar copia de la versión actual</button>
-    <button class="secondary" onclick="reviewOldVersions()">Revisar versiones de más de 6 meses</button>
-    <button class="secondary" onclick="exportFullBackup()">Exportar respaldo completo</button>
+  <div class="fold-head">
+    <h2 style="margin:0">NÚCLEO 6 — Memoria, respaldo y recuperación <span class="module-tag">CONSERVA</span></h2>
+    <button class="secondary" onclick="toggleFold('nucleus6Tray',this,'ABRIR NÚCLEO 6','OCULTAR NÚCLEO 6')">ABRIR NÚCLEO 6</button>
   </div>
-  <div id="versionList"></div>
-  <div id="proposalBox" class="analysis-box">No hay propuestas pendientes para modificar NÚCLEO 1.</div>
-</div>
+  <div id="nucleus6Tray" class="fold-body">
+    <div class="notice"><strong>Este núcleo no pronostica.</strong> Su trabajo es guardar, verificar, exportar, importar y recuperar todo lo producido por los demás núcleos.</div>
+    <div class="memory-grid">
+      <div class="memory-card"><small>Partidos guardados</small><strong id="mHistory">0</strong></div>
+      <div class="memory-card"><small>Estrategia NÚCLEO 2</small><strong id="mStrategy">No</strong></div>
+      <div class="memory-card"><small>Análisis NÚCLEO 3</small><strong id="mQualitative">No</strong></div>
+      <div class="memory-card"><small>Puntos de restauración</small><strong id="mSnapshots">0</strong></div>
+    </div>
+    <div class="history-toolbar">
+      <button class="primary" onclick="createRestorePoint()">CREAR PUNTO DE RESTAURACIÓN</button>
+      <button class="secondary" onclick="exportFullBackup()">EXPORTAR RESPALDO COMPLETO</button>
+      <label class="secondary" style="cursor:pointer">IMPORTAR RESPALDO COMPLETO<input id="fullImportFile" type="file" accept=".json" onchange="importFullBackup(event)" style="display:none"></label>
+      <button class="secondary" onclick="verifySystemIntegrity()">VERIFICAR INTEGRIDAD</button>
+    </div>
+    <div id="memoryReport" class="memory-report">NÚCLEO 6 listo. Crea un punto de restauración antes de una actualización importante.</div>
+
+    <div class="fold-head" style="margin-top:14px">
+      <h3 style="margin:0">Puntos de restauración internos</h3>
+      <button class="secondary small-btn" onclick="toggleFold('restoreTray',this,'ABRIR','OCULTAR')">ABRIR</button>
+    </div>
+    <div id="restoreTray" class="fold-body"><div id="restorePointList">Sin puntos de restauración.</div></div>
+
+    <div class="fold-head" style="margin-top:14px">
+      <h3 style="margin:0">Versiones del NÚCLEO 1</h3>
+      <button class="secondary small-btn" onclick="toggleFold('versionTray',this,'ABRIR','OCULTAR')">ABRIR</button>
+    </div>
+    <div id="versionTray" class="fold-body">
+      <div class="notice"><strong>Regla de protección:</strong> NÚCLEO 1 no cambia automáticamente. Una propuesta requiere evidencia sobresaliente y siempre necesita aprobación del usuario.</div>
+      <div class="history-toolbar">
+        <button class="secondary" onclick="createManualSnapshot()">Guardar copia de la versión actual</button>
+        <button class="secondary" onclick="reviewOldVersions()">Revisar versiones de más de 6 meses</button>
+      </div>
+      <div id="versionList"></div>
+      <div id="proposalBox" class="analysis-box">No hay propuestas pendientes para modificar NÚCLEO 1.</div>
+    </div>
+
+    <div class="fold-head" style="margin-top:14px">
+      <h3 style="margin:0">Mantenimiento de memoria</h3>
+      <button class="secondary small-btn" onclick="toggleFold('maintenanceTray',this,'ABRIR','OCULTAR')">ABRIR</button>
+    </div>
+    <div id="maintenanceTray" class="fold-body">
+      <div class="history-toolbar">
+        <button class="secondary" onclick="deleteOldMatches()">Eliminar partidos antiguos</button>
+        <button class="secondary" onclick="cleanTemporaryData()">Limpiar listas temporales</button>
+        <button class="danger" onclick="resetApplicationSafely()">Restablecer aplicación</button>
+      </div>
+      <p class="goal-detail">Antes de borrar información, el sistema ofrece crear o descargar un respaldo.</p>
+    </div>
+  </div>
 </section>
 </main>
 <script>
@@ -305,6 +472,12 @@ const ADAPTIVE_KEY="nucleo1_adaptive_v04";
 const ANALYSIS_LIST_KEY="nucleo1_analysis_list_v10";
 const VERSION_KEY="nucleo1_versions_v10";
 const ACTIVE_VERSION_KEY="nucleo1_active_version_v10";
+const STRATEGY_KEY="nucleo1_strategy_v11_m2";
+const QUAL_ANALYSIS_KEY="nucleo1_qualitative_v11_m3";
+const THREE_BETS_KEY="nucleo1_three_bets_v11_m4";
+const FINANCE_PLAN_KEY="nucleo1_finance_plan_v11_m5";
+const FINANCE_HISTORY_KEY="nucleo1_finance_history_v11_m5";
+const RESTORE_POINTS_KEY="nucleo1_restore_points_v11_m6";
 let currentPrediction=null;
 let editingHistoryId=null;
 
@@ -786,52 +959,278 @@ function renderAnalysisList(){
    <button class="danger small-btn" onclick="removeAnalysisItem('${x.analysisId}')">Quitar</button>
  </div>`).join(""):"<p>No hay partidos agregados.</p>";
 }
-function generateCombinedRecommendation(){
- const list=getAnalysisList();
- if(!list.length){alert("Agrega partidos a la lista.");return;}
- const rates=overallRates(),out=[];
- list.forEach(x=>{
-   const candidates=[];
-   if(rates.sum!==null)candidates.push({label:`${goalMarket(x.sumGoals)?.label||x.sumGoals} (suma)`,rate:rates.sum});
-   if(rates.diff!==null)candidates.push({label:`${goalMarket(x.diffGoals)?.label||x.diffGoals} (resta)`,rate:rates.diff});
-   if(x.favored!=="Sin selección"&&rates.winner!==null)candidates.push({label:`${x.favored} no pierde / favorito`,rate:rates.winner});
-   const lg=qualitativeGroup(x.localQualitative?.name),vg=qualitativeGroup(x.visitorQualitative?.name);
-   if(lg.id!==vg.id&&rates.qual!==null){
-     const better=lg.rank>vg.rank?x.localName:x.visitorName;
-     candidates.push({label:`${better} no pierde (cualitativo)`,rate:rates.qual});
+
+function getThreeBets(){
+ try{return JSON.parse(localStorage.getItem(THREE_BETS_KEY)||"[]");}catch(_){return [];}
+}
+function leagueRateFromStrategy(strategy,league,key,globalRate){
+ const l=strategy?.leagues?.[league];
+ if(!l)return globalRate;
+ if(key==="sum")return l.n?l.sumHits/l.n:globalRate;
+ if(key==="diff")return l.n?l.diffHits/l.n:globalRate;
+ if(key==="winner")return l.winnerN?l.winnerHits/l.winnerN:globalRate;
+ return globalRate;
+}
+function qualitativeRateForMatch(item,qualAnalysis){
+ const lg=qualitativeGroup(item.localQualitative?.name),vg=qualitativeGroup(item.visitorQualitative?.name);
+ if(lg.id===vg.id)return {rate:null,label:"Estados cualitativos cercanos",better:null,evidence:[]};
+ const better=lg.rank>vg.rank?item.localName:item.visitorName;
+ const pair=qualitativePairKey(item.localQualitative?.name||"—",item.visitorQualitative?.name||"—");
+ const pairStat=qualAnalysis?.pairs?.find(x=>x.name===pair);
+ const leagueStat=qualAnalysis?.leagues?.find(x=>x.name===(item.competition||"Sin liga"));
+ const values=[];
+ const evidence=[];
+ if(qualAnalysis?.globalRate!=null){values.push(qualAnalysis.globalRate);evidence.push(`Cualitativo global ${rateLabel(qualAnalysis.globalRate)}`);}
+ if(pairStat?.n>=2){values.push(pairStat.rate);evidence.push(`${pair}: ${pairStat.n} casos, ${rateLabel(pairStat.rate)}`);}
+ if(leagueStat?.n>=2){values.push(leagueStat.rate);evidence.push(`${item.competition}: ${leagueStat.n} casos cualitativos, ${rateLabel(leagueStat.rate)}`);}
+ const rate=values.length?values.reduce((a,b)=>a+b,0)/values.length:null;
+ return {rate,label:`${better} no pierde (cualitativo)`,better,evidence};
+}
+function scoreCandidate(baseRate,sample,agreementCount,leagueCases){
+ let score=baseRate??0;
+ if(sample<10)score-=.08;
+ else if(sample<20)score-=.04;
+ if(agreementCount>=2)score+=.04;
+ if(agreementCount>=3)score+=.03;
+ if(leagueCases>=5)score+=.02;
+ return Math.max(0,Math.min(.98,score));
+}
+
+function adjustedByTrend(baseRate,trend,leagueTrend){
+ let rate=baseRate??0,evidence=[];
+ const apply=(t,label)=>{
+   if(!t||t.delta==null)return;
+   if(t.label==="Muy positiva"){rate+=.08;evidence.push(`${label}: tendencia muy positiva (+8 puntos)`);}
+   else if(t.label==="Positiva"){rate+=.04;evidence.push(`${label}: tendencia positiva (+4 puntos)`);}
+   else if(t.label==="Muy negativa"){rate-=.12;evidence.push(`${label}: tendencia muy negativa (-12 puntos)`);}
+   else if(t.label==="Negativa"){rate-=.06;evidence.push(`${label}: tendencia negativa (-6 puntos)`);}
+   else evidence.push(`${label}: tendencia estable`);
+ };
+ apply(trend,"Global");
+ apply(leagueTrend,"Liga");
+ return {rate:Math.max(0,Math.min(.98,rate)),evidence};
+}
+function candidatesForAnalysisItem(item,strategy,qualAnalysis){
+ const league=item.competition||"Sin liga";
+ const leagueInfo=strategy?.leagues?.[league];
+ const sample=strategy?.sample||0,result=[];
+ const globalRates=strategy?.rates||overallRates();
+ const q=qualitativeRateForMatch(item,qualAnalysis);
+ const addSource=(key,market,baseRate,evidence)=>{
+   if(baseRate==null||Number.isNaN(baseRate))return;
+   const trendAdj=adjustedByTrend(baseRate,strategy?.trends?.[key],leagueInfo?.trend?.[key]);
+   let agreement=0;
+   if(key==="winner"&&q.better===item.favored)agreement++;
+   if(key==="inverse"&&q.better&&q.better!==item.favored)agreement++;
+   if(key==="qualitative"&&item.favored===q.better)agreement++;
+   if((key==="sum"||key==="diff")&&item.sumGoals===item.diffGoals)agreement++;
+   const finalRate=scoreCandidate(trendAdj.rate,sample,agreement,leagueInfo?.n||0);
+   const ev=[...evidence,...trendAdj.evidence,`Liga: ${league}`,`Muestra NÚCLEO 2: ${sample}`];
+   if(agreement)ev.push(`Coincidencias adicionales: ${agreement}`);
+   result.push({analysisId:item.analysisId,match:`${item.localName} vs ${item.visitorName}`,league,market,source:key,rawRate:baseRate,rate:finalRate,evidence:ev,localQual:item.localQualitative?.name,visitorQual:item.visitorQualitative?.name});
+ };
+ const sumRate=leagueRateFromStrategy(strategy,league,"sum",globalRates.sum);
+ const diffRate=leagueRateFromStrategy(strategy,league,"diff",globalRates.diff);
+ addSource("sum",goalMarket(item.sumGoals)?.label||String(item.sumGoals),sumRate,[`Ruta suma histórica ${rateLabel(sumRate)}`,`Salida NÚCLEO 1: ${item.sumGoals}`]);
+ addSource("diff",goalMarket(item.diffGoals)?.label||String(item.diffGoals),diffRate,[`Ruta resta histórica ${rateLabel(diffRate)}`,`Salida NÚCLEO 1: ${item.diffGoals}`]);
+ if(item.favored!=="Sin selección"){
+   const winnerRate=leagueInfo?.winnerN?leagueInfo.winner:globalRates.winner;
+   addSource("winner",`${item.favored} no pierde`,winnerRate,[`Favorito histórico ${rateLabel(winnerRate)}`]);
+   const opposite=oppositeTeam(item);
+   const inverseRate=leagueInfo?.inverseN>=5?leagueInfo.inverse:globalRates.inverse;
+   if(inverseRate!=null&&inverseRate>=.55){
+     addSource("inverse",`${opposite} no pierde (regla inversa)`,inverseRate,[`Regla inversa ${rateLabel(inverseRate)}`,leagueInfo?.inverseN>=5?`Aplicada por liga con ${leagueInfo.inverseN} casos`:"Aplicada globalmente"]);
    }
-   candidates.sort((a,b)=>b.rate-a.rate);
-   const best=candidates[0];
-   out.push({match:`${x.localName} vs ${x.visitorName}`,best});
- });
- const usable=out.filter(x=>x.best&&x.best.rate>=.60).sort((a,b)=>b.best.rate-a.best.rate);
- const lines=[`Muestra histórica disponible: ${rates.sample} partidos cerrados no excepcionales.`];
- if(!rates.sample)lines.push("Todavía no existe historial cerrado suficiente. La lista queda como organizador, no como recomendación estadística.");
- else if(!usable.length)lines.push("Ningún partido alcanza el mínimo provisional de 60 %. Conviene no formar combinada.");
- else{
-   lines.push("Recomendación provisional (prioriza calidad, no cantidad):");
-   usable.slice(0,5).forEach((x,i)=>lines.push(`${i+1}. ${x.match}: ${x.best.label} — ${Math.round(x.best.rate*1000)/10}% histórico.`));
-   if(out.length>usable.length)lines.push(`${out.length-usable.length} partido(s) descartados por confianza inferior al mínimo.`);
  }
- document.getElementById("combinedRecommendation").textContent=lines.join("\n");
+ if(q.rate!=null)addSource("qualitative",q.label,q.rate,q.evidence);
+ return result;
 }
-function calculateStake(){
+function renderThreeBets(bets){
+ const defs={A:{name:"Alta",cls:"bet-tier-a"},B:{name:"Media",cls:"bet-tier-b"},C:{name:"Baja",cls:"bet-tier-c"}};
+ const box=document.getElementById("threeBetResults");
+ box.innerHTML=["A","B","C"].map(letter=>{
+   const b=bets.find(x=>x.letter===letter),d=defs[letter];
+   if(!b)return `<div class="bet-tier ${d.cls}"><h3>${letter} — ${d.name}</h3><p>No se encontró una opción suficiente para este nivel.</p></div>`;
+   return `<div class="bet-tier ${d.cls}">
+     <h3>${letter} — ${d.name}</h3>
+     <strong>${escapeHtml(b.match)}</strong>
+     <div>${escapeHtml(b.market)}</div>
+     <div class="tier-score">${rateLabel(b.rate)}</div>
+     <div class="goal-detail">${escapeHtml(b.league)} · Fuente principal: ${escapeHtml(b.source)}</div>
+     <ul class="evidence-list">${b.evidence.map(e=>`<li>${escapeHtml(e)}</li>`).join("")}</ul>
+   </div>`;
+ }).join("");
+ const tech=bets.length?bets.map(b=>`${b.letter} — ${b.match}\nMercado: ${b.market}\nConfianza ajustada: ${rateLabel(b.rate)}\nEvidencia: ${b.evidence.join(" | ")}`).join("\n\n"):"No hubo apuestas suficientes.";
+ document.getElementById("threeBetTechnical").textContent=tech;
+}
+function generateThreeBets(){
+ const list=getAnalysisList();
+ if(!list.length){alert("Agrega al menos un partido a la lista.");return;}
+ const strategy=getStrategy();
+ if(!strategy){alert("Primero genera la estrategia del NÚCLEO 2.");return;}
+ const qualAnalysis=getQualitativeAnalysis();
+ if(!qualAnalysis){alert("Primero analiza el NÚCLEO 3.");return;}
+ const all=list.flatMap(item=>candidatesForAnalysisItem(item,strategy,qualAnalysis)).sort((a,b)=>b.rate-a.rate);
+ const usedMatches=new Set(),bets=[];
+ const levels=[
+   {letter:"A",min:.70,max:1},
+   {letter:"B",min:.55,max:.70},
+   {letter:"C",min:.40,max:.55}
+ ];
+ levels.forEach(level=>{
+   let candidate=all.find(x=>!usedMatches.has(x.analysisId)&&x.rate>=level.min&&x.rate<(level.max===1?1.01:level.max));
+   if(!candidate&&level.letter!=="A"){
+     candidate=all.find(x=>!usedMatches.has(x.analysisId)&&x.rate>=level.min);
+   }
+   if(candidate){
+     usedMatches.add(candidate.analysisId);
+     bets.push({...candidate,letter:level.letter});
+   }
+ });
+ localStorage.setItem(THREE_BETS_KEY,JSON.stringify(bets));
+ renderThreeBets(bets);
+ const missing=3-bets.length;
+ document.getElementById("combinedRecommendation").textContent=
+   `NÚCLEO 4 evaluó ${list.length} partido(s) y ${all.length} alternativas de mercado. `+
+   `Generó ${bets.length} apuesta(s). ${missing?`${missing} nivel(es) quedaron vacíos por falta de evidencia suficiente.`:"Se completaron A, B y C."}`;
+ alert("NÚCLEO 4 terminó el análisis. Revisa las apuestas A, B y C.");
+}
+function generateCombinedRecommendation(){generateThreeBets();}
+function showSavedThreeBets(){
+ const bets=getThreeBets();
+ if(!bets.length)return;
+ renderThreeBets(bets);
+}
+
+function money(value){return `$${Math.round(value||0).toLocaleString("es-CO")}`;}
+function getFinancePlan(){
+ try{return JSON.parse(localStorage.getItem(FINANCE_PLAN_KEY)||"null");}catch(_){return null;}
+}
+function getFinanceHistory(){
+ try{return JSON.parse(localStorage.getItem(FINANCE_HISTORY_KEY)||"[]");}catch(_){return [];}
+}
+function riskFromBet(bet){
+ const evidenceCount=bet?.evidence?.length||0;
+ const confidence=bet?.rate||0;
+ let risk=1-confidence;
+ if(evidenceCount<3)risk+=.08;
+ if((getStrategy()?.sample||0)<10)risk+=.10;
+ else if((getStrategy()?.sample||0)<20)risk+=.05;
+ return Math.max(.02,Math.min(.95,risk));
+}
+function profileExposure(profile,maxExposure,bets){
+ const avg=bets.reduce((s,b)=>s+b.rate,0)/bets.length;
+ const factors={conservative:.55,balanced:.78,aggressive:1};
+ let factor=factors[profile]||.78;
+ if(avg<.55)factor*=.55;
+ else if(avg<.65)factor*=.75;
+ else if(avg>=.80)factor*=1;
+ return Math.min(maxExposure,maxExposure*factor);
+}
+function calculateAutomaticAllocation(){
  const capital=Number(document.getElementById("bankroll").value||0);
- const min=Number(document.getElementById("stakeMin").value||0);
- const max=Number(document.getElementById("stakeMax").value||0);
- const chosen=Number(document.getElementById("stakeChosen").value||0);
- const risk=document.getElementById("riskLevel").value;
- if(capital<=0||min<0||max<min||chosen<0||chosen>100){alert("Revisa el capital y los porcentajes.");return;}
- const ranges={low:[3,8],medium:[1.5,5],high:[.5,2], "very-high":[0,0]};
- const [rmin,rmax]=ranges[risk],amount=capital*chosen/100;
- const minAmount=capital*min/100,maxAmount=capital*max/100,remaining=capital-amount;
- let warning="";
- if(risk==="very-high"&&chosen>0)warning=" Riesgo muy alto: el sistema recomienda no apostar.";
- else if(chosen>rmax)warning=` Advertencia: supera el rango prudente orientativo para este riesgo (${rmin}%–${rmax}%).`;
- document.getElementById("stakeResult").textContent=
-   `Rango elegido: $${Math.round(minAmount).toLocaleString("es-CO")} a $${Math.round(maxAmount).toLocaleString("es-CO")}. `+
-   `Con ${chosen}% apostarías $${Math.round(amount).toLocaleString("es-CO")} y quedarían $${Math.round(remaining).toLocaleString("es-CO")}.${warning}`;
+ const maxExposure=Number(document.getElementById("maxExposure").value||0);
+ const profile=document.getElementById("financeProfile").value;
+ const bets=getThreeBets();
+ if(capital<=0){alert("Escribe un capital disponible válido.");return;}
+ if(maxExposure<=0||maxExposure>100){alert("El porcentaje máximo debe estar entre 1 y 100.");return;}
+ if(!bets.length){alert("Primero genera las apuestas A, B y C en el NÚCLEO 4.");return;}
+ const exposurePct=profileExposure(profile,maxExposure,bets);
+ const investable=capital*exposurePct/100;
+ const tierFactor={A:1.35,B:.85,C:.45};
+ const items=bets.map(b=>{
+   const risk=riskFromBet(b);
+   const evidenceFactor=1+Math.min(.18,(b.evidence?.length||0)*.025);
+   const weight=Math.max(.01,b.rate*b.rate*tierFactor[b.letter]*evidenceFactor*(1-risk*.35));
+   return {bet:b,risk,weight};
+ });
+ // Do not fund very weak C.
+ items.forEach(x=>{if(x.bet.letter==="C"&&x.bet.rate<.45)x.weight=0;});
+ const totalWeight=items.reduce((s,x)=>s+x.weight,0);
+ if(!totalWeight){alert("El sistema considera que ninguna apuesta merece inversión en este momento.");return;}
+ const allocations=items.map(x=>({
+   letter:x.bet.letter,match:x.bet.match,market:x.bet.market,
+   confidence:x.bet.rate,risk:x.risk,
+   amount:investable*x.weight/totalWeight,
+   league:x.bet.league
+ }));
+ const invested=allocations.reduce((s,x)=>s+x.amount,0);
+ const reserve=capital-invested;
+ const avgRisk=allocations.reduce((s,x)=>s+x.risk*x.amount,0)/(invested||1);
+ const riskLabel=avgRisk<=.25?"Bajo":avgRisk<=.40?"Medio":avgRisk<=.60?"Alto":"Muy alto";
+ const plan={
+   id:"finance-"+Date.now(),createdAt:new Date().toISOString(),
+   capital,maxExposure,profile,exposurePct,invested,reserve,avgRisk,riskLabel,allocations,
+   strategySample:getStrategy()?.sample||0
+ };
+ localStorage.setItem(FINANCE_PLAN_KEY,JSON.stringify(plan));
+ renderFinancialPlan(plan);
 }
+function renderFinancialPlan(plan){
+ if(!plan)return;
+ document.getElementById("fCapital").textContent=money(plan.capital);
+ document.getElementById("fInvested").textContent=money(plan.invested);
+ document.getElementById("fReserve").textContent=money(plan.reserve);
+ document.getElementById("fRisk").textContent=plan.riskLabel;
+ document.getElementById("stakeResult").innerHTML=`<table class="allocation-table"><thead><tr><th>Apuesta</th><th>Partido</th><th>Selección</th><th>Confianza</th><th>Riesgo</th><th>Monto sugerido</th></tr></thead><tbody>${
+   plan.allocations.map(a=>`<tr><td>${a.letter}</td><td>${escapeHtml(a.match)}</td><td>${escapeHtml(a.market)}</td><td>${rateLabel(a.confidence)}</td><td>${rateLabel(a.risk)}</td><td><strong>${money(a.amount)}</strong></td></tr>`).join("")
+ }</tbody></table>`;
+ const profileNames={conservative:"conservador",balanced:"equilibrado",aggressive:"agresivo"};
+ const lines=[
+   "INFORME DEL NÚCLEO 5",
+   `Capital disponible: ${money(plan.capital)}.`,
+   `Perfil utilizado: ${profileNames[plan.profile]}.`,
+   `Límite autorizado: ${plan.maxExposure}% del capital.`,
+   `Exposición realmente sugerida: ${Math.round(plan.exposurePct*10)/10}%.`,
+   `Total recomendado: ${money(plan.invested)}.`,
+   `Capital reservado: ${money(plan.reserve)}.`,
+   `Riesgo conjunto estimado: ${plan.riskLabel} (${rateLabel(plan.avgRisk)}).`,
+   `Muestra estratégica utilizada: ${plan.strategySample} partidos.`,
+   "",
+   "La apuesta A recibe mayor peso por su confianza. B recibe una cantidad intermedia. C recibe menos dinero o puede quedar en cero si su evidencia es demasiado débil.",
+   "La decisión final sigue siendo del usuario."
+ ];
+ document.getElementById("financeExplanation").textContent=lines.join("\n");
+}
+function showSavedFinancialPlan(){
+ const plan=getFinancePlan();
+ if(!plan){alert("Todavía no hay un plan financiero guardado automáticamente.");return;}
+ renderFinancialPlan(plan);
+ document.getElementById("bankrollSection").scrollIntoView({behavior:"smooth"});
+}
+function saveFinancialPlan(){
+ const plan=getFinancePlan();
+ if(!plan){alert("Primero distribuye el capital.");return;}
+ const history=getFinanceHistory();
+ history.unshift({...plan,savedAt:new Date().toISOString()});
+ localStorage.setItem(FINANCE_HISTORY_KEY,JSON.stringify(history));
+ renderFinanceHistory();
+ alert("Plan financiero guardado.");
+}
+function renderFinanceHistory(){
+ const history=getFinanceHistory(),box=document.getElementById("financeHistory");
+ box.innerHTML=history.length?history.map(p=>`<div class="list-card">
+   <strong>${new Date(p.savedAt||p.createdAt).toLocaleString("es-CO")}</strong>
+   <div>Capital ${money(p.capital)} · Invertido ${money(p.invested)} · Reserva ${money(p.reserve)} · Riesgo ${escapeHtml(p.riskLabel)}</div>
+   ${p.allocations.map(a=>`<div>${a.letter}: ${escapeHtml(a.match)} — ${escapeHtml(a.market)} — ${money(a.amount)}</div>`).join("")}
+   <button class="danger small-btn" onclick="deleteFinancePlan('${p.id}')">Eliminar</button>
+ </div>`).join(""):"Sin planes guardados.";
+}
+function deleteFinancePlan(id){
+ localStorage.setItem(FINANCE_HISTORY_KEY,JSON.stringify(getFinanceHistory().filter(x=>x.id!==id)));
+ renderFinanceHistory();
+}
+function clearFinanceHistory(){
+ if(confirm("¿Borrar todo el historial financiero?")){
+   localStorage.removeItem(FINANCE_HISTORY_KEY);renderFinanceHistory();
+ }
+}
+function exportFinanceHistory(){
+ const data={app:"NUCLEO 1 V1.1 M5",exportedAt:new Date().toISOString(),financeHistory:getFinanceHistory()};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`historial_financiero_${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(a.href);
+}
+function calculateStake(){calculateAutomaticAllocation();}
 function defaultVersion(){
  return {id:"n1-v1.0-base",name:"NÚCLEO 1 v1.0 base",createdAt:new Date().toISOString(),protected:true,
  description:"Matriz original: tablas de origen, colores, ubicación, puntajes A/B, ABC, cualificación y reglas algebraicas.",active:true,config:{engine:"base"}};
@@ -883,18 +1282,171 @@ function renderVersions(){
    </div>
  </div>`).join("");
 }
-function exportFullBackup(){
- const data={
-   app:"NUCLEO 1 V1.1 M1",exportedAt:new Date().toISOString(),
-   history:getHistory(),adaptive:getAdaptive(),analysisList:getAnalysisList(),
-   versions:getVersions(),activeVersion:localStorage.getItem(ACTIVE_VERSION_KEY)
+
+function collectFullSystemState(){
+ return {
+   app:"NUCLEO 1 V1.2 FINAL",
+   schemaVersion:7,
+   exportedAt:new Date().toISOString(),
+   history:getHistory(),
+   adaptive:getAdaptive(),
+   analysisList:getAnalysisList(),
+   strategy:getStrategy(),
+   qualitative:getQualitativeAnalysis(),
+   threeBets:getThreeBets(),
+   financePlan:getFinancePlan(),
+   financeHistory:getFinanceHistory(),
+   versions:getVersions(),
+   activeVersion:localStorage.getItem(ACTIVE_VERSION_KEY),
+   pendingProposal:JSON.parse(localStorage.getItem("nucleo1_pending_proposal_v10")||"null")
  };
+}
+function applyFullSystemState(data){
+ if(!data||!Array.isArray(data.history))throw new Error("Respaldo inválido");
+ setHistory(data.history);
+ if(data.adaptive)setAdaptive(data.adaptive);
+ localStorage.setItem(ANALYSIS_LIST_KEY,JSON.stringify(data.analysisList||[]));
+ if(data.strategy)localStorage.setItem(STRATEGY_KEY,JSON.stringify(data.strategy));else localStorage.removeItem(STRATEGY_KEY);
+ if(data.qualitative)localStorage.setItem(QUAL_ANALYSIS_KEY,JSON.stringify(data.qualitative));else localStorage.removeItem(QUAL_ANALYSIS_KEY);
+ localStorage.setItem(THREE_BETS_KEY,JSON.stringify(data.threeBets||[]));
+ if(data.financePlan)localStorage.setItem(FINANCE_PLAN_KEY,JSON.stringify(data.financePlan));else localStorage.removeItem(FINANCE_PLAN_KEY);
+ localStorage.setItem(FINANCE_HISTORY_KEY,JSON.stringify(data.financeHistory||[]));
+ if(data.versions)localStorage.setItem(VERSION_KEY,JSON.stringify(data.versions));
+ if(data.activeVersion)localStorage.setItem(ACTIVE_VERSION_KEY,data.activeVersion);
+ if(data.pendingProposal)localStorage.setItem("nucleo1_pending_proposal_v10",JSON.stringify(data.pendingProposal));
+ refreshAllModules();
+}
+function refreshAllModules(){
+ renderHistory();renderAdaptive();updateN2Summary();updateN3Summary();
+ renderAnalysisList();showSavedThreeBets();renderFinanceHistory();
+ if(getFinancePlan())renderFinancialPlan(getFinancePlan());
+renderMemoryStatus();
+renderRestorePoints();
+ renderVersions();renderProposal();renderMemoryStatus();renderRestorePoints();
+}
+function getRestorePoints(){
+ try{return JSON.parse(localStorage.getItem(RESTORE_POINTS_KEY)||"[]");}catch(_){return [];}
+}
+function setRestorePoints(points){
+ localStorage.setItem(RESTORE_POINTS_KEY,JSON.stringify(points));renderRestorePoints();renderMemoryStatus();
+}
+function createRestorePoint(){
+ const name=prompt("Nombre del punto de restauración:",`Copia ${new Date().toLocaleString("es-CO")}`);
+ if(name===null)return;
+ const points=getRestorePoints();
+ const state=collectFullSystemState();
+ points.unshift({id:"restore-"+Date.now(),name:name.trim()||"Copia sin nombre",createdAt:new Date().toISOString(),state});
+ while(points.length>8)points.pop();
+ setRestorePoints(points);
+ document.getElementById("memoryReport").textContent="Punto de restauración creado. Conserva internamente todos los núcleos y puede recuperarse sin importar un archivo.";
+}
+function restoreFromPoint(id){
+ const point=getRestorePoints().find(x=>x.id===id);
+ if(!point)return;
+ if(confirm(`¿Restaurar "${point.name}"? Los datos actuales serán reemplazados.`)){
+   applyFullSystemState(point.state);
+   alert("Sistema restaurado.");
+ }
+}
+function deleteRestorePoint(id){
+ if(confirm("¿Eliminar este punto de restauración?"))setRestorePoints(getRestorePoints().filter(x=>x.id!==id));
+}
+function exportRestorePoint(id){
+ const point=getRestorePoints().find(x=>x.id===id);if(!point)return;
+ const blob=new Blob([JSON.stringify(point.state,null,2)],{type:"application/json"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);
+ a.download=`punto_restauracion_${new Date(point.createdAt).toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(a.href);
+}
+function renderRestorePoints(){
+ const points=getRestorePoints(),box=document.getElementById("restorePointList");
+ if(!box)return;
+ box.innerHTML=points.length?points.map(p=>`<div class="restore-card">
+   <strong>${escapeHtml(p.name)}</strong>
+   <div class="goal-detail">${new Date(p.createdAt).toLocaleString("es-CO")} · ${p.state.history?.length||0} partidos</div>
+   <div class="history-toolbar">
+     <button class="primary small-btn" onclick="restoreFromPoint('${p.id}')">Restaurar</button>
+     <button class="secondary small-btn" onclick="exportRestorePoint('${p.id}')">Exportar</button>
+     <button class="danger small-btn" onclick="deleteRestorePoint('${p.id}')">Eliminar</button>
+   </div>
+ </div>`).join(""):"Sin puntos de restauración.";
+}
+function importFullBackup(event){
+ const file=event.target.files?.[0];if(!file)return;
+ const reader=new FileReader();
+ reader.onload=()=>{
+   try{
+     const data=JSON.parse(reader.result);
+     if(!Array.isArray(data.history))throw new Error();
+     if(confirm(`El respaldo contiene ${data.history.length} partidos. ¿Reemplazar los datos actuales?`)){
+       createAutomaticSafetyPoint();
+       applyFullSystemState(data);
+       alert("Respaldo completo recuperado. Ahora abre el NÚCLEO 2 y pulsa GENERAR / ACTUALIZAR ESTRATEGIA.");
+     }
+   }catch(_){alert("El archivo no es un respaldo completo válido.");}
+   event.target.value="";
+ };
+ reader.readAsText(file);
+}
+function createAutomaticSafetyPoint(){
+ const points=getRestorePoints();
+ points.unshift({id:"restore-"+Date.now(),name:"Copia automática antes de importar",createdAt:new Date().toISOString(),state:collectFullSystemState()});
+ while(points.length>8)points.pop();
+ localStorage.setItem(RESTORE_POINTS_KEY,JSON.stringify(points));
+}
+function renderMemoryStatus(){
+ const history=getHistory(),strategy=getStrategy(),qual=getQualitativeAnalysis(),points=getRestorePoints();
+ const ids={mHistory:history.length,mStrategy:strategy?"Sí":"No",mQualitative:qual?"Sí":"No",mSnapshots:points.length};
+ Object.entries(ids).forEach(([id,val])=>{const el=document.getElementById(id);if(el)el.textContent=val;});
+}
+function verifySystemIntegrity(){
+ const problems=[];
+ const h=getHistory();
+ if(!Array.isArray(h))problems.push("Historial inválido.");
+ if(getStrategy()&&!getStrategy().createdAt)problems.push("Estrategia incompleta.");
+ if(getQualitativeAnalysis()&&!getQualitativeAnalysis().createdAt)problems.push("Análisis cualitativo incompleto.");
+ if(getFinancePlan()&&!Array.isArray(getFinancePlan().allocations))problems.push("Plan financiero incompleto.");
+ const report=problems.length?`Se detectaron ${problems.length} problema(s):\n${problems.join("\n")}`:
+   `Integridad correcta.\nPartidos: ${h.length}.\nEstrategia: ${getStrategy()?"presente":"ausente"}.\nCualitativo: ${getQualitativeAnalysis()?"presente":"ausente"}.\nApuestas: ${getThreeBets().length}.\nPlanes financieros: ${getFinanceHistory().length}.`;
+ document.getElementById("memoryReport").textContent=report;
+}
+function deleteOldMatches(){
+ const monthsRaw=prompt("Eliminar partidos anteriores a cuántos meses?","6");
+ if(monthsRaw===null)return;
+ const months=Number(monthsRaw);
+ if(!Number.isFinite(months)||months<=0){alert("Escribe un número válido.");return;}
+ const cutoff=Date.now()-months*30.44*24*3600*1000;
+ const items=getHistory(),old=items.filter(x=>new Date(x.matchDate||x.createdAt).getTime()<cutoff);
+ if(!old.length){alert("No hay partidos anteriores a ese límite.");return;}
+ if(confirm(`Se eliminarán ${old.length} partidos. ¿Crear primero un punto de restauración?`))createAutomaticSafetyPoint();
+ if(confirm(`Confirma eliminar ${old.length} partidos antiguos.`)){
+   setHistory(items.filter(x=>!old.some(o=>o.id===x.id)));refreshAllModules();
+ }
+}
+function cleanTemporaryData(){
+ if(confirm("¿Limpiar la lista temporal de análisis y las apuestas A/B/C actuales? El historial de partidos no se borra.")){
+   localStorage.setItem(ANALYSIS_LIST_KEY,"[]");localStorage.setItem(THREE_BETS_KEY,"[]");
+   localStorage.removeItem(FINANCE_PLAN_KEY);refreshAllModules();
+ }
+}
+function resetApplicationSafely(){
+ if(!confirm("Esta acción borra los datos operativos. ¿Continuar?"))return;
+ const download=confirm("¿Descargar un respaldo completo antes de borrar?");
+ if(download)exportFullBackup();
+ createAutomaticSafetyPoint();
+ if(confirm("Última confirmación: ¿restablecer la aplicación?")){
+   [HISTORY_KEY,ADAPTIVE_KEY,ANALYSIS_LIST_KEY,STRATEGY_KEY,QUAL_ANALYSIS_KEY,THREE_BETS_KEY,FINANCE_PLAN_KEY,FINANCE_HISTORY_KEY].forEach(k=>localStorage.removeItem(k));
+   refreshAllModules();alert("Aplicación restablecida. El punto automático de restauración se conserva.");
+ }
+}
+function exportFullBackup(){
+ const data=collectFullSystemState();
  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
  const a=document.createElement("a");a.href=URL.createObjectURL(blob);
  a.download=`nucleo1_respaldo_completo_${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(a.href);
+ document.getElementById("memoryReport").textContent="Respaldo completo exportado. El archivo incluye todos los núcleos; exportar no borra información.";
 }
 function maybeCreateN1Proposal(support,description,config){
- if(support<.70)return;
+ if(support<.75)return;
  const proposal={support,description,config,createdAt:new Date().toISOString()};
  localStorage.setItem("nucleo1_pending_proposal_v10",JSON.stringify(proposal));
  renderProposal();
@@ -1003,8 +1555,13 @@ function renderHistory(){
  document.getElementById("stDiff").textContent=pct(diffHits,diffN);
  document.getElementById("stQual").textContent=pct(qualHits,qualN);
  const btn=document.getElementById("autoAdjustBtn");
- btn.disabled=closed.length<50;btn.classList.toggle("locked",closed.length<50);
- btn.textContent=closed.length<50?`ANALIZAR POSIBLES AJUSTES (${closed.length}/50)`:"ANALIZAR POSIBLES AJUSTES";
+ btn.disabled=closed.length===0;btn.classList.toggle("locked",closed.length===0);
+ btn.textContent=closed.length?`GENERAR ESTRATEGIA (${closed.length})`:"SIN PARTIDOS CERRADOS";
+ updateN2Summary();
+updateN3Summary();
+showSavedThreeBets();
+renderFinanceHistory();
+if(getFinancePlan())renderFinancialPlan(getFinancePlan());
  document.getElementById("historyRows").innerHTML=items.length?items.map(item=>{
    const e=evaluation(item),score=item.status==="cerrado"?`${item.homeGoals}–${item.awayGoals}`:"—";
    const notes=[item.notes,item.resultNotes,item.exceptional?"⚠ Partido excepcional":""].filter(Boolean).join(" | ");
@@ -1025,6 +1582,402 @@ function renderHistory(){
       <button class="danger small-btn" onclick="deleteMatch('${item.id}')">Eliminar</button>
     </td></tr>`;
  }).join(""):`<tr><td colspan="11">Aún no hay pronósticos guardados.</td></tr>`;
+}
+
+function getStrategy(){
+ try{return JSON.parse(localStorage.getItem(STRATEGY_KEY)||"null");}catch(_){return null;}
+}
+function strategyConfidence(n){
+ if(n>=50)return {label:"Alta",className:"confidence-high",note:"Muestra amplia."};
+ if(n>=20)return {label:"Media",className:"confidence-medium",note:"Muestra útil, todavía puede variar."};
+ if(n>=10)return {label:"Preliminar",className:"confidence-medium",note:"Conviene seguir acumulando partidos."};
+ return {label:"Muy preliminar",className:"confidence-low",note:"La muestra es pequeña; úsala con prudencia."};
+}
+
+function sortByRecency(items){
+ return [...(items||[])].map(normalizeHistoryItem).sort((a,b)=>{
+   const tb=new Date(b.closedAt||b.matchDate||b.createdAt||0).getTime()||0;
+   const ta=new Date(a.closedAt||a.matchDate||a.createdAt||0).getTime()||0;
+   return tb-ta;
+ });
+}
+function oppositeTeam(item){
+ if(item.favored==="Sin selección")return null;
+ return item.favored===item.localName?item.visitorName:item.localName;
+}
+function inverseFavoriteHit(item){
+ if(item.status!=="cerrado"||item.favored==="Sin selección")return null;
+ const opposite=oppositeTeam(item);
+ const real=winnerFromScore(item.homeGoals,item.awayGoals,item.localName,item.visitorName);
+ return real===opposite||real==="Empate";
+}
+
+function textValue(value,fallback=""){
+ if(value===null||value===undefined)return fallback;
+ return String(value);
+}
+function normalizeQualitative(value){
+ if(!value)return null;
+ if(typeof value==="string")return {name:value.toUpperCase()};
+ if(typeof value==="object"){
+   const name=value.name??value.label??value.state??value.estado??value.value;
+   return name?{...value,name:textValue(name).toUpperCase()}:null;
+ }
+ return null;
+}
+function normalizeHistoryItem(raw){
+ const item={...raw};
+ item.status=textValue(raw.status||raw.estado||"pendiente").toLowerCase();
+ item.localName=textValue(raw.localName||raw.homeName||raw.local||raw.equipoLocal||"Equipo local");
+ item.visitorName=textValue(raw.visitorName||raw.awayName||raw.visitor||raw.equipoVisitante||"Equipo visitante");
+ item.competition=textValue(raw.competition||raw.league||raw.liga||"Sin liga");
+ item.homeGoals=Number(raw.homeGoals??raw.localGoals??raw.golesLocal??0);
+ item.awayGoals=Number(raw.awayGoals??raw.visitorGoals??raw.golesVisitante??0);
+ item.favored=textValue(raw.favored||raw.favorite||raw.favorito||"Sin selección");
+ item.sumGoals=raw.sumGoals??raw.goalSum??raw.sumaGoles??null;
+ item.diffGoals=raw.diffGoals??raw.goalDiff??raw.restaGoles??null;
+ item.localQualitative=normalizeQualitative(raw.localQualitative||raw.qualLocal||raw.estadoLocal);
+ item.visitorQualitative=normalizeQualitative(raw.visitorQualitative||raw.qualVisitor||raw.estadoVisitante);
+ item.exceptional=Boolean(raw.exceptional||raw.excepcional);
+ item.createdAt=raw.createdAt||raw.fechaCreacion||raw.matchDate||new Date().toISOString();
+ item.matchDate=raw.matchDate||raw.fechaPartido||raw.createdAt||"";
+ return item;
+}
+function safeGoalHit(value,total){
+ try{return goalHit(value,total);}catch(_){return null;}
+}
+function safeQualitativeEvaluation(item){
+ try{
+   const local=normalizeQualitative(item.localQualitative);
+   const visitor=normalizeQualitative(item.visitorQualitative);
+   if(item.status!=="cerrado"||!local||!visitor)return null;
+   const lg=qualitativeGroup(local.name),vg=qualitativeGroup(visitor.name);
+   if(lg.id===vg.id)return {clear:false,hit:null,label:`Estados cercanos: ${lg.label}`};
+   const better=lg.rank>vg.rank?item.localName:item.visitorName;
+   const real=winnerFromScore(item.homeGoals,item.awayGoals,item.localName,item.visitorName);
+   return {clear:true,better,hit:real===better||real==="Empate",label:`${better} no pierde`};
+ }catch(_){return null;}
+}
+function safeEvaluation(item){
+ try{
+   if(item.status!=="cerrado")return {winner:null,sum:null,diff:null};
+   const total=Number(item.homeGoals)+Number(item.awayGoals);
+   const realWinner=winnerFromScore(Number(item.homeGoals),Number(item.awayGoals),item.localName,item.visitorName);
+   const winner=item.favored==="Sin selección"?null:item.favored===realWinner;
+   return {
+     winner,
+     sum:safeGoalHit(item.sumGoals,total),
+     diff:safeGoalHit(item.diffGoals,total),
+     total,
+     realWinner
+   };
+ }catch(_){
+   return {winner:null,sum:null,diff:null};
+ }
+}
+function aggregateRates(sample){
+ let sumHits=0,sumN=0,diffHits=0,diffN=0,winnerHits=0,winnerN=0,qualHits=0,qualN=0,inverseHits=0,inverseN=0;
+ (sample||[]).forEach(raw=>{
+   const item=normalizeHistoryItem(raw);
+   const e=safeEvaluation(item),q=safeQualitativeEvaluation(item),inv=inverseFavoriteHit(item);
+   if(e.sum!==null){sumN++;if(e.sum===true)sumHits++;}
+   if(e.diff!==null){diffN++;if(e.diff===true)diffHits++;}
+   if(e.winner!==null){winnerN++;if(e.winner===true)winnerHits++;}
+   if(q?.clear){qualN++;if(q.hit===true)qualHits++;}
+   if(inv!==null){inverseN++;if(inv===true)inverseHits++;}
+ });
+ return {
+   n:(sample||[]).length,
+   sum:sumN?sumHits/sumN:null,
+   diff:diffN?diffHits/diffN:null,
+   winner:winnerN?winnerHits/winnerN:null,
+   qualitative:qualN?qualHits/qualN:null,
+   inverse:inverseN?inverseHits/inverseN:null,
+   sumN,diffN,winnerN,inverseN,qualN
+ };
+}
+
+function rateLabel(value){
+ if(value===null||value===undefined||value===""||!Number.isFinite(Number(value))) return "—";
+ const n=Number(value);
+ const pct=n<=1 ? n*100 : n;
+ return `${pct.toFixed(1).replace(".0","")}%`;
+}
+function trendLabel(delta){
+ if(delta>=.12)return "Muy positiva";
+ if(delta>=.05)return "Positiva";
+ if(delta<=-.12)return "Muy negativa";
+ if(delta<=-.05)return "Negativa";
+ return "Estable";
+}
+function trendClass(label){
+ return label.includes("positiva")?"trend-up":label.includes("negativa")?"trend-down":"trend-flat";
+}
+function buildTrend(history,recent){
+ const keys=["sum","diff","winner","qualitative","inverse"],out={};
+ keys.forEach(key=>{
+   const h=history[key],r=recent[key];
+   if(h==null||r==null){out[key]={historical:h,recent:r,delta:null,label:"Sin datos"};return;}
+   const delta=r-h;
+   out[key]={historical:h,recent:r,delta,label:trendLabel(delta)};
+ });
+ return out;
+}
+function buildLeagueStats(sample){
+ const leagues={};
+ sample.forEach(item=>{
+   const name=textValue(item.competition||item.league||item.liga||"Sin liga").trim()||"Sin liga";
+   leagues[name]??={items:[]};
+   leagues[name].items.push(item);
+ });
+ Object.entries(leagues).forEach(([name,l])=>{
+   const sorted=sortByRecency(l.items),recentItems=sorted.slice(0,20);
+   const history=aggregateRates(l.items),recent=aggregateRates(recentItems);
+   leagues[name]={...history,recent,trend:buildTrend(history,recent),recentN:recentItems.length};
+   delete leagues[name].items;
+ });
+ return leagues;
+}
+function generateStrategy(){
+ const status=document.getElementById("n2StatusMessage");
+ try{
+   if(status)status.textContent="Analizando historial...";
+   const all=getHistory().filter(x=>x&&x.status==="cerrado"&&Number.isFinite(Number(x.homeGoals))&&Number.isFinite(Number(x.awayGoals)));
+   if(!all.length){
+     if(status)status.textContent="No hay partidos cerrados con marcador válido.";
+     alert("Todavía no hay partidos cerrados con marcador real.");
+     return;
+   }
+
+   const normalizedAll=all.map(normalizeHistoryItem);
+   const normal=normalizedAll.filter(x=>!x.exceptional);
+   const sample=normal.length?normal:normalizedAll;
+   const sorted=sortByRecency(sample);
+   const recentItems=sorted.slice(0,Math.min(20,sorted.length));
+
+   const historical=aggregateRates(sample);
+   const recent=aggregateRates(recentItems);
+
+   const rates={
+     sum:historical.sum,
+     diff:historical.diff,
+     winner:historical.winner,
+     qualitative:historical.qualitative,
+     inverse:historical.inverse
+   };
+
+   const trends=buildTrend(historical,recent);
+   const criteria=[
+     {key:"sum",name:"Suma algebraica",rate:rates.sum},
+     {key:"diff",name:"Resta algebraica",rate:rates.diff},
+     {key:"qualitative",name:"Análisis cualitativo",rate:rates.qualitative},
+     {key:"winner",name:"Favorito",rate:rates.winner},
+     {key:"inverse",name:"Regla inversa: contrario no pierde",rate:rates.inverse}
+   ].filter(x=>x.rate!==null&&x.rate!==undefined&&Number.isFinite(x.rate))
+    .sort((a,b)=>b.rate-a.rate);
+
+   const recommendations=[];
+   criteria.forEach(c=>{
+     const t=trends[c.key]||{};
+     const recentText=rateLabel(t.recent);
+     if(c.rate>=.70){
+       recommendations.push(`PRIORIZAR ${c.name}: ${rateLabel(c.rate)} histórico; últimos ${recentItems.length}: ${recentText}; tendencia ${t.label||"sin datos"}.`);
+     }else if(c.rate>=.55){
+       recommendations.push(`USAR ${c.name} COMO APOYO: ${rateLabel(c.rate)} histórico; tendencia ${t.label||"sin datos"}.`);
+     }else{
+       recommendations.push(`NO USAR ${c.name} COMO CRITERIO PRINCIPAL: ${rateLabel(c.rate)} histórico; tendencia ${t.label||"sin datos"}.`);
+     }
+   });
+
+   const leagues=buildLeagueStats(sample);
+   Object.entries(leagues).forEach(([league,l])=>{
+     if((l.inverseN||0)>=5&&Number.isFinite(l.inverse)&&l.inverse>=.75){
+       recommendations.push(`REGLA INVERSA POR LIGA: en ${league}, el contrario del favorito no perdió en ${rateLabel(l.inverse)} de ${l.inverseN} casos.`);
+     }
+   });
+
+   const confidence=strategyConfidence(sample.length);
+   const strategy={
+     createdAt:new Date().toISOString(),
+     sample:sample.length,
+     recentSample:recentItems.length,
+     excludedExceptional:all.length-sample.length,
+     confidence:confidence.label,
+     rates,
+     criteria,
+     recommendations,
+     leagues,
+     trends,
+     recentRates:recent
+   };
+
+   localStorage.setItem(STRATEGY_KEY,JSON.stringify(strategy));
+
+   if((historical.inverseN||0)>=30&&Number.isFinite(historical.inverse)&&historical.inverse>=.75){
+     maybeCreateN1Proposal(
+       historical.inverse,
+       `La regla inversa global alcanzó ${rateLabel(historical.inverse)} en ${historical.inverseN} casos. Probar o crear una nueva versión del NÚCLEO 1 únicamente con aprobación manual.`,
+       {experimentalInverseFavorite:true}
+     );
+   }
+
+   renderStrategy(strategy);
+   if(status)status.textContent=`Estrategia generada correctamente con ${sample.length} partidos compatibles.`;
+   alert("Estrategia generada correctamente. NÚCLEO 1 permanece intacto.");
+ }catch(error){
+   console.error("Error al generar estrategia:",error);
+   if(status)status.textContent=`Error al generar estrategia: ${error?.message||error}`;
+   alert(`No se pudo generar la estrategia. Detalle: ${error?.message||error}`);
+ }
+}
+function renderStrategy(strategy){
+ if(!strategy)return;
+ const sampleEl=document.getElementById("n2Sample");
+ const confidenceEl=document.getElementById("n2Confidence");
+ const bestEl=document.getElementById("n2Best");
+ const updatedEl=document.getElementById("n2Updated");
+ const reportEl=document.getElementById("n2Report");
+ const tableEl=document.getElementById("n2LeagueTable");
+
+ if(sampleEl)sampleEl.textContent=strategy.sample??0;
+ if(confidenceEl){
+   confidenceEl.textContent=strategy.confidence||"Sin datos";
+   confidenceEl.className=strategyConfidence(strategy.sample||0).className;
+ }
+ if(bestEl)bestEl.textContent=strategy.criteria?.[0]?.name||"Sin criterio suficiente";
+ if(updatedEl)updatedEl.textContent=new Date(strategy.createdAt).toLocaleString("es-CO");
+
+ const lines=[
+   "ESTRATEGIA ACTUAL DEL NÚCLEO 2",
+   `Histórico analizado: ${strategy.sample||0} partidos.`,
+   `Ventana reciente: últimos ${strategy.recentSample||0} partidos.`,
+   `Partidos excepcionales excluidos: ${strategy.excludedExceptional||0}.`,
+   `Nivel de confianza: ${strategy.confidence||"Sin datos"}.`,
+   "",
+   "HISTÓRICO vs RECIENTE:",
+   `Suma: ${rateLabel(strategy.rates?.sum)} → ${rateLabel(strategy.recentRates?.sum)} (${strategy.trends?.sum?.label||"—"}).`,
+   `Resta: ${rateLabel(strategy.rates?.diff)} → ${rateLabel(strategy.recentRates?.diff)} (${strategy.trends?.diff?.label||"—"}).`,
+   `Favorito: ${rateLabel(strategy.rates?.winner)} → ${rateLabel(strategy.recentRates?.winner)} (${strategy.trends?.winner?.label||"—"}).`,
+   `Regla inversa: ${rateLabel(strategy.rates?.inverse)} → ${rateLabel(strategy.recentRates?.inverse)} (${strategy.trends?.inverse?.label||"—"}).`,
+   `Cualitativo: ${rateLabel(strategy.rates?.qualitative)} → ${rateLabel(strategy.recentRates?.qualitative)} (${strategy.trends?.qualitative?.label||"—"}).`,
+   "",
+   "INSTRUCCIONES ESTRATÉGICAS:",
+   ...((strategy.recommendations&&strategy.recommendations.length)?strategy.recommendations:["No hubo criterios suficientes para generar recomendaciones."]),
+   "",
+   "El NÚCLEO 4 utiliza estos datos para subir, bajar o descartar alternativas en las apuestas A, B y C."
+ ];
+ if(reportEl)reportEl.textContent=lines.join("\n");
+
+ const entries=Object.entries(strategy.leagues||{}).sort((a,b)=>(b[1].n||0)-(a[1].n||0));
+ if(tableEl){
+   tableEl.innerHTML=entries.length?`<table class="league-table"><thead><tr><th>Liga</th><th>Casos</th><th>Favorito</th><th>Inversa</th><th>Últimos 20 favorita</th><th>Tendencia favorito</th><th>Suma</th><th>Resta</th><th>Cualitativo</th></tr></thead><tbody>${
+     entries.map(([name,l])=>`<tr><td>${escapeHtml(name)}</td><td>${l.n||0}</td><td>${rateLabel(l.winner)}</td><td>${rateLabel(l.inverse)}</td><td>${rateLabel(l.recent?.winner)}</td><td class="${trendClass(l.trend?.winner?.label||"")}">${escapeHtml(l.trend?.winner?.label||"—")}</td><td>${rateLabel(l.sum)}</td><td>${rateLabel(l.diff)}</td><td>${rateLabel(l.qualitative)}</td></tr>`).join("")
+   }</tbody></table>`:"Aún no hay ligas analizadas.";
+ }
+}
+function showCurrentStrategy(){
+ const s=getStrategy();
+ if(!s){alert("Todavía no existe una estrategia guardada.");return;}
+ renderStrategy(s);
+ document.getElementById("nucleus2Section").scrollIntoView({behavior:"smooth"});
+}
+function updateN2Summary(){
+ const s=getStrategy(),closed=getHistory().filter(x=>x.status==="cerrado").length;
+ document.getElementById("n2Sample").textContent=s?.sample??closed;
+ if(s)renderStrategy(s);
+ else{
+   document.getElementById("n2Confidence").textContent=closed?strategyConfidence(closed).label:"Sin datos";
+   document.getElementById("n2Best").textContent="—";
+   document.getElementById("n2Updated").textContent="—";
+ }
+}
+
+function getQualitativeAnalysis(){
+ try{return JSON.parse(localStorage.getItem(QUAL_ANALYSIS_KEY)||"null");}catch(_){return null;}
+}
+function qualitativePairKey(a,b){
+ const order=["MUY FELIZ","MOTIVADO","COMPLACIENTE","ORIGEN","TRISTE","INFELIZ"];
+ const ia=order.indexOf(a),ib=order.indexOf(b);
+ return ia<=ib?`${a} vs ${b}`:`${b} vs ${a}`;
+}
+function generateQualitativeAnalysis(){
+ const strategy=getStrategy();
+ if(!strategy){alert("Primero genera o actualiza la estrategia del NÚCLEO 2.");return;}
+ const closed=getHistory().filter(x=>x.status==="cerrado"&&!x.exceptional);
+ if(!closed.length){alert("No hay partidos cerrados no excepcionales.");return;}
+ const pairs={},leagues={};
+ let clearN=0,hits=0;
+ closed.forEach(item=>{
+   const q=qualitativeEvaluation(item);
+   if(!q?.clear)return;
+   clearN++;if(q.hit)hits++;
+   const local=item.localQualitative?.name||"—",visitor=item.visitorQualitative?.name||"—";
+   const pair=qualitativePairKey(local,visitor);
+   pairs[pair]??={n:0,hits:0};pairs[pair].n++;if(q.hit)pairs[pair].hits++;
+   const league=(item.competition||"Sin liga").trim()||"Sin liga";
+   leagues[league]??={n:0,hits:0};leagues[league].n++;if(q.hit)leagues[league].hits++;
+ });
+ if(!clearN){alert("No hay comparaciones cualitativas claras. Los partidos donde ambos equipos están en el mismo grupo se consideran ajustados.");return;}
+ const globalRate=hits/clearN;
+ const pairList=Object.entries(pairs).map(([name,v])=>({name,n:v.n,rate:v.hits/v.n})).sort((a,b)=>b.rate-a.rate||b.n-a.n);
+ const leagueList=Object.entries(leagues).map(([name,v])=>({name,n:v.n,rate:v.hits/v.n})).sort((a,b)=>b.n-a.n);
+ const instructions=[];
+ if(globalRate>=.70)instructions.push(`El criterio cualitativo puede priorizarse como apoyo fuerte: ${rateLabel(globalRate)}.`);
+ else if(globalRate>=.55)instructions.push(`El criterio cualitativo debe utilizarse como apoyo moderado: ${rateLabel(globalRate)}.`);
+ else instructions.push(`El criterio cualitativo no debe utilizarse como criterio principal por ahora: ${rateLabel(globalRate)}.`);
+ pairList.forEach(p=>{
+   if(p.n>=3&&p.rate>=.70)instructions.push(`En ${p.name}, aumentar la confianza: ${p.n} casos y ${rateLabel(p.rate)}.`);
+   else if(p.n>=3&&p.rate<.50)instructions.push(`En ${p.name}, reducir la confianza: ${p.n} casos y ${rateLabel(p.rate)}.`);
+ });
+ leagueList.forEach(l=>{
+   if(l.n>=3&&l.rate>=.70)instructions.push(`En ${l.name}, el cualitativo tiene buen respaldo: ${rateLabel(l.rate)}.`);
+   else if(l.n>=3&&l.rate<.50)instructions.push(`En ${l.name}, el cualitativo es inestable: ${rateLabel(l.rate)}.`);
+ });
+ const analysis={
+   createdAt:new Date().toISOString(),strategyCreatedAt:strategy.createdAt,
+   sample:clearN,globalRate,pairs:pairList,leagues:leagueList,instructions
+ };
+ localStorage.setItem(QUAL_ANALYSIS_KEY,JSON.stringify(analysis));
+ renderQualitativeAnalysis(analysis);
+ alert("Análisis cualitativo generado. El NÚCLEO 3 recibió la estrategia del NÚCLEO 2 sin modificar la matriz cualitativa.");
+}
+function renderQualitativeAnalysis(a){
+ if(!a)return;
+ document.getElementById("n3Sample").textContent=a.sample;
+ document.getElementById("n3Global").textContent=rateLabel(a.globalRate);
+ document.getElementById("n3BestPair").textContent=a.pairs?.[0]?.name||"—";
+ const conf=strategyConfidence(a.sample);
+ const confEl=document.getElementById("n3Confidence");
+ confEl.textContent=conf.label;confEl.className=conf.className;
+ const lines=[
+   "INFORME DEL NÚCLEO 3",
+   `Comparaciones cualitativas claras: ${a.sample}.`,
+   `Acierto global: ${rateLabel(a.globalRate)}.`,
+   `Confianza de la muestra: ${conf.label}.`,
+   "",
+   "INSTRUCCIONES RECIBIDAS Y AJUSTADAS:",
+   ...(a.instructions||[]),
+   "",
+   "Regla protegida: Muy feliz y Motivado pertenecen al grupo favorable; Complaciente/Origen al grupo medio; Triste e Infeliz al grupo desfavorable.",
+   "Cuando ambos equipos están en el mismo grupo, la diferencia queda a juicio del usuario y no se contabiliza como ventaja clara."
+ ];
+ document.getElementById("n3Report").textContent=lines.join("\n");
+ document.getElementById("n3PairTable").innerHTML=a.pairs?.length?`<table class="qual-table"><thead><tr><th>Enfrentamiento</th><th>Casos</th><th>No perdió el mejor estado</th></tr></thead><tbody>${
+   a.pairs.map(p=>`<tr><td>${escapeHtml(p.name)}</td><td>${p.n}</td><td>${rateLabel(p.rate)}</td></tr>`).join("")
+ }</tbody></table>`:"Sin enfrentamientos claros.";
+ document.getElementById("n3LeagueTable").innerHTML=a.leagues?.length?`<table class="qual-table"><thead><tr><th>Liga</th><th>Casos claros</th><th>Acierto cualitativo</th></tr></thead><tbody>${
+   a.leagues.map(l=>`<tr><td>${escapeHtml(l.name)}</td><td>${l.n}</td><td>${rateLabel(l.rate)}</td></tr>`).join("")
+ }</tbody></table>`:"Sin ligas analizadas.";
+}
+function showQualitativeAnalysis(){
+ const a=getQualitativeAnalysis();
+ if(!a){alert("Todavía no existe un análisis cualitativo guardado.");return;}
+ renderQualitativeAnalysis(a);
+ document.getElementById("nucleus3Section").scrollIntoView({behavior:"smooth"});
+}
+function updateN3Summary(){
+ const a=getQualitativeAnalysis();
+ if(a)renderQualitativeAnalysis(a);
 }
 function analyzeAdjustments(){
  const all=getHistory().filter(x=>x.status==="cerrado");
@@ -1103,9 +2056,14 @@ function importHistory(event){
      setHistory(incoming);
      if(parsed.adaptive)setAdaptive(parsed.adaptive);
      if(parsed.analysisList) localStorage.setItem(ANALYSIS_LIST_KEY,JSON.stringify(parsed.analysisList));
+     if(parsed.strategy) localStorage.setItem(STRATEGY_KEY,JSON.stringify(parsed.strategy));
+     if(parsed.qualitative) localStorage.setItem(QUAL_ANALYSIS_KEY,JSON.stringify(parsed.qualitative));
+     if(parsed.threeBets) localStorage.setItem(THREE_BETS_KEY,JSON.stringify(parsed.threeBets));
+     if(parsed.financePlan) localStorage.setItem(FINANCE_PLAN_KEY,JSON.stringify(parsed.financePlan));
+     if(parsed.financeHistory) localStorage.setItem(FINANCE_HISTORY_KEY,JSON.stringify(parsed.financeHistory));
      if(parsed.versions) localStorage.setItem(VERSION_KEY,JSON.stringify(parsed.versions));
      if(parsed.activeVersion) localStorage.setItem(ACTIVE_VERSION_KEY,parsed.activeVersion);
-     renderHistory();renderAnalysisList();renderVersions();renderAdaptive();
+     refreshAllModules();
      alert("Historial y datos compatibles importados.");
    }catch(_){alert("El archivo no contiene un respaldo válido.");}
    event.target.value="";
@@ -1115,6 +2073,7 @@ function importHistory(event){
 document.getElementById("matchDate").value=new Date().toISOString().slice(0,10);
 renderHistory();
 renderAdaptive();
+updateN2Summary();
 renderAnalysisList();
 renderVersions();
 renderProposal();

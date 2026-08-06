@@ -1,12 +1,12 @@
 {
-  "name": "NÚCLEO 1 Pronósticos V1.1 Módulo 1",
+  "name": "NÚCLEO 1 Pronósticos V1.2.3 Final Reparada",
   "short_name": "NÚCLEO 1",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f4f6f8",
   "theme_color": "#102a43",
-  "description": "Módulo 1: organización visual y paneles plegables.",
+  "description": "Compatibilidad con historiales antiguos y campos cualitativos heredados.",
   "icons": [
     {
       "src": "./icon-192.png",
