@@ -1,12 +1,12 @@
 {
-  "name": "NÚCLEO 1 Pronósticos V1.2.3 Final Reparada",
+  "name": "NÚCLEO 1 Pronósticos V1.3.0 + NÚCLEO 7",
   "short_name": "NÚCLEO 1",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f4f6f8",
   "theme_color": "#102a43",
-  "description": "Compatibilidad con historiales antiguos y campos cualitativos heredados.",
+  "description": "NÚCLEO 1 protegido con NÚCLEO 7 de estrategia de goles y análisis histórico.",
   "icons": [
     {
       "src": "./icon-192.png",

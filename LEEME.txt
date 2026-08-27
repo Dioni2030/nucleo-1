@@ -1,0 +1,23 @@
+NÚCLEO 1 — V1.3.0 + NÚCLEO 7
+
+Novedades principales:
+- NÚCLEO 1 y módulos existentes se mantienen.
+- NÚCLEO 7 reutiliza los mismos 6 partidos ya ingresados.
+- Dos ramas independientes: goles anotados y goles recibidos.
+- Matrices incorporadas: GOLES A / PESO A y GOLES EN CONTRA / PESO DE GOLES RECIBIDOS.
+- Criterio manual independiente por rama: promedio más alto, promedio más bajo o promedios más parecidos.
+- Generación de pollas por color según el criterio escogido.
+- NÚCLEO 3 evalúa automáticamente aciertos de NÚCLEO 7 al cerrar partidos y compara el rendimiento por criterio.
+- Botón ABRIR/OCULTAR para NÚCLEO 7.
+- Respaldo incluye datos de NÚCLEO 7.
+
+IMPORTANTE SOBRE LA ADAPTACIÓN A 6 PARTIDOS:
+La matriz original mostrada por el usuario tenía tres bloques (1–3, 4–6, 7–9). En esta versión se reutilizan solo 1–3 y 4–6. Para conservar los siete colores de las matrices, el motor usa:
+AMARILLO = suma anotados/recibidos del bloque 1–3 de ambos equipos.
+VERDE = suma del bloque 4–6 de ambos equipos.
+AZUL = total conjunto de los seis partidos.
+GRIS = total del equipo local.
+MORADO = total del equipo visitante.
+ROSADO = total conjunto de los seis partidos.
+ROJO = gran total (doble del total conjunto), siguiendo la suma de filas/columnas de la tabla original.
+Esta distribución queda visible en el código y puede ajustarse si el usuario define otra asignación para la versión de seis partidos.
