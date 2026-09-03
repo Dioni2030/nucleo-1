@@ -1,23 +1,23 @@
-NÚCLEO 1 — V1.3.0 + NÚCLEO 7
+NÚCLEO 1 V1.3.1 + NÚCLEO 7 — ANOTADOS
 
-Novedades principales:
-- NÚCLEO 1 y módulos existentes se mantienen.
-- NÚCLEO 7 reutiliza los mismos 6 partidos ya ingresados.
-- Dos ramas independientes: goles anotados y goles recibidos.
-- Matrices incorporadas: GOLES A / PESO A y GOLES EN CONTRA / PESO DE GOLES RECIBIDOS.
-- Criterio manual independiente por rama: promedio más alto, promedio más bajo o promedios más parecidos.
-- Generación de pollas por color según el criterio escogido.
-- NÚCLEO 3 evalúa automáticamente aciertos de NÚCLEO 7 al cerrar partidos y compara el rendimiento por criterio.
-- Botón ABRIR/OCULTAR para NÚCLEO 7.
-- Respaldo incluye datos de NÚCLEO 7.
+Cambios de esta versión:
+- NÚCLEO 7 usa únicamente goles anotados/marcados.
+- Eliminada por completo la rama de goles recibidos.
+- Eliminada la columna AZUL de GOLES A y PESO A.
+- Colores: Amarillo, Verde, Gris, Morado, Rosado y Rojo.
+- Matrices GOLES A y PESO A actualizadas según las tablas del 03/09/2026.
+- Tabla de ingreso adaptada a 6 colores. Caso patrón: 8,4,4,8,12,24.
+- Estadísticas de acierto: promedio alto, promedio bajo, parecidos, filas excluidas y cada color.
+- Estadísticas globales y separadas por liga.
+- Se conserva la clave de almacenamiento del pool para mantener compatibilidad con datos existentes.
 
-IMPORTANTE SOBRE LA ADAPTACIÓN A 6 PARTIDOS:
-La matriz original mostrada por el usuario tenía tres bloques (1–3, 4–6, 7–9). En esta versión se reutilizan solo 1–3 y 4–6. Para conservar los siete colores de las matrices, el motor usa:
-AMARILLO = suma anotados/recibidos del bloque 1–3 de ambos equipos.
-VERDE = suma del bloque 4–6 de ambos equipos.
-AZUL = total conjunto de los seis partidos.
-GRIS = total del equipo local.
-MORADO = total del equipo visitante.
-ROSADO = total conjunto de los seis partidos.
-ROJO = gran total (doble del total conjunto), siguiendo la suma de filas/columnas de la tabla original.
-Esta distribución queda visible en el código y puede ajustarse si el usuario define otra asignación para la versión de seis partidos.
+Esta versión NO incluye todavía el autocompletado de ligas/equipos; se deja para la siguiente modificación después de validar NÚCLEO 7.
+
+
+VERSIÓN 1.3.2
+- Autocompletado de Competición/Liga y nombres de equipos a partir del historial y listas guardadas.
+- NÚCLEO 4 y NÚCLEO 5 ahora tienen botón Abrir/Cerrar para plegar el módulo completo.
+- Historial de NÚCLEO 7 sin desglose por ligas; enfocado en porcentajes globales por criterio y color.
+- Bandeja histórica de NÚCLEO 7 plegable.
+- Botón FILAS EXCLUIDAS para ver las pollas que no pertenecen a Alto, Bajo ni Parecidos.
+- La matemática GOLES A / PESO A de NÚCLEO 7 no se modifica.
