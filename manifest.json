@@ -1,12 +1,12 @@
 {
-  "name": "NÚCLEO 1 Pronósticos V1.3.2 + NÚCLEO 7",
-  "short_name": "NÚCLEO 1",
+  "name": "APP DEPORTES V1.4.8",
+  "short_name": "APP DEPORTES",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f4f6f8",
   "theme_color": "#102a43",
-  "description": "NÚCLEO 1 protegido con NÚCLEO 7 de goles anotados y análisis histórico global por criterios y colores, autocompletado de equipos y ligas, y módulos plegables.",
+  "description": "APP DEPORTES V1.4.8 con registro clásico, NÚCLEO 4 de pollas integradas con variabilidad de mercados, NÚCLEO 5 de evaluación de pollas, NÚCLEO 7 de favoritismo, historial, importación y autocompletado.",
   "icons": [
     {
       "src": "./icon-192.png",

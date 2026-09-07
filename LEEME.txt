@@ -1,23 +1,12 @@
-NÚCLEO 1 V1.3.1 + NÚCLEO 7 — ANOTADOS
+APP DEPORTES V1.4.8 — PAQUETE COMPLETO PARA GITHUB
 
-Cambios de esta versión:
-- NÚCLEO 7 usa únicamente goles anotados/marcados.
-- Eliminada por completo la rama de goles recibidos.
-- Eliminada la columna AZUL de GOLES A y PESO A.
-- Colores: Amarillo, Verde, Gris, Morado, Rosado y Rojo.
-- Matrices GOLES A y PESO A actualizadas según las tablas del 03/09/2026.
-- Tabla de ingreso adaptada a 6 colores. Caso patrón: 8,4,4,8,12,24.
-- Estadísticas de acierto: promedio alto, promedio bajo, parecidos, filas excluidas y cada color.
-- Estadísticas globales y separadas por liga.
-- Se conserva la clave de almacenamiento del pool para mantener compatibilidad con datos existentes.
+Archivos incluidos:
+- index.html
+- manifest.json
+- service-worker.js
+- icon-192.png
+- icon-512.png
 
-Esta versión NO incluye todavía el autocompletado de ligas/equipos; se deja para la siguiente modificación después de validar NÚCLEO 7.
-
-
-VERSIÓN 1.3.2
-- Autocompletado de Competición/Liga y nombres de equipos a partir del historial y listas guardadas.
-- NÚCLEO 4 y NÚCLEO 5 ahora tienen botón Abrir/Cerrar para plegar el módulo completo.
-- Historial de NÚCLEO 7 sin desglose por ligas; enfocado en porcentajes globales por criterio y color.
-- Bandeja histórica de NÚCLEO 7 plegable.
-- Botón FILAS EXCLUIDAS para ver las pollas que no pertenecen a Alto, Bajo ni Parecidos.
-- La matemática GOLES A / PESO A de NÚCLEO 7 no se modifica.
+Para GitHub Pages, sube estos archivos a la RAÍZ del repositorio nucleo-1.
+No subas el ZIP sin descomprimir.
+No borres los datos del navegador ni el almacenamiento local de la app: ahí está tu historial.

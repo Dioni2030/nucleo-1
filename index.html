@@ -9,7 +9,7 @@
 <link rel="manifest" href="./manifest.json">
 <link rel="icon" href="./icon-192.png">
 <link rel="apple-touch-icon" href="./icon-192.png">
-<title>NÚCLEO 1 — Pronóstico futbolístico V1.3.1 NÚCLEO 7</title>
+<title>APP DEPORTES — V1.4.6 BETA · REGISTRO CLÁSICO INTEGRADAS</title>
 <style>
 :root{--bg:#f4f6f8;--card:#fff;--ink:#15202b;--muted:#5f6b76;--line:#dce2e7;--accent:#0d6efd;--good:#137333;--bad:#b3261e;--warn:#8a5a00}
 *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
@@ -135,13 +135,104 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
 .n7-color-chip{display:inline-block;padding:3px 8px;border-radius:999px;font-weight:800;border:1px solid rgba(0,0,0,.12)}
 .n7-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:10px}.n7-stat{border:1px solid var(--line);border-radius:10px;padding:10px;background:#fafcfe}
 @media(max-width:700px){.n7-stats{grid-template-columns:1fr}}
+
+
+/* ===== V1.4.6 BETA · REGISTRO CLÁSICO + N4/N5 POLLAS ===== */
+:root{--nav:#13283f;--nav2:#0f2135;--blue:#1769ff;--blueSoft:#eef6ff;--purple:#6737d4;--purpleSoft:#f6f1ff;--green:#169b45;--greenSoft:#effbf3;--red:#d9363e;--yellow:#b67a00}
+body{background:#eef3f8;padding-top:66px;padding-left:210px}
+header.app-topbar{position:fixed;z-index:1000;left:210px;right:0;top:0;height:66px;background:linear-gradient(90deg,var(--nav),#1d344c);color:#fff;padding:0 20px;display:flex;align-items:center;gap:18px;box-shadow:0 2px 14px rgba(15,33,53,.18)}
+.app-brand{font-weight:900;font-size:1.05rem;white-space:nowrap}.app-brand small{display:block;font-size:.72rem;font-weight:600;color:#cfdae6}
+.top-tabs{display:flex;gap:6px;overflow:auto}.top-tabs button{padding:9px 12px;background:transparent;color:#e8f0f7;border-radius:8px;white-space:nowrap}.top-tabs button:hover{background:#ffffff14}.top-tabs .active{background:var(--blue);color:#fff}
+.app-sidebar{position:fixed;z-index:1001;left:0;top:0;bottom:0;width:210px;background:linear-gradient(180deg,var(--nav2),#142b42);color:#fff;padding:18px 14px;box-shadow:2px 0 14px rgba(15,33,53,.15)}
+.side-logo{display:flex;gap:10px;align-items:center;font-size:1.05rem;font-weight:900;margin-bottom:24px}.side-ball{font-size:2rem}.side-logo small{display:block;color:#cbd8e4;font-weight:600;font-size:.75rem}
+.side-nav{display:grid;gap:8px}.side-nav button{background:transparent;color:#e7eef5;text-align:left;padding:11px 12px;border-radius:9px;font-weight:650}.side-nav button:hover,.side-nav button.active{background:var(--blue);color:#fff}
+.side-foot{position:absolute;bottom:18px;left:14px;right:14px;color:#aebdca;font-size:.76rem;line-height:1.4}
+main{max-width:1380px;margin:18px auto;padding:0 16px 45px}
+.card{border-color:#cfdbe7;border-radius:11px;box-shadow:0 2px 8px rgba(26,46,67,.055)}
+.module-card{border-top:1px solid #cfdbe7}.module-card> .fold-head{margin:-16px -16px 0;padding:14px 16px;background:linear-gradient(90deg,#f7faff,#fff);border-bottom:1px solid #dae4ee;border-radius:11px 11px 0 0}
+button{transition:.15s transform,.15s box-shadow,.15s background}button:hover{transform:translateY(-1px);box-shadow:0 4px 10px rgba(20,50,80,.12)}
+.primary{background:var(--blue)}
+.market-entry{margin:14px 0 16px;border:1px solid #acd0ff;border-radius:11px;background:linear-gradient(135deg,#f5faff,#fff);padding:14px}
+.market-entry h3{margin:0 0 10px;color:#0756be}.odds-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.odds-grid label{font-weight:700;color:#223a52}.odds-grid input{font-size:1.1rem;font-weight:800;text-align:center}
+.market-reading-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:12px;margin:12px 0}.three-judge-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.comparison-card{border:1px solid #c8b6ff;background:linear-gradient(180deg,#fbf9ff,#fff);border-radius:12px;padding:14px;margin:12px 0}.judge-app{border-top:4px solid #0d6efd!important}.judge-qual{border-top:4px solid #19a55a!important}.judge-market{border-top:4px solid #e58b00!important}.judge-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.judge-pill{background:#fff;border:1px solid #dfe7f1;border-radius:9px;padding:10px;text-align:center}.judge-pill small{display:block;color:var(--muted);font-size:.72rem}.judge-pill strong{display:block;margin-top:3px;font-size:1rem}.disagree-banner{margin-top:10px;padding:10px 12px;border-radius:9px;background:#fff4d8;color:#7a5200;font-weight:800}.agree-banner{margin-top:10px;padding:10px 12px;border-radius:9px;background:#dcf7e6;color:#0d702f;font-weight:800}.market-card{border:1px solid #b8d8ff;background:var(--blueSoft);border-radius:10px;padding:13px}.market-card.purple{border-color:#d4c4fa;background:var(--purpleSoft)}
+.market-title{font-size:.83rem;font-weight:900;text-transform:uppercase;letter-spacing:.02em;color:#0756be;margin-bottom:8px}.market-card.purple .market-title{color:#5a29bf}.market-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.market-kpi{padding:9px;background:#fff;border:1px solid #d9e6f3;border-radius:8px;text-align:center}.market-kpi small{display:block;color:var(--muted);font-size:.72rem}.market-kpi strong{font-size:1.1rem}.market-banner{margin-top:9px;padding:10px 12px;border-radius:8px;background:#dcf7e6;color:#0d702f;font-weight:900}.market-warning{background:#fff1d5;color:#8a5a00}.market-danger{background:#ffe9e9;color:#a51f27}
+.n4-summary{border-left:5px solid var(--purple);background:var(--purpleSoft);padding:12px;border-radius:9px}.n4-coincide{border-left-color:var(--green);background:var(--greenSoft)}.n4-caution{border-left-color:var(--yellow);background:#fffaf0}
+.bet-tier{box-shadow:0 2px 8px rgba(20,50,80,.06)}.bet-tier-a{border-color:#3ac46d;background:linear-gradient(180deg,#f4fff7,#fff)}.bet-tier-b{border-color:#e4b34a}.bet-tier-c{border-color:#ef8b8f}
+.list-card{border-left:4px solid #7aaefa}.list-card .market-mini{margin-top:6px;padding:7px 9px;border-radius:7px;background:#f1f7ff;font-size:.82rem;color:#274966}
+#matchIdentification{border-top:4px solid var(--blue)}
+@media(max-width:1050px){body{padding-left:0}.app-sidebar{display:none}header.app-topbar{left:0}.top-tabs{flex:1}.app-brand{display:none}.market-reading-grid,.three-judge-grid{grid-template-columns:1fr}.judge-row{grid-template-columns:1fr}}
+@media(max-width:700px){body{padding-top:58px}header.app-topbar{height:58px;padding:0 8px}.top-tabs button{padding:8px 9px;font-size:.78rem}.odds-grid,.market-kpis{grid-template-columns:1fr}.market-entry{padding:11px}main{padding:0 8px 35px}.card{padding:12px}.module-card> .fold-head{margin:-12px -12px 0;padding:12px}.grid,.fields,.meta-grid,.goal-grid{grid-template-columns:1fr}}
+
+
+.app-odds-panel{margin-top:16px;border:2px solid #0d6efd;border-radius:14px;padding:16px;background:linear-gradient(180deg,#f7fbff,#fff)}
+.app-odds-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.app-odds-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.app-odd-card{border:1px solid #b9d5ff;background:#fff;border-radius:12px;padding:14px;text-align:center}
+.app-odd-card small{display:block;color:var(--muted);margin-bottom:4px}.app-odd-card strong{display:block;font-size:1.65rem}.app-odd-card span{font-size:.85rem;color:var(--muted)}
+.app-odd-fav{box-shadow:0 0 0 2px #0d6efd inset;background:#f4f9ff}
+.app-method{margin-top:10px;padding:10px;border-radius:10px;background:#eef6ff;border:1px solid #c7ddff;font-size:.88rem}
+@media(max-width:760px){.app-odds-grid{grid-template-columns:1fr}.app-odds-head{align-items:flex-start}}
+
+/* V1.4.6 — conserva N4/N5 y recupera el diseño clásico de captura de partidos */
+#threeBetResults.bet-tier-grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
+#threeBetResults .bet-tier{min-height:0;}
+#threeBetResults .evidence-list{padding-left:20px;}
+#threeBetResults .evidence-list li{margin:8px 0;}
+
+/* ===== V1.4.6 · REGISTRO DE PARTIDOS CLÁSICO / MÓVIL ===== */
+.match-teams-grid{grid-template-columns:1fr;gap:18px}
+#matchIdentification,#localCard,#visitorCard{border-radius:22px;padding:22px 28px;box-shadow:0 2px 10px rgba(15,23,42,.07);background:#fff}
+#matchIdentification h2,#localCard h2,#visitorCard h2{font-size:1.45rem;color:#1c2735}
+#matchIdentification label,#localCard label,#visitorCard label{font-size:1.02rem;color:#68737d;line-height:1.25}
+#matchIdentification input,#localCard input,#visitorCard input{padding:14px 18px;border-radius:11px;font-size:1.18rem;margin-top:7px;background:#fff}
+#localCard .fields,#visitorCard .fields{grid-template-columns:1fr 1fr;gap:15px 18px}
+#localCard .fold-head,#visitorCard .fold-head{margin-bottom:8px}
+#localCard .small-btn,#visitorCard .small-btn{padding:10px 15px;border-radius:13px;font-size:.85rem}
+#matchIdentification .meta-grid{gap:15px}
+#matchIdentification small{font-size:.96rem;line-height:1.35}
+@media(max-width:700px){
+  #matchIdentification,#localCard,#visitorCard{padding:20px 28px;border-radius:22px}
+  #matchIdentification .meta-grid{grid-template-columns:1fr}
+  #localCard .fields,#visitorCard .fields{grid-template-columns:1fr 1fr!important;gap:14px 18px}
+  #matchIdentification h2,#localCard h2,#visitorCard h2{font-size:1.42rem}
+  #matchIdentification label,#localCard label,#visitorCard label{font-size:1rem}
+  #matchIdentification input,#localCard input,#visitorCard input{font-size:1.16rem;padding:14px 16px}
+}
+@media(max-width:430px){
+  #matchIdentification,#localCard,#visitorCard{padding:18px 20px}
+  #localCard .fields,#visitorCard .fields{gap:13px 14px}
+  #matchIdentification input,#localCard input,#visitorCard input{font-size:1.08rem;padding:13px 12px}
+  #matchIdentification label,#localCard label,#visitorCard label{font-size:.93rem}
+}
+
 </style>
 </head>
 <body>
-<header><h1>NÚCLEO 1 — Versión 1.3.2 · NÚCLEO 7</h1><p>Motor local, sin conexión a internet. Introduce los últimos seis partidos de cada equipo.</p></header>
+<aside class="app-sidebar">
+  <div class="side-logo"><span class="side-ball">⚽</span><div>APP DEPORTES<small>NÚCLEO 1 · V1.4.6 BETA · REGISTRO CLÁSICO</small></div></div>
+  <div class="side-nav">
+    <button class="active" onclick="scrollSection('matchIdentification')">＋ Nuevo partido</button>
+    <button onclick="scrollSection('historySection')">▣ Historial</button>
+    <button onclick="scrollSection('nucleus2Section')">▥ Estadísticas</button>
+    <button onclick="scrollSection('nucleus7Section')">☷ Listas / N7</button>
+    <button onclick="scrollSection('settingsSection')">⚙ Configuración</button>
+  </div>
+  <div class="side-foot">Datos + método<br><strong style="color:white">Mejores decisiones</strong></div>
+</aside>
+<header class="app-topbar">
+  <div class="app-brand">APP DEPORTES<small>Análisis futbolístico</small></div>
+  <nav class="top-tabs">
+    <button onclick="scrollSection('matchIdentification')">Inicio</button>
+    <button onclick="scrollSection('results')">Núcleo 1</button>
+    <button onclick="scrollSection('nucleus2Section')">Núcleo 2</button>
+    <button onclick="scrollSection('nucleus3Section')">Núcleo 3</button>
+    <button class="active" onclick="openAndScroll('nucleus4Tray','analysisListSection')">Núcleo 4</button>
+    <button onclick="openAndScroll('nucleus5Tray','bankrollSection')">Núcleo 5</button>
+    <button onclick="scrollSection('nucleus7Section')">Núcleo 7</button>
+    <button onclick="scrollSection('historySection')">Historial</button>
+  </nav>
+</header>
 <main>
-<div class="notice"><strong>Objetivo de esta versión:</strong> reproducir la matriz original, guardar la liga como dato independiente y mostrar todo el recorrido. La app normaliza las ubicaciones al intervalo más cercano de 0,25 y lo deja registrado en la trazabilidad.</div>
-
 <section class="card" id="matchIdentification" style="margin-bottom:16px">
   <h2>Identificación del partido</h2>
   <div class="meta-grid">
@@ -156,14 +247,14 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
   <small style="display:block;margin-top:8px;color:var(--muted)">La liga se guarda separadamente para que el historial y el NÚCLEO 2 puedan analizar cada competición.</small>
 </section>
 
-<div class="grid">
+<div class="grid match-teams-grid">
   <section class="card" id="localCard">
-    <div class="fold-head"><h2 style="margin:0">Equipo local</h2><button class="secondary small-btn" onclick="toggleFold('localTeamTray',this,'ABRIR','OCULTAR')">ABRIR</button></div>
-    <div id="localTeamTray" class="fold-body"><div class="fields"></div></div>
+    <div class="fold-head"><h2 style="margin:0">Equipo local</h2><button class="secondary small-btn" onclick="toggleFold('localTeamTray',this,'ABRIR','OCULTAR')">OCULTAR</button></div>
+    <div id="localTeamTray" class="fold-body open"><div class="fields"></div></div>
   </section>
   <section class="card" id="visitorCard">
-    <div class="fold-head"><h2 style="margin:0">Equipo visitante</h2><button class="secondary small-btn" onclick="toggleFold('visitorTeamTray',this,'ABRIR','OCULTAR')">ABRIR</button></div>
-    <div id="visitorTeamTray" class="fold-body"><div class="fields"></div></div>
+    <div class="fold-head"><h2 style="margin:0">Equipo visitante</h2><button class="secondary small-btn" onclick="toggleFold('visitorTeamTray',this,'ABRIR','OCULTAR')">OCULTAR</button></div>
+    <div id="visitorTeamTray" class="fold-body open"><div class="fields"></div></div>
   </section>
 </div>
 <div class="actions">
@@ -317,33 +408,34 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
 
 
 <section class="card module-card" id="nucleus7Section">
-  <div class="fold-head"><h2 style="margin:0">NÚCLEO 7 <span class="module-tag">Estrategia de goles</span></h2><button class="secondary small-btn" onclick="toggleFold('nucleus7Tray',this,'ABRIR','OCULTAR')">ABRIR</button></div>
+  <div class="fold-head">
+    <h2 style="margin:0">NÚCLEO 7 — Favoritismo <span class="module-tag">RECTA + LETRAS</span></h2>
+    <button class="secondary small-btn" onclick="toggleFold('nucleus7Tray',this,'ABRIR NÚCLEO 7','CERRAR NÚCLEO 7')">ABRIR NÚCLEO 7</button>
+  </div>
   <div id="nucleus7Tray" class="fold-body">
-    <div class="notice"><strong>NÚCLEO 7 — solo goles anotados.</strong> Reutiliza los goles marcados en los mismos seis partidos ya ingresados. No utiliza goles recibidos, tarjetas ni resultados G/E/P.</div>
-    <div class="actions">
-      <button class="primary" onclick="n7AddCurrentMatch()">AGREGAR PARTIDO ACTUAL A NÚCLEO 7</button>
-      <button class="secondary" onclick="n7ClearPool()">LIMPIAR LISTA NÚCLEO 7</button>
-    </div>
-    <div class="n7-pool"><table><thead><tr><th>Partido</th><th>Anotados 1–3</th><th>Anotados 4–6</th><th></th></tr></thead><tbody id="n7PoolRows"><tr><td colspan="4">Todavía no hay partidos.</td></tr></tbody></table></div>
+    <div class="notice"><strong>Nuevo NÚCLEO 7 experimental.</strong> Usa automáticamente los mismos goles marcados, goles recibidos y resultado cualitativo ya calculados por los otros núcleos. No tienes que volver a escribir el partido.</div>
 
     <div class="n7-panel">
-      <h3 style="margin:0">Goles anotados</h3>
-      <p class="goal-detail">Tabla de ingreso de anotados → GOLES A → PESO A. Se usan seis colores: Amarillo, Verde, Gris, Morado, Rosado y Rojo.</p>
-      <div class="n7-controls">
-        <button class="secondary small-btn" onclick="n7Run('high')">PROMEDIO MÁS ALTO</button>
-        <button class="secondary small-btn" onclick="n7Run('low')">PROMEDIO MÁS BAJO</button>
-        <button class="secondary small-btn" onclick="n7Run('closest')">PROMEDIOS MÁS PARECIDOS</button>
-        <button class="secondary small-btn" onclick="n7ShowExcluded()">FILAS EXCLUIDAS</button>
+      <div class="fold-head"><h3 style="margin:0">Resultado del partido actual</h3><button class="secondary small-btn" onclick="toggleFold('n7CurrentTray',this,'ABRIR','CERRAR')">ABRIR</button></div>
+      <div id="n7CurrentTray" class="fold-body open">
+        <div class="n7-controls"><button class="primary" onclick="n7RenderCurrent()">ACTUALIZAR CON PARTIDO ACTUAL</button></div>
+        <div id="n7CurrentResult" class="n7-result">Calcula primero el partido en NÚCLEO 1 para que NÚCLEO 7 use esos mismos datos.</div>
       </div>
-      <div id="n7ScoredAverages" class="n7-stats"></div>
-      <div id="n7ScoredResult" class="n7-result">Agrega partidos y elige un criterio.</div>
     </div>
 
     <div class="n7-panel">
-      <div class="fold-head"><h3 style="margin:0">Aciertos históricos de NÚCLEO 7</h3><button class="secondary small-btn" onclick="toggleFold('n7HistoryTray',this,'ABRIR','CERRAR')">ABRIR</button></div>
+      <div class="fold-head"><h3 style="margin:0">Recta y reglas del NÚCLEO 7</h3><button class="secondary small-btn" onclick="toggleFold('n7ScaleTray',this,'ABRIR','CERRAR')">ABRIR</button></div>
+      <div id="n7ScaleTray" class="fold-body">
+        <p class="goal-detail">Primero: goles marcados − goles recibidos. Si se supera +10 o −10, la posición rebota. Después el cualitativo mueve hacia arriba: Muy feliz +5, Motivado +4, Complaciente +3, Triste +2, Infeliz +1; Origen +0. Con 0 a 3 casillas de diferencia <strong>NO HAY FAVORITO</strong>. Desde 4 casillas existe <strong>DOMINADOR</strong>.</p>
+        <div class="n7-pool"><table><thead><tr><th>#</th><th>Letra</th><th>Recta</th><th>Valor</th></tr></thead><tbody id="n7ScaleRows"></tbody></table></div>
+      </div>
+    </div>
+
+    <div class="n7-panel">
+      <div class="fold-head"><h3 style="margin:0">Aprendizaje histórico A / B / C</h3><button class="secondary small-btn" onclick="toggleFold('n7HistoryTray',this,'ABRIR','CERRAR')">ABRIR</button></div>
       <div id="n7HistoryTray" class="fold-body">
-        <p class="goal-detail">Compara qué criterios y qué colores han acertado más pollas. No se divide por ligas.</p>
-        <div id="n7HistoryStats" class="n7-result">Aún no hay selecciones NÚCLEO 7 cerradas.</div>
+        <p class="goal-detail">Mide la teoría con partidos cerrados: comportamiento de A, B y C; enfrentamientos A contra B/C; zona sin favorito (0–3) y dominadores (4+).</p>
+        <div id="n7HistoryStats" class="n7-result">Aún no hay partidos cerrados suficientes para evaluar el nuevo NÚCLEO 7.</div>
       </div>
     </div>
   </div>
@@ -365,7 +457,9 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
   </div>
   <div class="history-toolbar">
     <button class="secondary small-btn" onclick="exportHistory()">Exportar respaldo</button>
-    <label class="secondary small-btn" style="cursor:pointer">Importar respaldo<input id="importFile" type="file" accept=".json" onchange="importHistory(event)"></label>
+    <button class="secondary small-btn" type="button" onclick="document.getElementById('importFile').click()">Importar datos</button>
+    <input id="importFile" type="file" accept=".json,application/json" onchange="importHistory(event)" style="display:none">
+    <span id="importStatus" class="goal-detail" style="align-self:center"></span>
     <button class="secondary small-btn" onclick="renderHistory()">Actualizar historial</button>
     <button id="autoAdjustBtn" class="primary small-btn locked" disabled onclick="generateStrategy()">GENERAR ESTRATEGIA</button>
   </div>
@@ -393,30 +487,44 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
 </section>
 
 <section class="card module-card" id="analysisListSection">
-  <div class="fold-head"><h2 style="margin:0">NÚCLEO 4 — Constructor de apuestas <span class="module-tag">DECIDE</span></h2><button class="secondary" onclick="toggleFold('nucleus4Tray',this,'ABRIR NÚCLEO 4','CERRAR NÚCLEO 4')">ABRIR NÚCLEO 4</button></div>
+  <div class="fold-head"><h2 style="margin:0">NÚCLEO 4 — Mezclador de pollas integradas · variabilidad de mercados <span class="module-tag">INTEGRA</span></h2><button class="secondary" onclick="toggleFold('nucleus4Tray',this,'ABRIR NÚCLEO 4','CERRAR NÚCLEO 4')">ABRIR NÚCLEO 4</button></div>
   <div id="nucleus4Tray" class="fold-body">
-  <div class="notice"><strong>Este núcleo no inventa resultados.</strong> Solo trabaja con los partidos que agregues y con la evidencia disponible en los NÚCLEOS 2 y 3. Puede dejar un nivel vacío si no encuentra una opción suficiente.</div>
-  <p>Agrega los partidos que quieras comparar. Después pulsa <strong>GENERAR TRES APUESTAS</strong>. El sistema clasificará las mejores alternativas como A (alta), B (media) y C (baja).</p>
-  <div class="history-toolbar">
-    <button class="primary" onclick="addCurrentToAnalysis()">AGREGAR PARTIDO ACTUAL</button>
-    <button class="secondary" onclick="generateThreeBets()">GENERAR TRES APUESTAS</button>
-    <button class="danger" onclick="clearAnalysisList()">VACIAR LISTA</button>
-  </div>
-  <div id="analysisList"></div>
-  <div id="combinedRecommendation" class="analysis-box">Todavía no se han generado apuestas.</div>
-  <div id="threeBetResults" class="bet-tier-grid"></div>
-  <div class="fold-head" style="margin-top:12px">
-    <h3 style="margin:0">Detalle técnico de las tres apuestas</h3>
-    <button class="secondary small-btn" onclick="toggleFold('threeBetDetail',this,'ABRIR','OCULTAR')">ABRIR</button>
-  </div>
-  <div id="threeBetDetail" class="fold-body"><div id="threeBetTechnical" class="analysis-box">Sin detalle técnico.</div></div>
+    <div class="notice"><strong>Nueva función:</strong> NÚCLEO 4 toma todos los partidos agregados y mezcla las evidencias disponibles de goles, histórico, cualitativo y NÚCLEO 7. Cada polla incluye <strong>todos</strong> los partidos, pero puede usar un mercado diferente en cada uno.</div>
+    <div class="form-three" style="align-items:end">
+      <label>Cantidad de pollas (máximo 6)
+        <select id="n4PollCount" style="width:100%;padding:10px;border:1px solid #b8c2cc;border-radius:8px;margin-top:4px">
+          <option value="1">1 polla</option><option value="2">2 pollas</option><option value="3">3 pollas</option>
+          <option value="4" selected>4 pollas</option><option value="5">5 pollas</option><option value="6">6 pollas</option>
+        </select>
+      </label>
+      <div class="goal-detail">Cada polla debe ser diferente de las demás. La app conserva las selecciones sólidas cuando puede y cambia primero los partidos con alternativas razonables, sin inventar mercados sin respaldo.</div>
+      <div class="goal-detail">Mercados posibles según evidencia: ganador, doble oportunidad y líneas de goles. N7 entra como evidencia adicional, no reemplaza los demás núcleos.</div>
+    </div>
+    <div class="history-toolbar">
+      <button class="primary" onclick="addCurrentToAnalysis()">AGREGAR PARTIDO ACTUAL</button>
+      <button class="secondary" onclick="generateIntegratedPolls()">GENERAR POLLAS</button>
+      <button class="danger" onclick="clearAnalysisList()">VACIAR LISTA</button>
+    </div>
+    <div id="analysisList"></div>
+    <div id="combinedRecommendation" class="analysis-box">Agrega partidos y elige cuántas pollas quieres construir.</div>
+    <div id="threeBetResults" class="bet-tier-grid"></div>
+    <div class="fold-head" style="margin-top:12px">
+      <h3 style="margin:0">Detalle técnico y evidencias</h3>
+      <button class="secondary small-btn" onclick="toggleFold('threeBetDetail',this,'ABRIR','OCULTAR')">ABRIR</button>
+    </div>
+    <div id="threeBetDetail" class="fold-body"><div id="threeBetTechnical" class="analysis-box">Sin detalle técnico.</div></div>
   </div>
 </section>
 
 <section class="card module-card" id="bankrollSection">
   <div class="fold-head"><h2 style="margin:0">NÚCLEO 5 — Gerente financiero <span class="module-tag">ADMINISTRA EL CAPITAL</span></h2><button class="secondary" onclick="toggleFold('nucleus5Tray',this,'ABRIR NÚCLEO 5','CERRAR NÚCLEO 5')">ABRIR NÚCLEO 5</button></div>
   <div id="nucleus5Tray" class="fold-body">
-  <div class="notice"><strong>Función:</strong> convertir la confianza de A, B y C en montos concretos. El sistema conserva una parte del capital como reserva y nunca aumenta automáticamente una apuesta para recuperar pérdidas.</div>
+  <div class="notice"><strong>Nueva función:</strong> NÚCLEO 5 recibe las pollas completas creadas por NÚCLEO 4, evalúa cada una como una unidad y después puede distribuir el capital entre ellas. No analiza un partido aislado: calcula la solidez conjunta, detecta las selecciones débiles y compara una polla contra otra.</div>
+  <div class="history-toolbar">
+    <button class="primary" onclick="evaluateN5Polls(true)">EVALUAR POLLAS DE NÚCLEO 4</button>
+    <button class="secondary" onclick="showSavedFinancialPlan()">VER ÚLTIMO PLAN</button>
+  </div>
+  <div id="n5PollEvaluation" class="analysis-box">Primero genera las pollas integradas en NÚCLEO 4. Después NÚCLEO 5 las evaluará una por una.</div>
   <div class="form-three">
     <label>Capital disponible (COP)<input id="bankroll" type="number" min="0" step="1000" placeholder="20000"></label>
     <label>Máximo del capital que puede utilizarse (%)<input id="maxExposure" type="number" min="1" max="100" step="1" value="50"></label>
@@ -429,8 +537,7 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
     </label>
   </div>
   <div class="history-toolbar">
-    <button class="primary" onclick="calculateAutomaticAllocation()">DISTRIBUIR CAPITAL AUTOMÁTICAMENTE</button>
-    <button class="secondary" onclick="showSavedFinancialPlan()">VER ÚLTIMO PLAN</button>
+    <button class="primary" onclick="calculateAutomaticAllocation()">DISTRIBUIR CAPITAL ENTRE POLLAS</button>
     <button class="success" onclick="saveFinancialPlan()">GUARDAR PLAN</button>
   </div>
   <div class="finance-grid">
@@ -438,8 +545,9 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
     <div class="finance-card"><small>Total recomendado</small><strong id="fInvested">—</strong></div>
     <div class="finance-card"><small>Reserva</small><strong id="fReserve">—</strong></div>
     <div class="finance-card"><small>Riesgo conjunto</small><strong id="fRisk">—</strong></div>
+    <div class="finance-card"><small>Mejor polla evaluada</small><strong id="fBestPoll">—</strong></div>
   </div>
-  <div id="stakeResult" class="analysis-box">Primero genera las apuestas A, B y C en el NÚCLEO 4.</div>
+  <div id="stakeResult" class="analysis-box">Primero genera las pollas integradas en el NÚCLEO 4.</div>
   <div id="financeExplanation" class="finance-report">Todavía no existe una distribución financiera.</div>
   <div class="fold-head" style="margin-top:12px">
     <h3 style="margin:0">Historial de planes financieros</h3>
@@ -471,7 +579,8 @@ textarea{width:100%;min-height:88px;padding:10px;border:1px solid #b8c2cc;border
     <div class="history-toolbar">
       <button class="primary" onclick="createRestorePoint()">CREAR PUNTO DE RESTAURACIÓN</button>
       <button class="secondary" onclick="exportFullBackup()">EXPORTAR RESPALDO COMPLETO</button>
-      <label class="secondary" style="cursor:pointer">IMPORTAR RESPALDO COMPLETO<input id="fullImportFile" type="file" accept=".json" onchange="importFullBackup(event)" style="display:none"></label>
+      <button class="secondary" type="button" onclick="document.getElementById('fullImportFile').click()">IMPORTAR RESPALDO COMPLETO</button>
+      <input id="fullImportFile" type="file" accept=".json,application/json" onchange="importFullBackup(event)" style="display:none">
       <button class="secondary" onclick="verifySystemIntegrity()">VERIFICAR INTEGRIDAD</button>
     </div>
     <div id="memoryReport" class="memory-report">NÚCLEO 6 listo. Crea un punto de restauración antes de una actualización importante.</div>
@@ -867,6 +976,7 @@ function calculate(){
     diffValue:difference,diffCode:doo.code,diffGoals:doo.value,diffQualification:doo.qualification||"",
     trace:log.join("\n")
   };
+  n7RenderCurrent();
   document.getElementById("trace").textContent=log.join("\n");
   document.getElementById("results").style.display="block";
   document.getElementById("results").scrollIntoView({behavior:"smooth"});
@@ -946,6 +1056,8 @@ function loadHistoryItem(id){
  assign("L",L);assign("V",V);
  document.getElementById("competition").value=item.competition||"";
  document.getElementById("matchDate").value=item.matchDate||new Date().toISOString().slice(0,10);
+ 
+ renderCurrentMarketReading();
  document.getElementById("predictionNotes").value=item.notes||"";
  document.getElementById("exceptionalMatch").checked=!!item.exceptional;
  editingHistoryId=id;
@@ -964,6 +1076,7 @@ function updateLoadedPrediction(){
  items[index]={
    ...old,...currentPrediction,id:old.id,
    competition,
+   marketOdds:readOddsInputs()||old.marketOdds||null,
    matchDate:document.getElementById("matchDate").value||old.matchDate||"",
    notes:document.getElementById("predictionNotes").value.trim(),
    exceptional:document.getElementById("exceptionalMatch").checked,
@@ -974,6 +1087,124 @@ function updateLoadedPrediction(){
  setHistory(items);renderHistory();
  alert("Partido actualizado sin perder el marcador real ni las observaciones posteriores.");
 }
+
+function scrollSection(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:"smooth",block:"start"});}
+function openAndScroll(trayId,sectionId){const tray=document.getElementById(trayId);if(tray)tray.classList.add("open");scrollSection(sectionId);}
+function readOddsInputs(){
+ const h=Number(document.getElementById("oddsHome")?.value),d=Number(document.getElementById("oddsDraw")?.value),a=Number(document.getElementById("oddsAway")?.value);
+ if(!(h>1&&d>1&&a>1))return null;return {home:h,draw:d,away:a};
+}
+function marketAnalysis(odds,localName="Local",visitorName="Visitante"){
+ if(!odds||!(odds.home>1&&odds.draw>1&&odds.away>1))return null;
+ const raw={home:1/odds.home,draw:1/odds.draw,away:1/odds.away},sum=raw.home+raw.draw+raw.away;
+ const p={home:raw.home/sum,draw:raw.draw/sum,away:raw.away/sum};
+ const side=p.home>=p.away?"home":"away",fav=side==="home"?localName:visitorName,other=side==="home"?visitorName:localName;
+ const favP=Math.max(p.home,p.away),otherP=Math.min(p.home,p.away),gap=favP-otherP;
+ let level="PAREJO",difficulty="ALTA";
+ if(gap>=.30){level="MUY CLARO";difficulty="BAJA";}else if(gap>=.18){level="CLARO";difficulty="MEDIA-BAJA";}else if(gap>=.10){level="MODERADO";difficulty="MEDIA";}
+ return {p,side,fav,other,gap,level,difficulty,odds};
+}
+function marketPct(v){return `${(v*100).toFixed(1)}%`;}
+function marketSummaryHtml(m){
+ if(!m)return '<span class="goal-detail">Sin cuotas completas.</span>';
+ const cls=m.level==="PAREJO"?"market-warning":"market-banner";
+ return `<div class="market-kpis"><div class="market-kpi"><small>Local</small><strong>${marketPct(m.p.home)}</strong></div><div class="market-kpi"><small>Empate</small><strong>${marketPct(m.p.draw)}</strong></div><div class="market-kpi"><small>Visitante</small><strong>${marketPct(m.p.away)}</strong></div></div><div class="${cls}">Favorito comercial: ${escapeHtml(m.fav)} (${m.level}) · Brecha ${marketPct(m.gap)}</div>`;
+}
+function renderCurrentMarketReading(){
+ const box=document.getElementById("currentMarketReading");if(!box)return;
+ const local=document.getElementById("L_name")?.value||"Local",away=document.getElementById("V_name")?.value||"Visitante";
+ const m=marketAnalysis(readOddsInputs(),local,away);box.innerHTML=m?marketSummaryHtml(m):"Las cuotas son opcionales. Completa las tres para que NÚCLEO 4 mida el favoritismo del mercado.";
+}
+function teamFromCandidateMarket(candidate,item){
+ const txt=(candidate.market||"").toLowerCase(),l=(item.localName||"").toLowerCase(),v=(item.visitorName||"").toLowerCase();
+ if(l&&txt.includes(l))return item.localName;if(v&&txt.includes(v))return item.visitorName;return null;
+}
+function applyMarketContext(candidate,item){
+ const m=marketAnalysis(item.marketOdds,item.localName,item.visitorName);
+ return {...candidate,marketContext:m};
+}
+
+function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
+function closedHistoryForAppOdds(){return getHistory().filter(x=>x.status==='cerrado'&&!x.exceptional&&Number.isFinite(Number(x.homeGoals))&&Number.isFinite(Number(x.awayGoals)));}
+function quantitativeSide(item){
+ if(!item||!item.favored||item.favored==='Sin selección')return 'none';
+ if(item.favored===item.localName)return 'home';
+ if(item.favored===item.visitorName)return 'away';
+ return 'none';
+}
+function quantitativeMargin(item){return (Math.abs(Number(item?.diffA)||0)+Math.abs(Number(item?.diffB)||0))/2;}
+function normalizeThree(a,b,c){a=Math.max(.055,a);b=Math.max(.08,b);c=Math.max(.055,c);const t=a+b+c;return [a/t,b/t,c/t];}
+function appOddsHistoricalProfile(item){
+ const closed=closedHistoryForAppOdds(),side=quantitativeSide(item),margin=quantitativeMargin(item),league=item.competition||'Sin liga';
+ let h=3.8,d=2.9,a=3.3,used=0,totalWeight=10;
+ closed.forEach(x=>{
+   const xs=quantitativeSide(x),xm=quantitativeMargin(x);
+   let w=.22;
+   if(xs===side)w+=.72; else if(xs==='none'||side==='none')w+=.24; else w+=.06;
+   const gap=Math.abs(xm-margin); w*=Math.max(.22,Math.exp(-gap/14));
+   if((x.competition||'Sin liga')===league)w*=1.28;
+   if(Boolean(x.coincidence)===Boolean(item.coincidence))w*=1.10;
+   const hg=Number(x.homeGoals),ag=Number(x.awayGoals);
+   if(hg>ag)h+=w; else if(hg<ag)a+=w; else d+=w;
+   used++; totalWeight+=w;
+ });
+ const t=h+d+a;return {n:used,weightedN:Math.max(0,totalWeight-10),home:h/t,draw:d/t,away:a/t};
+}
+function appOddsForItem(item){
+ const prof=appOddsHistoricalProfile(item),side=quantitativeSide(item),margin=quantitativeMargin(item);
+ let home=prof.home,dr=prof.draw,away=prof.away,reason=[];
+ // This adjustment uses only the current quantitative separation. No qualitative state is read here.
+ const tilt=clamp(margin/42,0,.115);
+ if(side==='home'){
+   home+=tilt; away-=tilt*.68; dr-=tilt*.32;
+   reason.push(`Señal cuantitativa favorece al local · separación ${margin.toFixed(2)}`);
+ }else if(side==='away'){
+   away+=tilt; home-=tilt*.68; dr-=tilt*.32;
+   reason.push(`Señal cuantitativa favorece al visitante · separación ${margin.toFixed(2)}`);
+ }else{
+   const drawLift=clamp(.045-margin/180,0,.045);dr+=drawLift;home-=drawLift/2;away-=drawLift/2;
+   reason.push('La señal cuantitativa no tiene favorito coincidente');
+ }
+ [home,dr,away]=normalizeThree(home,dr,away);
+ const probs={home,draw:dr,away}; const odds={home:1/home,draw:1/dr,away:1/away};
+ const maxKey=['home','draw','away'].sort((x,y)=>probs[y]-probs[x])[0];
+ const favorite=maxKey==='home'?item.localName:maxKey==='away'?item.visitorName:'Empate';
+ reason.push(`Historial cerrado ponderado: ${prof.n} registro(s)`);
+ reason.push('NO usa resultado cualitativo ni cuotas comerciales');
+ return {probs,odds,favorite,historyN:prof.n,weightedN:prof.weightedN,reason,independent:true};
+}
+function appOddFmt(v){return Number.isFinite(v)?v.toFixed(2):'—';}
+function appOddsHtml(model,item){
+ if(!model)return '<span class="goal-detail">Sin cálculo.</span>';
+ const rows=[['home',item.localName],['draw','Empate'],['away',item.visitorName]];
+ return `<div class="app-odds-panel"><div class="app-odds-head"><div><strong>CUOTA APP INDEPENDIENTE</strong><div class="goal-detail">Probabilidad APP 1X2 · cuantitativo + historial · cualitativo bloqueado</div></div><span class="badge badge-open">INDEPENDIENTE</span></div><div class="app-odds-grid">${rows.map(([k,label])=>`<div class="app-odd-card ${model.favorite===label?'app-odd-fav':''}"><small>${escapeHtml(label)}</small><strong>${appOddFmt(model.odds[k])}</strong><span>${marketPct(model.probs[k])}</span></div>`).join('')}</div><div class="app-method"><strong>Favorito APP:</strong> ${escapeHtml(model.favorite)} · historial útil: ${model.historyN} partido(s) cerrado(s).<br>${model.reason.map(escapeHtml).join(' · ')}</div></div>`;
+}
+function currentQualitativeFavorite(item){
+ const ln=item?.localQualitative?.name,vn=item?.visitorQualitative?.name;
+ if(!ln||!vn)return {favorite:'Sin lectura',detail:'No hay estados cualitativos disponibles.'};
+ const lg=qualitativeGroup(ln),vg=qualitativeGroup(vn);
+ if(lg.id===vg.id)return {favorite:'Sin favorito cualitativo',detail:`${ln} vs ${vn} · estados del mismo grupo.`};
+ const favorite=lg.rank>vg.rank?item.localName:item.visitorName;
+ return {favorite,detail:`${item.localName}: ${ln} · ${item.visitorName}: ${vn}`};
+}
+function comparisonHtml(item,app,qual,market){
+ const marketFav=market?market.fav:'Sin cuota';
+ const values=[app.favorite,qual.favorite,marketFav].filter(x=>x&&!['Sin cuota','Sin lectura','Sin favorito cualitativo','Empate'].includes(x));
+ const allSame=values.length>=2&&values.every(x=>x===values[0]);
+ const appVsQual=app.favorite===qual.favorite;
+ const appVsMarket=market&&app.favorite===market.fav;
+ return `<div class="judge-row"><div class="judge-pill"><small>📊 CUOTA APP</small><strong>${escapeHtml(app.favorite)}</strong></div><div class="judge-pill"><small>🧠 CUALITATIVO</small><strong>${escapeHtml(qual.favorite)}</strong></div><div class="judge-pill"><small>💰 MERCADO</small><strong>${escapeHtml(marketFav)}</strong></div></div><div class="${allSame?'agree-banner':'disagree-banner'}">${allSame?'Los sistemas disponibles coinciden.':'Los sistemas no coinciden completamente.'} ${!appVsQual?'CUOTA APP y cualitativo discrepan. ':''}${market&&!appVsMarket?'CUOTA APP y mercado discrepan. ':''}</div>`;
+}
+function updateN4MarketDash(list,bets=[]){
+ const ab=document.getElementById('n4AppOddsDashboard'),qb=document.getElementById('n4QualDashboard'),mb=document.getElementById('n4MarketDashboard'),cb=document.getElementById('n4ComparisonDashboard'),sb=document.getElementById('n4SystemDashboard');if(!mb||!sb)return;
+ if(ab)ab.innerHTML=list.length?list.map(x=>`<div style="margin-bottom:12px"><strong>${escapeHtml(x.localName)} vs ${escapeHtml(x.visitorName)}</strong>${appOddsHtml(appOddsForItem(x),x)}</div>`).join(''):'Agrega partidos para calcular la CUOTA APP independiente.';
+ if(qb)qb.innerHTML=list.length?list.map(x=>{const q=currentQualitativeFavorite(x);return `<div style="margin-bottom:12px"><strong>${escapeHtml(x.localName)} vs ${escapeHtml(x.visitorName)}</strong><div class="market-banner"><strong>Favorito cualitativo:</strong> ${escapeHtml(q.favorite)}</div><div class="goal-detail" style="margin-top:6px">${escapeHtml(q.detail)}<br><strong>Esta lectura NO entra en la fórmula de CUOTA APP.</strong></div></div>`}).join(''):'Agrega partidos para mostrar la lectura cualitativa separada.';
+ const withOdds=list.filter(x=>x.marketOdds&&marketAnalysis(x.marketOdds,x.localName,x.visitorName));
+ if(!withOdds.length)mb.innerHTML='Sin cuotas comerciales. Son opcionales y no afectan la CUOTA APP.';else mb.innerHTML=withOdds.map(x=>{const m=marketAnalysis(x.marketOdds,x.localName,x.visitorName);return `<div style="margin-bottom:10px"><strong>${escapeHtml(x.localName)} vs ${escapeHtml(x.visitorName)}</strong>${marketSummaryHtml(m)}<div class="goal-detail" style="margin-top:5px">Cuotas: ${appOddFmt(x.marketOdds.home)} / ${appOddFmt(x.marketOdds.draw)} / ${appOddFmt(x.marketOdds.away)}</div></div>`}).join('');
+ if(cb)cb.innerHTML=list.length?list.map(x=>{const app=appOddsForItem(x),qual=currentQualitativeFavorite(x),m=marketAnalysis(x.marketOdds,x.localName,x.visitorName);return `<div style="margin-bottom:14px"><strong>${escapeHtml(x.localName)} vs ${escapeHtml(x.visitorName)}</strong>${comparisonHtml(x,app,qual,m)}</div>`}).join(''):'Los tres sistemas se compararán aquí.';
+ if(!bets.length)sb.innerHTML='Genera las apuestas para ver la decisión del constructor NÚCLEO 4. Esta salida se mantiene separada de CUOTA APP.';else sb.innerHTML=bets.map(b=>`<div class="n4-summary n4-coincide" style="margin-bottom:8px"><strong>${b.letter} · ${escapeHtml(b.match)}</strong><br>${escapeHtml(b.market)} · ${rateLabel(b.rate)}<br><small>Constructor NÚCLEO 4; no modifica la CUOTA APP</small></div>`).join('');
+}
+
 function getAnalysisList(){
  try{return JSON.parse(localStorage.getItem(ANALYSIS_LIST_KEY)||"[]");}catch(_){return [];}
 }
@@ -985,6 +1216,7 @@ function addCurrentToAnalysis(){
    analysisId:(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random()),
    competition:document.getElementById("competition").value.trim()||"Sin liga",
    matchDate:document.getElementById("matchDate").value||"",
+   n7Favoritism:n7SnapshotForCurrent(),
    addedAt:new Date().toISOString()
  };
  const list=getAnalysisList();
@@ -1013,15 +1245,34 @@ function overallRates(){
 }
 function renderAnalysisList(){
  const list=getAnalysisList(),box=document.getElementById("analysisList");
- box.innerHTML=list.length?list.map((x,i)=>`<div class="list-card">
-   <strong>${i+1}. ${escapeHtml(x.localName)} vs ${escapeHtml(x.visitorName)}</strong>
-   <div class="goal-detail">${escapeHtml(x.competition)} · Suma ${escapeHtml(x.sumGoals)} · Resta ${escapeHtml(x.diffGoals)} · Favorito ${escapeHtml(x.favored)}</div>
-   <button class="danger small-btn" onclick="removeAnalysisItem('${x.analysisId}')">Quitar</button>
- </div>`).join(""):"<p>No hay partidos agregados.</p>";
+ box.innerHTML=list.length?list.map((x,i)=>{
+   const n7=x.n7Favoritism||n7AnalyzePrediction(x);
+   const n7Txt=n7?`${n7.classification}${n7.dominator?` · ${n7.dominator}`:""} · distancia ${n7.distance}`:"N7 sin lectura";
+   return `<div class="list-card">
+     <strong>${i+1}. ${escapeHtml(x.localName)} vs ${escapeHtml(x.visitorName)}</strong>
+     <div class="goal-detail">${escapeHtml(x.competition)} · Goles suma: ${escapeHtml(x.sumGoals)} · Goles resta: ${escapeHtml(x.diffGoals)} · Favorito interno: ${escapeHtml(x.favored)}</div>
+     <div class="market-mini">NÚCLEO 7: ${escapeHtml(n7Txt)} · Cualitativo: ${escapeHtml(x.localQualitative?.name||"—")} / ${escapeHtml(x.visitorQualitative?.name||"—")}</div>
+     <button class="danger small-btn" onclick="removeAnalysisItem('${x.analysisId}')">Quitar</button>
+   </div>`;
+ }).join(""):"<p>No hay partidos agregados.</p>";
 }
 
+function getN4Polls(){
+ try{
+   const raw=JSON.parse(localStorage.getItem(THREE_BETS_KEY)||"[]");
+   return Array.isArray(raw)&&raw.length&&raw[0]?.selections?raw:[];
+ }catch(_){return []}
+}
 function getThreeBets(){
- try{return JSON.parse(localStorage.getItem(THREE_BETS_KEY)||"[]");}catch(_){return [];}
+ // Compatibilidad con NÚCLEO 5: cada polla completa se trata como una apuesta financiera.
+ return getN4Polls().map((p,i)=>({
+   letter:`P${i+1}`,
+   match:`Polla ${i+1} · ${p.selections.length} partido(s)`,
+   market:p.selections.map(s=>`${s.match}: ${s.market}`).join(" | "),
+   rate:p.rate||0,
+   evidence:p.evidence||[],
+   league:"Varias ligas"
+ }));
 }
 function leagueRateFromStrategy(strategy,league,key,globalRate){
  const l=strategy?.leagues?.[league];
@@ -1038,129 +1289,203 @@ function qualitativeRateForMatch(item,qualAnalysis){
  const pair=qualitativePairKey(item.localQualitative?.name||"—",item.visitorQualitative?.name||"—");
  const pairStat=qualAnalysis?.pairs?.find(x=>x.name===pair);
  const leagueStat=qualAnalysis?.leagues?.find(x=>x.name===(item.competition||"Sin liga"));
- const values=[];
- const evidence=[];
+ const values=[],evidence=[];
  if(qualAnalysis?.globalRate!=null){values.push(qualAnalysis.globalRate);evidence.push(`Cualitativo global ${rateLabel(qualAnalysis.globalRate)}`);}
  if(pairStat?.n>=2){values.push(pairStat.rate);evidence.push(`${pair}: ${pairStat.n} casos, ${rateLabel(pairStat.rate)}`);}
  if(leagueStat?.n>=2){values.push(leagueStat.rate);evidence.push(`${item.competition}: ${leagueStat.n} casos cualitativos, ${rateLabel(leagueStat.rate)}`);}
  const rate=values.length?values.reduce((a,b)=>a+b,0)/values.length:null;
- return {rate,label:`${better} no pierde (cualitativo)`,better,evidence};
+ return {rate,label:`${better} no pierde`,better,evidence};
 }
 function scoreCandidate(baseRate,sample,agreementCount,leagueCases){
  let score=baseRate??0;
- if(sample<10)score-=.08;
- else if(sample<20)score-=.04;
- if(agreementCount>=2)score+=.04;
- if(agreementCount>=3)score+=.03;
- if(leagueCases>=5)score+=.02;
- return Math.max(0,Math.min(.98,score));
+ if(sample<10)score-=.08; else if(sample<20)score-=.04;
+ if(agreementCount>=2)score+=.04; if(agreementCount>=3)score+=.03; if(leagueCases>=5)score+=.02;
+ return Math.max(.20,Math.min(.96,score));
 }
-
 function adjustedByTrend(baseRate,trend,leagueTrend){
  let rate=baseRate??0,evidence=[];
- const apply=(t,label)=>{
-   if(!t||t.delta==null)return;
-   if(t.label==="Muy positiva"){rate+=.08;evidence.push(`${label}: tendencia muy positiva (+8 puntos)`);}
-   else if(t.label==="Positiva"){rate+=.04;evidence.push(`${label}: tendencia positiva (+4 puntos)`);}
-   else if(t.label==="Muy negativa"){rate-=.12;evidence.push(`${label}: tendencia muy negativa (-12 puntos)`);}
-   else if(t.label==="Negativa"){rate-=.06;evidence.push(`${label}: tendencia negativa (-6 puntos)`);}
-   else evidence.push(`${label}: tendencia estable`);
- };
- apply(trend,"Global");
- apply(leagueTrend,"Liga");
- return {rate:Math.max(0,Math.min(.98,rate)),evidence};
+ const apply=(t,label)=>{if(!t||t.delta==null)return;if(t.label==="Muy positiva"){rate+=.08;evidence.push(`${label}: tendencia muy positiva`);}else if(t.label==="Positiva"){rate+=.04;evidence.push(`${label}: tendencia positiva`);}else if(t.label==="Muy negativa"){rate-=.12;evidence.push(`${label}: tendencia muy negativa`);}else if(t.label==="Negativa"){rate-=.06;evidence.push(`${label}: tendencia negativa`);}else evidence.push(`${label}: tendencia estable`);};
+ apply(trend,"Global");apply(leagueTrend,"Liga");
+ return {rate:Math.max(.20,Math.min(.96,rate)),evidence};
 }
-function candidatesForAnalysisItem(item,strategy,qualAnalysis){
- const league=item.competition||"Sin liga";
- const leagueInfo=strategy?.leagues?.[league];
- const sample=strategy?.sample||0,result=[];
- const globalRates=strategy?.rates||overallRates();
- const q=qualitativeRateForMatch(item,qualAnalysis);
- const addSource=(key,market,baseRate,evidence)=>{
-   if(baseRate==null||Number.isNaN(baseRate))return;
-   const trendAdj=adjustedByTrend(baseRate,strategy?.trends?.[key],leagueInfo?.trend?.[key]);
-   let agreement=0;
-   if(key==="winner"&&q.better===item.favored)agreement++;
-   if(key==="inverse"&&q.better&&q.better!==item.favored)agreement++;
-   if(key==="qualitative"&&item.favored===q.better)agreement++;
-   if((key==="sum"||key==="diff")&&item.sumGoals===item.diffGoals)agreement++;
-   const finalRate=scoreCandidate(trendAdj.rate,sample,agreement,leagueInfo?.n||0);
-   const ev=[...evidence,...trendAdj.evidence,`Liga: ${league}`,`Muestra NÚCLEO 2: ${sample}`];
-   if(agreement)ev.push(`Coincidencias adicionales: ${agreement}`);
-   result.push({analysisId:item.analysisId,match:`${item.localName} vs ${item.visitorName}`,league,market,source:key,rawRate:baseRate,rate:finalRate,evidence:ev,localQual:item.localQualitative?.name,visitorQual:item.visitorQualitative?.name});
- };
- const sumRate=leagueRateFromStrategy(strategy,league,"sum",globalRates.sum);
- const diffRate=leagueRateFromStrategy(strategy,league,"diff",globalRates.diff);
- addSource("sum",goalMarket(item.sumGoals)?.label||String(item.sumGoals),sumRate,[`Ruta suma histórica ${rateLabel(sumRate)}`,`Salida NÚCLEO 1: ${item.sumGoals}`]);
- addSource("diff",goalMarket(item.diffGoals)?.label||String(item.diffGoals),diffRate,[`Ruta resta histórica ${rateLabel(diffRate)}`,`Salida NÚCLEO 1: ${item.diffGoals}`]);
- if(item.favored!=="Sin selección"){
-   const winnerRate=leagueInfo?.winnerN?leagueInfo.winner:globalRates.winner;
-   addSource("winner",`${item.favored} no pierde`,winnerRate,[`Favorito histórico ${rateLabel(winnerRate)}`]);
-   const opposite=oppositeTeam(item);
-   const inverseRate=leagueInfo?.inverseN>=5?leagueInfo.inverse:globalRates.inverse;
-   if(inverseRate!=null&&inverseRate>=.55){
-     addSource("inverse",`${opposite} no pierde (regla inversa)`,inverseRate,[`Regla inversa ${rateLabel(inverseRate)}`,leagueInfo?.inverseN>=5?`Aplicada por liga con ${leagueInfo.inverseN} casos`:"Aplicada globalmente"]);
+function teamTotals(item,side){
+ const x=item?.inputs?.[side];
+ if(!x)return {gf:0,gc:0};
+ return {gf:Number(x.gfA||0)+Number(x.gfB||0),gc:Number(x.gcA||0)+Number(x.gcB||0)};
+}
+function n4DoubleChance(team,item){return team===item.localName?`${item.localName} o empate (1X)`:team===item.visitorName?`${item.visitorName} o empate (X2)`:"";}
+function n4CandidateUniverse(item,strategy,qualAnalysis){
+ const league=item.competition||"Sin liga",leagueInfo=strategy?.leagues?.[league],sample=strategy?.sample||0,globalRates=strategy?.rates||overallRates();
+ const q=qualitativeRateForMatch(item,qualAnalysis),n7=item.n7Favoritism||n7AnalyzePrediction(item),result=[];
+ const push=(market,source,rate,evidence=[],kind="mixed")=>{if(!market||rate==null||Number.isNaN(rate))return;result.push({analysisId:item.analysisId,match:`${item.localName} vs ${item.visitorName}`,league,market,source,kind,rate:Math.max(.20,Math.min(.96,rate)),evidence:[...evidence]});};
+ const hist=(key,fallback)=>leagueRateFromStrategy(strategy,league,key,fallback);
+ const addHistoric=(key,market,base,evidence,kind)=>{if(base==null)return;const t=adjustedByTrend(base,strategy?.trends?.[key],leagueInfo?.trend?.[key]);push(market,key,scoreCandidate(t.rate,sample,0,leagueInfo?.n||0),[...evidence,...t.evidence,`Liga: ${league}`,`Muestra histórica: ${sample}`],kind);};
+ // Rutas de goles ya calculadas por NÚCLEO 1 y aprendidas por NÚCLEO 2.
+ const sm=goalMarket(item.sumGoals),dm=goalMarket(item.diffGoals);
+ if(sm)addHistoric("sum",sm.label,hist("sum",globalRates.sum),[`Ruta suma N1: ${item.sumGoals}`],"goals");
+ if(dm)addHistoric("diff",dm.label,hist("diff",globalRates.diff),[`Ruta resta N1: ${item.diffGoals}`],"goals");
+ // Favoritismo histórico del sistema.
+ if(item.favored&&item.favored!=="Sin selección"){
+   const wr=hist("winner",globalRates.winner);
+   if(wr!=null){
+     push(n4DoubleChance(item.favored,item),"winner_dc",Math.min(.94,wr+.08),[`Favorito interno: ${item.favored}`,`No derrota histórica: ${rateLabel(wr)}`],"favorite");
+     if(wr>=.58)push(`${item.favored} gana`,"winner",Math.max(.35,wr-.08),[`Favorito interno: ${item.favored}`,`Base histórica: ${rateLabel(wr)}`],"favorite");
    }
  }
- if(q.rate!=null)addSource("qualitative",q.label,q.rate,q.evidence);
- return result;
-}
-function renderThreeBets(bets){
- const defs={A:{name:"Alta",cls:"bet-tier-a"},B:{name:"Media",cls:"bet-tier-b"},C:{name:"Baja",cls:"bet-tier-c"}};
- const box=document.getElementById("threeBetResults");
- box.innerHTML=["A","B","C"].map(letter=>{
-   const b=bets.find(x=>x.letter===letter),d=defs[letter];
-   if(!b)return `<div class="bet-tier ${d.cls}"><h3>${letter} — ${d.name}</h3><p>No se encontró una opción suficiente para este nivel.</p></div>`;
-   return `<div class="bet-tier ${d.cls}">
-     <h3>${letter} — ${d.name}</h3>
-     <strong>${escapeHtml(b.match)}</strong>
-     <div>${escapeHtml(b.market)}</div>
-     <div class="tier-score">${rateLabel(b.rate)}</div>
-     <div class="goal-detail">${escapeHtml(b.league)} · Fuente principal: ${escapeHtml(b.source)}</div>
-     <ul class="evidence-list">${b.evidence.map(e=>`<li>${escapeHtml(e)}</li>`).join("")}</ul>
-   </div>`;
- }).join("");
- const tech=bets.length?bets.map(b=>`${b.letter} — ${b.match}\nMercado: ${b.market}\nConfianza ajustada: ${rateLabel(b.rate)}\nEvidencia: ${b.evidence.join(" | ")}`).join("\n\n"):"No hubo apuestas suficientes.";
- document.getElementById("threeBetTechnical").textContent=tech;
-}
-function generateThreeBets(){
- const list=getAnalysisList();
- if(!list.length){alert("Agrega al menos un partido a la lista.");return;}
- const strategy=getStrategy();
- if(!strategy){alert("Primero genera la estrategia del NÚCLEO 2.");return;}
- const qualAnalysis=getQualitativeAnalysis();
- if(!qualAnalysis){alert("Primero analiza el NÚCLEO 3.");return;}
- const all=list.flatMap(item=>candidatesForAnalysisItem(item,strategy,qualAnalysis)).sort((a,b)=>b.rate-a.rate);
- const usedMatches=new Set(),bets=[];
- const levels=[
-   {letter:"A",min:.70,max:1},
-   {letter:"B",min:.55,max:.70},
-   {letter:"C",min:.40,max:.55}
- ];
- levels.forEach(level=>{
-   let candidate=all.find(x=>!usedMatches.has(x.analysisId)&&x.rate>=level.min&&x.rate<(level.max===1?1.01:level.max));
-   if(!candidate&&level.letter!=="A"){
-     candidate=all.find(x=>!usedMatches.has(x.analysisId)&&x.rate>=level.min);
+ // Cualitativo como evidencia independiente.
+ if(q.rate!=null&&q.better){
+   push(n4DoubleChance(q.better,item),"qualitative",Math.min(.93,q.rate+.05),[...q.evidence,`Mejor estado: ${q.better}`],"qualitative");
+   if(q.rate>=.65)push(`${q.better} gana`,"qualitative_win",Math.max(.38,q.rate-.10),[...q.evidence,`Ventaja cualitativa: ${q.better}`],"qualitative");
+ }
+ // NÚCLEO 7: dominador / zona sin favorito + letras como evidencia experimental.
+ if(n7){
+   if(n7.classification==="DOMINADOR"&&n7.dominator){
+     const domTeam=n7.local.name===n7.dominator?n7.local:n7.visitor;
+     const base=.59+Math.min(.16,(n7.distance-4)*.018)+(domTeam.letter==="A"?-.05:.03);
+     push(n4DoubleChance(n7.dominator,item),"n7_dc",base+.12,[`N7: DOMINADOR por ${n7.distance} casillas`,`Letra final ${domTeam.letter}`],"n7");
+     push(`${n7.dominator} gana`,"n7_win",base,[`N7: DOMINADOR por ${n7.distance} casillas`,`Letra final ${domTeam.letter}`],"n7");
+   }else{
+     const low=n7.lowerValueTeam;
+     push(n4DoubleChance(low,item),"n7_nofav",.52,[`N7: NO HAY FAVORITO · distancia ${n7.distance}`,`Menor valor: ${low}`],"n7");
+     if(n7.distance<=1)push("Empate", "n7_draw", .38,[`N7: equipos muy próximos · ${n7.distance} casilla(s)`],"n7");
    }
-   if(candidate){
-     usedMatches.add(candidate.analysisId);
-     bets.push({...candidate,letter:level.letter});
-   }
+ }
+ // Perfil ofensivo/defensivo de los 6 partidos para ampliar mercados de goles.
+ const L=teamTotals(item,"local"),V=teamTotals(item,"visitor");
+ const attack=(L.gf+V.gf)/12,concede=(L.gc+V.gc)/12,goalIndex=attack+concede;
+ if(goalIndex>=2.15)push("Más de 1.5 goles","goal_profile_15",Math.min(.84,.55+(goalIndex-2.0)*.10),[`Índice combinado de gol: ${goalIndex.toFixed(2)}`],"goals");
+ if(goalIndex>=2.85)push("Más de 2.5 goles","goal_profile_25",Math.min(.80,.50+(goalIndex-2.6)*.09),[`Índice combinado de gol: ${goalIndex.toFixed(2)}`],"goals");
+ if(goalIndex>=3.55)push("Más de 3.5 goles","goal_profile_35",Math.min(.74,.46+(goalIndex-3.2)*.08),[`Índice combinado de gol muy alto: ${goalIndex.toFixed(2)}`],"goals");
+ if(goalIndex<=2.45)push("Menos de 3.5 goles","goal_profile_u35",Math.min(.82,.60+(2.45-goalIndex)*.08),[`Índice combinado de gol: ${goalIndex.toFixed(2)}`],"goals");
+ if(goalIndex<=1.95)push("Menos de 2.5 goles","goal_profile_u25",Math.min(.76,.52+(2.05-goalIndex)*.10),[`Índice combinado de gol bajo: ${goalIndex.toFixed(2)}`],"goals");
+ // Ambos marcan / no ambos marcan: usa capacidad anotadora y vulnerabilidad de los dos equipos.
+ const lGF=L.gf/6,vGF=V.gf/6,lGC=L.gc/6,vGC=V.gc/6;
+ const bttsIndex=(lGF+vGF+vGC+lGC)/4;
+ if(lGF>=1.0&&vGF>=1.0&&lGC>=.8&&vGC>=.8)push("Ambos equipos marcan","btts_yes",Math.min(.78,.50+(bttsIndex-1.0)*.10),[`Local GF ${lGF.toFixed(2)} · Visitante GF ${vGF.toFixed(2)}`,`Concesión local ${lGC.toFixed(2)} · visitante ${vGC.toFixed(2)}`],"btts");
+ if((lGF<.85||vGF<.85)&&goalIndex<=2.55)push("No marcan ambos equipos","btts_no",Math.min(.76,.55+(2.55-goalIndex)*.07),[`Ataque local ${lGF.toFixed(2)} · visitante ${vGF.toFixed(2)}`,`Índice combinado ${goalIndex.toFixed(2)}`],"btts");
+ // Bonificación por coincidencias entre fuentes que terminan recomendando el mismo mercado.
+ const grouped={};result.forEach(c=>{const k=c.market.toLowerCase();(grouped[k]??=[]).push(c);});
+ const merged=Object.values(grouped).map(group=>{
+   group.sort((a,b)=>b.rate-a.rate);const best={...group[0]};
+   const sources=[...new Set(group.map(x=>x.source))];
+   if(sources.length>=2){best.rate=Math.min(.96,best.rate+.04);best.evidence=[...best.evidence,`Coinciden ${sources.length} fuentes: ${sources.join(", ")}`];}
+   best.sources=sources;return best;
  });
- localStorage.setItem(THREE_BETS_KEY,JSON.stringify(bets));
- renderThreeBets(bets);
- const missing=3-bets.length;
- document.getElementById("combinedRecommendation").textContent=
-   `NÚCLEO 4 evaluó ${list.length} partido(s) y ${all.length} alternativas de mercado. `+
-   `Generó ${bets.length} apuesta(s). ${missing?`${missing} nivel(es) quedaron vacíos por falta de evidencia suficiente.`:"Se completaron A, B y C."}`;
- alert("NÚCLEO 4 terminó el análisis. Revisa las apuestas A, B y C.");
+ return merged.sort((a,b)=>b.rate-a.rate);
 }
-function generateCombinedRecommendation(){generateThreeBets();}
-function showSavedThreeBets(){
- const bets=getThreeBets();
- if(!bets.length)return;
- renderThreeBets(bets);
+function n4ProfileScore(c,profile,usage){
+ const weights={
+   integrated:{goals:1.04,favorite:1.02,qualitative:1.00,n7:1.02,btts:1.04,mixed:1},
+   goals:{goals:1.23,favorite:.86,qualitative:.88,n7:.88,btts:1.16,mixed:1},
+   favoritism:{goals:.86,favorite:1.23,qualitative:1.08,n7:1.16,btts:.88,mixed:1},
+   n7:{goals:.88,favorite:1.02,qualitative:.96,n7:1.27,btts:.88,mixed:1},
+   contrast:{goals:1.08,favorite:.98,qualitative:1.10,n7:1.08,btts:1.08,mixed:1},
+   mixed:{goals:1.10,favorite:1.06,qualitative:1.04,n7:1.08,btts:1.10,mixed:1}
+ };
+ const w=weights[profile]?.[c.kind]||1;
+ const marketUse=usage.market?.[c.market]||0;
+ const kindUse=usage.kind?.[c.kind]||0;
+ // Penaliza mucho más repetir la MISMA FAMILIA de mercado en el mismo partido.
+ return c.rate*w-marketUse*.055-kindUse*.075;
 }
+function n4PickForPoll(cands,profile,usage,pollIndex){
+ if(!cands.length)return null;
+ const ranked=[...cands].sort((a,b)=>n4ProfileScore(b,profile,usage)-n4ProfileScore(a,profile,usage));
+ const top=ranked[0],second=ranked[1];
+ // Solo congela una selección si es realmente extraordinaria; así se permite variar mercados.
+ if(top.rate>=.86&&(!second||top.rate-second.rate>=.16))return top;
+ if(pollIndex>0&&ranked.length>1){
+   const unusedFamily=ranked.find(x=>(usage.kind?.[x.kind]||0)===0 && x.rate>=top.rate-.18);
+   if(unusedFamily)return unusedFamily;
+   const lessUsedFamily=ranked.find(x=>(usage.kind?.[x.kind]||0)<(usage.kind?.[top.kind]||0) && x.rate>=top.rate-.20);
+   if(lessUsedFamily)return lessUsedFamily;
+   const unusedMarket=ranked.find(x=>(usage.market?.[x.market]||0)===0 && x.rate>=top.rate-.16);
+   if(unusedMarket)return unusedMarket;
+ }
+ return top;
+}
+function n4PollSignature(selections){
+ return selections.map(s=>`${s.analysisId||s.match}::${String(s.market||'').toLowerCase()}`).join('||');
+}
+function n4MakePollUnique(selections,universes,profile,usedSignatures){
+ let sig=n4PollSignature(selections);
+ if(!usedSignatures.has(sig))return {selections,signature:sig,changed:false};
+ // Cambia primero los partidos con más alternativas y menor separación entre candidatos.
+ const order=universes.map((u,i)=>{
+   const ranked=[...u.cands].sort((a,b)=>n4ProfileScore(b,profile,{})-n4ProfileScore(a,profile,{}));
+   const gap=ranked.length>1?Math.max(0,ranked[0].rate-ranked[1].rate):1;
+   return {i,count:ranked.length,gap,ranked};
+ }).filter(x=>x.count>1).sort((a,b)=>(b.count-a.count)||(a.gap-b.gap));
+ for(const slot of order){
+   const current=selections[slot.i];
+   const bestRate=slot.ranked[0]?.rate||0;
+   // Primero alternativas cercanas; si no bastan, admite cualquier alternativa con respaldo mínimo.
+   const alternatives=[
+     // Primero cambia de FAMILIA: ganador/doble oportunidad -> goles -> ambos marcan, etc.
+     ...slot.ranked.filter(x=>x.market!==current.market&&x.kind!==current.kind&&x.rate>=bestRate-.22),
+     ...slot.ranked.filter(x=>x.market!==current.market&&x.rate>=bestRate-.18),
+     ...slot.ranked.filter(x=>x.market!==current.market&&x.kind!==current.kind&&x.rate>=.30),
+     ...slot.ranked.filter(x=>x.market!==current.market&&x.rate>=.30)
+   ];
+   const seen=new Set();
+   for(const alt of alternatives){
+     const key=String(alt.market).toLowerCase(); if(seen.has(key))continue; seen.add(key);
+     const trial=selections.map((s,j)=>j===slot.i?{...alt}:s);
+     const ts=n4PollSignature(trial);
+     if(!usedSignatures.has(ts))return {selections:trial,signature:ts,changed:true};
+   }
+ }
+ return null;
+}
+function renderIntegratedPolls(polls){
+ const box=document.getElementById("threeBetResults");
+ box.innerHTML=polls.length?polls.map((p,i)=>`<div class="bet-tier ${i%3===0?'bet-tier-a':i%3===1?'bet-tier-b':'bet-tier-c'}">
+   <h3>POLLA ${i+1}</h3>
+   <div class="tier-score">Respaldo conjunto ${rateLabel(p.rate)}</div>
+   <div class="goal-detail">${escapeHtml(p.profileLabel)} · ${p.selections.length} partido(s)</div>
+   <ol class="evidence-list">${p.selections.map(s=>`<li><strong>${escapeHtml(s.match)}</strong><br>${escapeHtml(s.market)} <small>(${rateLabel(s.rate)})</small><br><small>${escapeHtml(s.evidence.slice(0,2).join(' · '))}</small></li>`).join("")}</ol>
+ </div>`).join(""):"";
+ document.getElementById("threeBetTechnical").textContent=polls.length?polls.map((p,i)=>`POLLA ${i+1} — ${p.profileLabel}\nRespaldo conjunto: ${rateLabel(p.rate)}\n`+p.selections.map((s,j)=>`${j+1}. ${s.match}\n   ${s.market} · ${rateLabel(s.rate)}\n   Fuentes: ${(s.sources||[s.source]).join(', ')}\n   Evidencia: ${s.evidence.join(' | ')}`).join("\n")).join("\n\n====================\n\n"):"Sin pollas generadas.";
+}
+function generateIntegratedPolls(){
+ const list=getAnalysisList();if(!list.length){alert("Agrega al menos un partido a la lista.");return;}
+ const count=Math.max(1,Math.min(6,Number(document.getElementById("n4PollCount")?.value||4)));
+ const strategy=getStrategy();
+ const qualAnalysis=getQualitativeAnalysis();
+ const profiles=[
+   ["integrated","Integrada: cruza todas las evidencias"],
+   ["goals","Goles: prioriza mercados de anotación cuando tienen respaldo"],
+   ["favoritism","Favoritismo: pondera ganador/doble oportunidad"],
+   ["n7","N7: aumenta el peso del dominador y la distancia"],
+   ["contrast","Contraste: busca alternativas razonables donde las señales discrepan"],
+   ["mixed","Mixta: equilibrio y diversidad controlada"]
+ ];
+ const universes=list.map(item=>({item,cands:n4CandidateUniverse(item,strategy,qualAnalysis)}));
+ const usageByMatch={};list.forEach(x=>usageByMatch[x.analysisId]={market:{},kind:{}});
+ const polls=[],usedSignatures=new Set();
+ for(let p=0;p<count;p++){
+   const [profile,profileLabel]=profiles[p%profiles.length],initial=[];
+   universes.forEach(({item,cands})=>{
+     const usage=usageByMatch[item.analysisId];let pick=n4PickForPoll(cands,profile,usage,p);
+     if(!pick){pick={analysisId:item.analysisId,match:`${item.localName} vs ${item.visitorName}`,league:item.competition||"Sin liga",market:"Sin selección suficientemente sustentada",source:"none",kind:"mixed",rate:.20,evidence:["Faltan evidencias suficientes"],sources:["none"]};}
+     initial.push({...pick});
+   });
+   const unique=n4MakePollUnique(initial,universes,profile,usedSignatures);
+   if(!unique)continue;
+   const selections=unique.selections; usedSignatures.add(unique.signature);
+   selections.forEach((pick,i)=>{const id=universes[i].item.analysisId;const usage=usageByMatch[id];usage.market[pick.market]=(usage.market[pick.market]||0)+1; usage.kind[pick.kind]=(usage.kind[pick.kind]||0)+1;});
+   const valid=selections.filter(x=>x.source!=="none"),rate=valid.length?valid.reduce((a,b)=>a+b.rate,0)/valid.length:0;
+   polls.push({id:`n4-poll-${Date.now()}-${p}`,createdAt:new Date().toISOString(),profile,profileLabel,rate,selections,evidence:[`Construida con ${list.length} partido(s)`,`Perfil ${profileLabel}`,unique.changed?"Ajustada para no repetir otra polla":"Combinación única"]});
+ }
+ localStorage.setItem(THREE_BETS_KEY,JSON.stringify(polls));
+ renderIntegratedPolls(polls);
+ document.getElementById("combinedRecommendation").textContent=`NÚCLEO 4 tomó ${list.length} partido(s) y generó ${polls.length} polla(s) completas. Cada polla contiene todos los partidos y usa familias de mercado distintas cuando la evidencia lo permite: ganador/doble oportunidad, goles, ambos marcan y N7. NÚCLEO 4 penaliza repetir la misma clase de apuesta para un mismo partido, de modo que la variabilidad sea visible y no solamente una diferencia mínima. Ninguna polla completa se repite.`;
+ try{evaluateN5Polls(false);}catch(_){/* N5 se puede abrir después */}
+ alert(polls.length===count?`NÚCLEO 4 generó ${polls.length} pollas DIFERENTES y con MAYOR VARIABILIDAD DE MERCADOS. NÚCLEO 5 ya puede evaluarlas.`:`NÚCLEO 4 pudo generar ${polls.length} de ${count} pollas sin repetir combinaciones y sin inventar mercados sin respaldo.`);
+}
+function generateThreeBets(){generateIntegratedPolls();}
+function generateCombinedRecommendation(){generateIntegratedPolls();}
+function showSavedThreeBets(){const polls=getN4Polls();if(polls.length)renderIntegratedPolls(polls);}
 
 function money(value){return `$${Math.round(value||0).toLocaleString("es-CO")}`;}
 function getFinancePlan(){
@@ -1169,62 +1494,87 @@ function getFinancePlan(){
 function getFinanceHistory(){
  try{return JSON.parse(localStorage.getItem(FINANCE_HISTORY_KEY)||"[]");}catch(_){return [];}
 }
-function riskFromBet(bet){
- const evidenceCount=bet?.evidence?.length||0;
- const confidence=bet?.rate||0;
- let risk=1-confidence;
- if(evidenceCount<3)risk+=.08;
- if((getStrategy()?.sample||0)<10)risk+=.10;
- else if((getStrategy()?.sample||0)<20)risk+=.05;
- return Math.max(.02,Math.min(.95,risk));
+function n5RiskLabel(r){return r<=.25?"Bajo":r<=.40?"Medio":r<=.58?"Alto":"Muy alto";}
+function n5PollEvaluation(poll,index){
+ const selections=Array.isArray(poll?.selections)?poll.selections:[];
+ const valid=selections.filter(s=>s&&s.source!=="none"&&Number.isFinite(Number(s.rate)));
+ if(!valid.length)return {pollIndex:index+1,label:`Polla ${index+1}`,score:0,risk:.95,riskLabel:"Muy alto",avg:0,min:0,strong:0,weak:selections.length,sourceCount:0,weakest:null,selections};
+ const rates=valid.map(s=>Math.max(.20,Math.min(.96,Number(s.rate)||0)));
+ const avg=rates.reduce((a,b)=>a+b,0)/rates.length;
+ const min=Math.min(...rates);
+ const strong=valid.filter(s=>Number(s.rate)>=.72).length;
+ const weak=valid.filter(s=>Number(s.rate)<.55).length+(selections.length-valid.length);
+ const sources=[...new Set(valid.flatMap(s=>s.sources||[s.source]).filter(Boolean).filter(x=>x!=="none"))];
+ const strongRatio=strong/Math.max(1,selections.length),weakRatio=weak/Math.max(1,selections.length);
+ const coverage=valid.length/Math.max(1,selections.length);
+ // Índice de respaldo de la polla: no es una probabilidad matemática de acierto.
+ let score=.52*avg+.23*min+.10*strongRatio+.08*(1-weakRatio)+.07*Math.min(1,sources.length/4);
+ score*=.88+.12*coverage;
+ // Penaliza pollas con una pata especialmente débil; premia coincidencia de varias fuentes.
+ if(min<.42)score-=.06;
+ if(weak>=2)score-=Math.min(.08,(weak-1)*.025);
+ score=Math.max(.20,Math.min(.94,score));
+ const weakest=valid.reduce((a,b)=>Number(a.rate)<=Number(b.rate)?a:b);
+ const risk=Math.max(.04,Math.min(.95,1-score+(weakRatio*.10)+(min<.50?.05:0)));
+ return {pollIndex:index+1,label:`Polla ${index+1}`,profileLabel:poll.profileLabel||"Sin perfil",score,risk,riskLabel:n5RiskLabel(risk),avg,min,strong,weak,sourceCount:sources.length,sources,weakest,selections,createdAt:poll.createdAt};
 }
-function profileExposure(profile,maxExposure,bets){
- const avg=bets.reduce((s,b)=>s+b.rate,0)/bets.length;
+function getN5Evaluations(){return getN4Polls().map(n5PollEvaluation).sort((a,b)=>b.score-a.score);}
+function renderN5Evaluations(evals){
+ const box=document.getElementById("n5PollEvaluation");if(!box)return;
+ if(!evals.length){box.innerHTML="Primero genera las pollas integradas en NÚCLEO 4.";return;}
+ box.innerHTML=`<div class="goal-detail" style="margin-bottom:10px"><strong>NÚCLEO 5 compara pollas completas.</strong> El “respaldo” es un índice interno construido con las evidencias de la app; no es una probabilidad matemática de ganar la combinada.</div>`+evals.map((e,rank)=>`<div class="list-card">
+   <strong>${rank===0?'⭐ ':''}${escapeHtml(e.label)} — Respaldo ${rateLabel(e.score)} · Riesgo ${escapeHtml(e.riskLabel)}</strong>
+   <div class="goal-detail">${escapeHtml(e.profileLabel)} · ${e.selections.length} selección(es) · promedio ${rateLabel(e.avg)} · mínima ${rateLabel(e.min)} · fuertes ${e.strong} · débiles ${e.weak}</div>
+   <div class="market-mini">Fuentes distintas: ${e.sourceCount}${e.weakest?` · Punto más débil: ${escapeHtml(e.weakest.match)} → ${escapeHtml(e.weakest.market)} (${rateLabel(e.weakest.rate)})`:''}</div>
+   <details style="margin-top:8px"><summary>Ver composición de la polla</summary><ol class="evidence-list">${e.selections.map(s=>`<li><strong>${escapeHtml(s.match||'Partido')}</strong><br>${escapeHtml(s.market||'Sin selección')} <small>(${rateLabel(Number(s.rate)||0)})</small></li>`).join('')}</ol></details>
+ </div>`).join('');
+ const best=document.getElementById("fBestPoll");if(best)best.textContent=evals[0]?.label||"—";
+}
+function evaluateN5Polls(showAlert=false){
+ const evals=getN5Evaluations();renderN5Evaluations(evals);
+ if(showAlert){
+   if(!evals.length)alert("Primero genera las pollas completas en NÚCLEO 4.");
+   else alert(`NÚCLEO 5 evaluó ${evals.length} polla(s). La mejor valorada ahora es ${evals[0].label} con respaldo ${rateLabel(evals[0].score)}.`);
+ }
+ return evals;
+}
+function profileExposure(profile,maxExposure,evals){
+ const avg=evals.reduce((s,e)=>s+e.score,0)/Math.max(1,evals.length);
  const factors={conservative:.55,balanced:.78,aggressive:1};
  let factor=factors[profile]||.78;
- if(avg<.55)factor*=.55;
- else if(avg<.65)factor*=.75;
- else if(avg>=.80)factor*=1;
+ if(avg<.55)factor*=.50; else if(avg<.65)factor*=.72; else if(avg>=.80)factor*=1;
  return Math.min(maxExposure,maxExposure*factor);
 }
 function calculateAutomaticAllocation(){
  const capital=Number(document.getElementById("bankroll").value||0);
  const maxExposure=Number(document.getElementById("maxExposure").value||0);
  const profile=document.getElementById("financeProfile").value;
- const bets=getThreeBets();
  if(capital<=0){alert("Escribe un capital disponible válido.");return;}
  if(maxExposure<=0||maxExposure>100){alert("El porcentaje máximo debe estar entre 1 y 100.");return;}
- if(!bets.length){alert("Primero genera las apuestas A, B y C en el NÚCLEO 4.");return;}
- const exposurePct=profileExposure(profile,maxExposure,bets);
+ const evals=evaluateN5Polls(false);
+ if(!evals.length){alert("Primero genera las pollas integradas en NÚCLEO 4.");return;}
+ const exposurePct=profileExposure(profile,maxExposure,evals);
  const investable=capital*exposurePct/100;
- const tierFactor={A:1.35,B:.85,C:.45};
- const items=bets.map(b=>{
-   const risk=riskFromBet(b);
-   const evidenceFactor=1+Math.min(.18,(b.evidence?.length||0)*.025);
-   const weight=Math.max(.01,b.rate*b.rate*tierFactor[b.letter]*evidenceFactor*(1-risk*.35));
-   return {bet:b,risk,weight};
+ const items=evals.map(e=>{
+   // La polla pesa más si tiene buen respaldo y menor riesgo. Nunca se financia por 'recuperar'.
+   let weight=Math.max(.01,e.score*e.score*(1-e.risk*.55));
+   if(e.score<.48||e.risk>.70)weight*=.30;
+   return {e,weight};
  });
- // Do not fund very weak C.
- items.forEach(x=>{if(x.bet.letter==="C"&&x.bet.rate<.45)x.weight=0;});
  const totalWeight=items.reduce((s,x)=>s+x.weight,0);
- if(!totalWeight){alert("El sistema considera que ninguna apuesta merece inversión en este momento.");return;}
- const allocations=items.map(x=>({
-   letter:x.bet.letter,match:x.bet.match,market:x.bet.market,
-   confidence:x.bet.rate,risk:x.risk,
-   amount:investable*x.weight/totalWeight,
-   league:x.bet.league
+ if(!totalWeight){alert("NÚCLEO 5 considera que ninguna polla merece inversión en este momento.");return;}
+ const allocations=items.map(({e,weight})=>({
+   pollIndex:e.pollIndex,pollLabel:e.label,profileLabel:e.profileLabel,
+   confidence:e.score,risk:e.risk,riskLabel:e.riskLabel,
+   amount:investable*weight/totalWeight,
+   selectionCount:e.selections.length,weakCount:e.weak,strongCount:e.strong,
+   weakest:e.weakest?{match:e.weakest.match,market:e.weakest.market,rate:e.weakest.rate}:null,
+   selections:e.selections.map(s=>({match:s.match,market:s.market,rate:s.rate,source:s.source,sources:s.sources||[s.source]}))
  }));
- const invested=allocations.reduce((s,x)=>s+x.amount,0);
- const reserve=capital-invested;
- const avgRisk=allocations.reduce((s,x)=>s+x.risk*x.amount,0)/(invested||1);
- const riskLabel=avgRisk<=.25?"Bajo":avgRisk<=.40?"Medio":avgRisk<=.60?"Alto":"Muy alto";
- const plan={
-   id:"finance-"+Date.now(),createdAt:new Date().toISOString(),
-   capital,maxExposure,profile,exposurePct,invested,reserve,avgRisk,riskLabel,allocations,
-   strategySample:getStrategy()?.sample||0
- };
- localStorage.setItem(FINANCE_PLAN_KEY,JSON.stringify(plan));
- renderFinancialPlan(plan);
+ const invested=allocations.reduce((s,x)=>s+x.amount,0),reserve=capital-invested;
+ const avgRisk=allocations.reduce((s,x)=>s+x.risk*x.amount,0)/(invested||1),riskLabel=n5RiskLabel(avgRisk);
+ const plan={id:"finance-"+Date.now(),createdAt:new Date().toISOString(),capital,maxExposure,profile,exposurePct,invested,reserve,avgRisk,riskLabel,allocations,bestPoll:evals[0]?.label||null,strategySample:getStrategy()?.sample||0};
+ localStorage.setItem(FINANCE_PLAN_KEY,JSON.stringify(plan));renderFinancialPlan(plan);
 }
 function renderFinancialPlan(plan){
  if(!plan)return;
@@ -1232,63 +1582,31 @@ function renderFinancialPlan(plan){
  document.getElementById("fInvested").textContent=money(plan.invested);
  document.getElementById("fReserve").textContent=money(plan.reserve);
  document.getElementById("fRisk").textContent=plan.riskLabel;
- document.getElementById("stakeResult").innerHTML=`<table class="allocation-table"><thead><tr><th>Apuesta</th><th>Partido</th><th>Selección</th><th>Confianza</th><th>Riesgo</th><th>Monto sugerido</th></tr></thead><tbody>${
-   plan.allocations.map(a=>`<tr><td>${a.letter}</td><td>${escapeHtml(a.match)}</td><td>${escapeHtml(a.market)}</td><td>${rateLabel(a.confidence)}</td><td>${rateLabel(a.risk)}</td><td><strong>${money(a.amount)}</strong></td></tr>`).join("")
+ const best=document.getElementById("fBestPoll");if(best)best.textContent=plan.bestPoll||plan.allocations?.[0]?.pollLabel||"—";
+ document.getElementById("stakeResult").innerHTML=`<table class="allocation-table"><thead><tr><th>Polla</th><th>Selecciones</th><th>Respaldo N5</th><th>Riesgo</th><th>Débiles</th><th>Monto sugerido</th></tr></thead><tbody>${
+   (plan.allocations||[]).sort((a,b)=>a.pollIndex-b.pollIndex).map(a=>`<tr><td><strong>${escapeHtml(a.pollLabel||('Polla '+a.pollIndex))}</strong></td><td>${a.selectionCount||0}</td><td>${rateLabel(a.confidence)}</td><td>${escapeHtml(a.riskLabel||n5RiskLabel(a.risk))}</td><td>${a.weakCount||0}</td><td><strong>${money(a.amount)}</strong></td></tr>`).join("")
  }</tbody></table>`;
  const profileNames={conservative:"conservador",balanced:"equilibrado",aggressive:"agresivo"};
- const lines=[
-   "INFORME DEL NÚCLEO 5",
-   `Capital disponible: ${money(plan.capital)}.`,
-   `Perfil utilizado: ${profileNames[plan.profile]}.`,
-   `Límite autorizado: ${plan.maxExposure}% del capital.`,
-   `Exposición realmente sugerida: ${Math.round(plan.exposurePct*10)/10}%.`,
-   `Total recomendado: ${money(plan.invested)}.`,
-   `Capital reservado: ${money(plan.reserve)}.`,
-   `Riesgo conjunto estimado: ${plan.riskLabel} (${rateLabel(plan.avgRisk)}).`,
-   `Muestra estratégica utilizada: ${plan.strategySample} partidos.`,
-   "",
-   "La apuesta A recibe mayor peso por su confianza. B recibe una cantidad intermedia. C recibe menos dinero o puede quedar en cero si su evidencia es demasiado débil.",
-   "La decisión final sigue siendo del usuario."
- ];
+ const lines=["INFORME DEL NÚCLEO 5",`Capital disponible: ${money(plan.capital)}.`,`Perfil utilizado: ${profileNames[plan.profile]}.`,`Límite autorizado: ${plan.maxExposure}% del capital.`,`Exposición realmente sugerida: ${Math.round(plan.exposurePct*10)/10}%.`,`Total recomendado entre todas las pollas: ${money(plan.invested)}.`,`Capital reservado: ${money(plan.reserve)}.`,`Riesgo conjunto estimado: ${plan.riskLabel} (${rateLabel(plan.avgRisk)}).`,`Mejor polla evaluada: ${plan.bestPoll||"—"}.`,`Muestra estratégica utilizada: ${plan.strategySample} partidos.`,"","NÚCLEO 5 trató cada polla completa como una sola unidad: primero evaluó su composición y luego distribuyó el capital entre las pollas.","No aumenta montos para recuperar pérdidas. El índice de respaldo es interno y no equivale a una probabilidad matemática de ganar."];
  document.getElementById("financeExplanation").textContent=lines.join("\n");
 }
 function showSavedFinancialPlan(){
- const plan=getFinancePlan();
- if(!plan){alert("Todavía no hay un plan financiero guardado automáticamente.");return;}
- renderFinancialPlan(plan);
- document.getElementById("bankrollSection").scrollIntoView({behavior:"smooth"});
+ const plan=getFinancePlan();if(!plan){alert("Todavía no hay un plan financiero guardado automáticamente.");return;}
+ renderFinancialPlan(plan);evaluateN5Polls(false);document.getElementById("bankrollSection").scrollIntoView({behavior:"smooth"});
 }
 function saveFinancialPlan(){
- const plan=getFinancePlan();
- if(!plan){alert("Primero distribuye el capital.");return;}
- const history=getFinanceHistory();
- history.unshift({...plan,savedAt:new Date().toISOString()});
- localStorage.setItem(FINANCE_HISTORY_KEY,JSON.stringify(history));
- renderFinanceHistory();
- alert("Plan financiero guardado.");
+ const plan=getFinancePlan();if(!plan){alert("Primero distribuye el capital entre las pollas.");return;}
+ const history=getFinanceHistory();history.unshift({...plan,savedAt:new Date().toISOString()});localStorage.setItem(FINANCE_HISTORY_KEY,JSON.stringify(history));renderFinanceHistory();alert("Plan financiero de pollas guardado.");
 }
 function renderFinanceHistory(){
  const history=getFinanceHistory(),box=document.getElementById("financeHistory");
- box.innerHTML=history.length?history.map(p=>`<div class="list-card">
-   <strong>${new Date(p.savedAt||p.createdAt).toLocaleString("es-CO")}</strong>
-   <div>Capital ${money(p.capital)} · Invertido ${money(p.invested)} · Reserva ${money(p.reserve)} · Riesgo ${escapeHtml(p.riskLabel)}</div>
-   ${p.allocations.map(a=>`<div>${a.letter}: ${escapeHtml(a.match)} — ${escapeHtml(a.market)} — ${money(a.amount)}</div>`).join("")}
-   <button class="danger small-btn" onclick="deleteFinancePlan('${p.id}')">Eliminar</button>
- </div>`).join(""):"Sin planes guardados.";
+ box.innerHTML=history.length?history.map(p=>`<div class="list-card"><strong>${new Date(p.savedAt||p.createdAt).toLocaleString("es-CO")}</strong><div>Capital ${money(p.capital)} · Invertido ${money(p.invested)} · Reserva ${money(p.reserve)} · Riesgo ${escapeHtml(p.riskLabel||'—')}</div>${(p.allocations||[]).map(a=>`<div>${escapeHtml(a.pollLabel||('Polla '+(a.pollIndex||'')))} — respaldo ${rateLabel(a.confidence||0)} — ${money(a.amount)}</div>`).join("")}<button class="danger small-btn" onclick="deleteFinancePlan('${p.id}')">Eliminar</button></div>`).join(""):"Sin planes guardados.";
 }
-function deleteFinancePlan(id){
- localStorage.setItem(FINANCE_HISTORY_KEY,JSON.stringify(getFinanceHistory().filter(x=>x.id!==id)));
- renderFinanceHistory();
-}
-function clearFinanceHistory(){
- if(confirm("¿Borrar todo el historial financiero?")){
-   localStorage.removeItem(FINANCE_HISTORY_KEY);renderFinanceHistory();
- }
-}
+function deleteFinancePlan(id){localStorage.setItem(FINANCE_HISTORY_KEY,JSON.stringify(getFinanceHistory().filter(x=>x.id!==id)));renderFinanceHistory();}
+function clearFinanceHistory(){if(confirm("¿Borrar todo el historial financiero?")){localStorage.removeItem(FINANCE_HISTORY_KEY);renderFinanceHistory();}}
 function exportFinanceHistory(){
- const data={app:"NUCLEO 1 V1.1 M5",exportedAt:new Date().toISOString(),financeHistory:getFinanceHistory()};
- const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
- const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`historial_financiero_${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(a.href);
+ const data={app:"APP DEPORTES V1.4.5 N5 POLLAS",exportedAt:new Date().toISOString(),financeHistory:getFinanceHistory()};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`historial_financiero_pollas_${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(a.href);
 }
 function calculateStake(){calculateAutomaticAllocation();}
 function defaultVersion(){
@@ -1358,7 +1676,11 @@ function collectFullSystemState(){
    financeHistory:getFinanceHistory(),
    versions:getVersions(),
    activeVersion:localStorage.getItem(ACTIVE_VERSION_KEY),
-   pendingProposal:JSON.parse(localStorage.getItem("nucleo1_pending_proposal_v10")||"null")
+   pendingProposal:JSON.parse(localStorage.getItem("nucleo1_pending_proposal_v10")||"null"),
+   nucleus7:{
+     pool:n7GetPool(),
+     lastScored:JSON.parse(localStorage.getItem("nucleo7_last_scored")||"null")
+   }
  };
 }
 function applyFullSystemState(data){
@@ -1374,7 +1696,10 @@ function applyFullSystemState(data){
  if(data.versions)localStorage.setItem(VERSION_KEY,JSON.stringify(data.versions));
  if(data.activeVersion)localStorage.setItem(ACTIVE_VERSION_KEY,data.activeVersion);
  if(data.pendingProposal)localStorage.setItem("nucleo1_pending_proposal_v10",JSON.stringify(data.pendingProposal));
+ if(data.nucleus7?.pool) localStorage.setItem(N7_POOL_KEY,JSON.stringify(data.nucleus7.pool));
+ if(data.nucleus7?.lastScored) localStorage.setItem("nucleo7_last_scored",JSON.stringify(data.nucleus7.lastScored));
  refreshAllModules();
+ n7RenderPool();n7HistorySummary();refreshAutocompleteSuggestions();
 }
 function refreshAllModules(){
  renderHistory();renderAdaptive();updateN2Summary();updateN3Summary();
@@ -1436,15 +1761,39 @@ function importFullBackup(event){
  reader.onload=()=>{
    try{
      const data=JSON.parse(reader.result);
-     if(!Array.isArray(data.history))throw new Error();
-     if(confirm(`El respaldo contiene ${data.history.length} partidos. ¿Reemplazar los datos actuales?`)){
+     const incoming=Array.isArray(data)?data:(Array.isArray(data.history)?data.history:null);
+     if(!incoming)throw new Error("No hay historial compatible");
+     if(confirm(`El archivo contiene ${incoming.length} partido(s). ¿Importarlos y reemplazar los datos actuales?`)){
        createAutomaticSafetyPoint();
-       applyFullSystemState(data);
-       alert("Respaldo completo recuperado. Ahora abre el NÚCLEO 2 y pulsa GENERAR / ACTUALIZAR ESTRATEGIA.");
+       if(Array.isArray(data)){
+         setHistory(data);
+       }else{
+         // Acepta tanto respaldo completo como exportación simple del historial de versiones anteriores.
+         setHistory(incoming);
+         if(data.adaptive)setAdaptive(data.adaptive);
+         if(data.analysisList) localStorage.setItem(ANALYSIS_LIST_KEY,JSON.stringify(data.analysisList));
+         if(data.strategy) localStorage.setItem(STRATEGY_KEY,JSON.stringify(data.strategy));
+         if(data.qualitative) localStorage.setItem(QUAL_ANALYSIS_KEY,JSON.stringify(data.qualitative));
+         if(data.threeBets) localStorage.setItem(THREE_BETS_KEY,JSON.stringify(data.threeBets));
+         if(data.financePlan) localStorage.setItem(FINANCE_PLAN_KEY,JSON.stringify(data.financePlan));
+         if(data.financeHistory) localStorage.setItem(FINANCE_HISTORY_KEY,JSON.stringify(data.financeHistory));
+         if(data.versions) localStorage.setItem(VERSION_KEY,JSON.stringify(data.versions));
+         if(data.activeVersion) localStorage.setItem(ACTIVE_VERSION_KEY,data.activeVersion);
+         if(data.pendingProposal)localStorage.setItem("nucleo1_pending_proposal_v10",JSON.stringify(data.pendingProposal));
+         if(data.nucleus7?.pool) localStorage.setItem(N7_POOL_KEY,JSON.stringify(data.nucleus7.pool));
+         if(data.nucleus7?.lastScored) localStorage.setItem("nucleo7_last_scored",JSON.stringify(data.nucleus7.lastScored));
+       }
+       refreshAllModules();n7RenderPool();n7HistorySummary();refreshAutocompleteSuggestions();
+       alert(`Importación completada: ${incoming.length} partido(s) cargados.`);
      }
-   }catch(_){alert("El archivo no es un respaldo completo válido.");}
-   event.target.value="";
+   }catch(err){
+     console.error(err);
+     alert("No pude importar ese archivo. Debe ser un respaldo JSON de APP DEPORTES/NÚCLEO 1.");
+   }finally{
+     event.target.value="";
+   }
  };
+ reader.onerror=()=>{alert("No se pudo leer el archivo seleccionado.");event.target.value="";};
  reader.readAsText(file);
 }
 function createAutomaticSafetyPoint(){
@@ -1543,9 +1892,11 @@ function savePrediction(){
    ...currentPrediction,
    matchDate:document.getElementById("matchDate").value||"",
    competition,
+   marketOdds:readOddsInputs(),
    notes:document.getElementById("predictionNotes").value.trim(),
    exceptional:document.getElementById("exceptionalMatch").checked,
    n7Selections:n7SelectionsForCurrent(),
+   n7Favoritism:n7SnapshotForCurrent(),
    status:"pendiente",homeGoals:null,awayGoals:null,resultNotes:"",closedAt:null
  };
  const items=getHistory();items.unshift(item);setHistory(items);renderHistory();
@@ -1647,116 +1998,108 @@ if(getFinancePlan())renderFinancialPlan(getFinancePlan());
 }
 
 
-// ========================= NÚCLEO 7 =========================
-const N7_POOL_KEY="nucleo7_pool_v130"; // se conserva la clave para no perder la lista existente
-const N7_COLORS=["AMARILLO","VERDE","GRIS","MORADO","ROSADO","ROJO"];
-const N7_COLOR_CSS={AMARILLO:"#f4c542",VERDE:"#64ad4d",GRIS:"#9b9b9b",MORADO:"#7a5bb7",ROSADO:"#c77fa4",ROJO:"#cc1515"};
-// Matrices maestras ANOTADOS actualizadas (sin columna AZUL), 03-09-2026.
-const N7_GOALS_A={
-  1:[-1.5,-3.5,-1.5,-3.5,2.5,1.5],2:[1.5,3.5,1.5,3.5,-3.5,-2.5],3:[-2.5,-1.5,-2.5,-1.5,3.5,2.5],
-  4:[2.5,1.5,2.5,1.5,-1.5,-3.5],5:[-3.5,-2.5,-3.5,-2.5,1.5,3.5],6:[3.5,2.5,3.5,2.5,-2.5,-1.5],
-  7:[-1.5,-3.5,-1.5,3.5,2.5,1.5],8:[1.5,3.5,1.5,-1.5,-3.5,-2.5],9:[-2.5,-1.5,-2.5,1.5,3.5,2.5],0:[2.5,1.5,2.5,-2.5,-1.5,-3.5]
-};
-const N7_WEIGHT_A={
-  1:[1,4,5,2,6,3],2:[2,5,6,3,7,5],3:[3,6,7,5,1,6],4:[4,7,1,6,2,7],5:[5,1,2,7,3,1],
-  6:[6,2,3,1,5,2],7:[7,3,5,2,6,3],8:[1,5,6,3,7,4],9:[2,6,7,4,1,5],0:[3,7,1,5,2,6]
-};
-function n7GetPool(){try{return JSON.parse(localStorage.getItem(N7_POOL_KEY)||"[]")}catch(_){return[]}}
-function n7SetPool(x){localStorage.setItem(N7_POOL_KEY,JSON.stringify(x));n7RenderPool();refreshAutocompleteSuggestions()}
-function n7Digit(n){n=Math.abs(Math.round(Number(n)||0));return n%10}
-function n7SignedLabel(v){const n=Number(v);return n<0?`Menos de ${Math.abs(n).toFixed(1)}`:`Más de ${n.toFixed(1)}`}
-function n7Hit(v,total){const n=Number(v),t=Math.abs(n);return n<0?total<t:total>t}
-// Tabla de ingreso ANOTADOS con 6 colores. Es la estructura anterior sin AZUL:
-// Amarillo=a, Verde=b, Gris=l, Morado=v, Rosado=total, Rojo=2*total.
-function n7Derived(localA,localB,visitorA,visitorB){
-  const a=localA+visitorA,b=localB+visitorB,l=localA+localB,v=visitorA+visitorB,total=a+b;
-  return [a,b,l,v,total,2*total];
+// ========================= NÚCLEO 7 — FAVORITISMO =========================
+// V1.4.4 experimental. Reemplaza las antiguas tablas de colores.
+const N7_POOL_KEY="nucleo7_pool_v130"; // solo compatibilidad con respaldos antiguos
+function n7GetPool(){return []}
+function n7SetPool(_x){refreshAutocompleteSuggestions()}
+function n7RenderPool(){n7BuildScale();n7RenderCurrent()}
+function n7SelectionsForCurrent(){return []} // compatibilidad con historial antiguo
+
+const N7_QUAL_MOVES={"MUY FELIZ":5,"MOTIVADO":4,"COMPLACIENTE":3,"TRISTE":2,"INFELIZ":1,"ORIGEN":0};
+const N7_LETTERS=["A","B","C"];
+function n7QualMoves(name){return N7_QUAL_MOVES[String(name||'ORIGEN').toUpperCase()]??0}
+function n7BounceFromZero(value){
+ let pos=0,dir=Number(value)>=0?1:-1,steps=Math.abs(Math.trunc(Number(value)||0));
+ for(let i=0;i<steps;i++){pos+=dir;if(pos===10)dir=-1;else if(pos===-10)dir=1;}
+ return pos;
 }
-function n7CurrentRaw(){
-  const ln=document.getElementById('L_name').value.trim()||'Local',vn=document.getElementById('V_name').value.trim()||'Visitante';
-  return {id:(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random()),localName:ln,visitorName:vn,competition:document.getElementById('competition').value.trim(),
-   gf:[num('L_gfA'),num('L_gfB'),num('V_gfA'),num('V_gfB')]};
+function n7MoveUp(start,moves){
+ // Siempre intenta subir hacia +10. Si ya está en un extremo, el siguiente
+ // movimiento rebota hacia el interior de la recta. Nunca puede salir de [-10,10].
+ let pos=Math.max(-10,Math.min(10,Number(start)||0)),dir=1;
+ for(let i=0;i<Math.max(0,Math.trunc(Number(moves)||0));i++){
+   if(pos>=10)dir=-1;
+   else if(pos<=-10)dir=1;
+   pos+=dir;
+ }
+ return Math.max(-10,Math.min(10,pos));
 }
-function n7AddCurrentMatch(){
-  const x=n7CurrentRaw();
-  if(!x.localName||!x.visitorName){alert('Escribe los nombres de los equipos.');return}
-  if(x.gf.some(v=>!Number.isInteger(v)||v<0||v>10)){alert('Los goles anotados por bloque deben ser enteros entre 0 y 10.');return}
-  const pool=n7GetPool();pool.push(x);n7SetPool(pool);alert('Partido agregado a NÚCLEO 7.');
+function n7Row(pos){return 11-Math.max(-10,Math.min(10,Number(pos)||0))}
+function n7Value(pos){const p=Math.max(-10,Math.min(10,Number(pos)||0));return 2.1-(p*0.1)}
+function n7Letter(pos){const row=n7Row(pos);return N7_LETTERS[((row-1)%3+3)%3]}
+function n7Val(v){return Number(v).toFixed(1).replace('.',',')}
+function n7LetterBadge(letter){
+ const bg=letter==='A'?'#fde8e8':letter==='B'?'#e8f0ff':'#eee8ff';
+ const fg=letter==='A'?'#a52e2e':letter==='B'?'#2450b8':'#5c42b6';
+ return `<span class="n7-color-chip" style="background:${bg};color:${fg}">${letter}</span>`;
 }
-function n7Remove(id){n7SetPool(n7GetPool().filter(x=>x.id!==id))}
-function n7ClearPool(){if(confirm('¿Limpiar todos los partidos de NÚCLEO 7?')){n7SetPool([]);document.getElementById('n7ScoredResult').textContent='Agrega partidos y elige un criterio.';}}
-function n7RenderPool(){
- const p=n7GetPool(),box=document.getElementById('n7PoolRows');if(!box)return;
- box.innerHTML=p.length?p.map(x=>`<tr><td><strong>${escapeHtml(x.localName)} vs ${escapeHtml(x.visitorName)}</strong></td><td>${x.gf[0]} + ${x.gf[2]}</td><td>${x.gf[1]} + ${x.gf[3]}</td><td><button class="danger small-btn" onclick="n7Remove('${x.id}')">Quitar</button></td></tr>`).join(''):'<tr><td colspan="4">Todavía no hay partidos.</td></tr>';
+function n7TeamFromData(name,x,qualitative){
+ if(!x)return null;
+ const gf=Number(x.gfA||0)+Number(x.gfB||0),gc=Number(x.gcA||0)+Number(x.gcB||0),diff=gf-gc;
+ const basePos=n7BounceFromZero(diff),moves=n7QualMoves(qualitative?.name),finalPos=n7MoveUp(basePos,moves),row=n7Row(finalPos);
+ return {name:name||'Equipo',gf,gc,diff,basePos,moves,qualitative:qualitative?.name||'ORIGEN',finalPos,row,value:n7Value(finalPos),letter:n7Letter(finalPos)};
 }
-function n7Analyze(){
- const p=n7GetPool();if(!p.length)return null;
- const rows=p.map(x=>{const q=x.gf,vals=n7Derived(q[0],q[1],q[2],q[3]);return {...x,values:vals,digits:vals.map(n7Digit),goals:vals.map((v,i)=>N7_GOALS_A[n7Digit(v)][i]),weights:vals.map((v,i)=>N7_WEIGHT_A[n7Digit(v)][i])}});
- const avgs=N7_COLORS.map((c,i)=>({color:c,index:i,avg:rows.reduce((sum,r)=>sum+r.weights[i],0)/rows.length}));return {rows,avgs};
+function n7AnalyzePrediction(p){
+ if(!p?.inputs?.local||!p?.inputs?.visitor)return null;
+ const local=n7TeamFromData(p.localName,p.inputs.local,p.localQualitative),visitor=n7TeamFromData(p.visitorName,p.inputs.visitor,p.visitorQualitative);
+ const distance=Math.abs(local.row-visitor.row);
+ const lower=local.row<visitor.row?local:visitor;
+ const higher=local.row<visitor.row?visitor:local;
+ const classification=distance>=4?'DOMINADOR':'NO HAY FAVORITO';
+ const dominator=distance>=4?lower.name:null;
+ return {createdAt:new Date().toISOString(),local,visitor,distance,classification,dominator,lowerValueTeam:lower.name,higherValueTeam:higher.name};
 }
-function n7Choose(avgs,mode){
- if(mode==='high'){const m=Math.max(...avgs.map(x=>x.avg));return avgs.filter(x=>Math.abs(x.avg-m)<1e-9)}
- if(mode==='low'){const m=Math.min(...avgs.map(x=>x.avg));return avgs.filter(x=>Math.abs(x.avg-m)<1e-9)}
- let best=null;for(let i=0;i<avgs.length;i++)for(let j=i+1;j<avgs.length;j++){const d=Math.abs(avgs[i].avg-avgs[j].avg);if(!best||d<best.d)best={d,a:avgs[i],b:avgs[j]}}return [best.a,best.b];
+function n7SnapshotForCurrent(){return n7AnalyzePrediction(currentPrediction)}
+function n7BuildScale(){
+ const box=document.getElementById('n7ScaleRows');if(!box)return;
+ let rows='';
+ for(let r=1;r<=21;r++){const pos=11-r,letter=N7_LETTERS[(r-1)%3],value=1+r/10;rows+=`<tr><td>${r}</td><td>${n7LetterBadge(letter)}</td><td>${pos}</td><td>${n7Val(value)}</td></tr>`;}
+ box.innerHTML=rows;
 }
-function n7Classify(avgs){
- const high=n7Choose(avgs,'high'),low=n7Choose(avgs,'low'),closest=n7Choose(avgs,'closest');
- const used=new Set([...high,...low,...closest].map(x=>x.color));
- const excluded=avgs.filter(x=>!used.has(x.color));
- return {high,low,closest,excluded};
+function n7RenderCurrent(){
+ n7BuildScale();const box=document.getElementById('n7CurrentResult');if(!box)return;
+ const a=n7AnalyzePrediction(currentPrediction);
+ if(!a){box.innerHTML='Calcula primero el partido en NÚCLEO 1 para que NÚCLEO 7 use automáticamente goles a favor, goles recibidos y cualitativo.';return;}
+ const teamCard=t=>`<div class="n7-stat"><strong>${escapeHtml(t.name)}</strong><br><small>GF ${t.gf} − GC ${t.gc} = ${t.diff>=0?'+':''}${t.diff}</small><br><small>Base en recta: ${t.basePos}</small><br><small>${escapeHtml(t.qualitative)}: +${t.moves} movimientos</small><br><strong style="display:block;margin-top:6px">${n7Val(t.value)} · ${n7LetterBadge(t.letter)}</strong><small>Posición final ${t.finalPos} · fila ${t.row}</small></div>`;
+ let verdict='';
+ if(a.distance>=4){
+   const d=a.local.name===a.dominator?a.local:a.visitor;
+   verdict=`<strong style="font-size:20px">DOMINADOR: ${escapeHtml(a.dominator)}</strong><br>Distancia: ${a.distance} casillas.`;
+   if(d.letter==='A')verdict+=`<br><span class="n7-color-chip" style="background:#fde8e8;color:#a52e2e;margin-top:8px">ALERTA EXPERIMENTAL: dominador en A</span>`;
+   else verdict+=`<br><span class="n7-color-chip" style="background:#e8f6ee;color:#197347;margin-top:8px">Dominador termina en ${d.letter}</span>`;
+ }else{
+   verdict=`<strong style="font-size:20px">NO HAY FAVORITO</strong><br>Distancia: ${a.distance} casillas. La regla experimental considera de 0 a 3 casillas una zona sin favorito.`;
+   verdict+=`<br><small>Equipo con menor valor: ${escapeHtml(a.lowerValueTeam)}. Se registra solo para estudiar si en esta zona suele imponerse el que aparentemente debía perder.</small>`;
+ }
+ box.innerHTML=`<div class="n7-stats">${teamCard(a.local)}${teamCard(a.visitor)}<div class="n7-stat">${verdict}</div></div>`;
 }
-function n7ShowExcluded(){
- const a=n7Analyze();if(!a){alert('Agrega al menos un partido a NÚCLEO 7.');return}
- const cls=n7Classify(a.avgs),avgBox=document.getElementById('n7ScoredAverages');
- avgBox.innerHTML=a.avgs.map(x=>`<div class="n7-stat"><span class="n7-color-chip" style="background:${N7_COLOR_CSS[x.color]};color:${x.color==='ROJO'||x.color==='MORADO'?'#fff':'#111'}">${x.color}</span><strong style="display:block;margin-top:5px">${x.avg.toFixed(2)}</strong></div>`).join('');
- let text='FILAS EXCLUIDAS\n';
- if(!cls.excluded.length){text+='No hay filas excluidas: los seis colores quedaron incluidos entre alto, bajo o parecidos.';}
- else cls.excluded.forEach(c=>{text+=`\nPOLLA ${c.color} (${c.avg.toFixed(2)})\n`;a.rows.forEach(r=>{text+=`• ${r.localName} vs ${r.visitorName}: ${n7SignedLabel(r.goals[c.index])}\n`})});
- document.getElementById('n7ScoredResult').textContent=text.trim();
-}
-function n7Run(mode){
- const a=n7Analyze();if(!a){alert('Agrega al menos un partido a NÚCLEO 7.');return}
- const cls=n7Classify(a.avgs),chosen=cls[mode],avgBox=document.getElementById('n7ScoredAverages');
- avgBox.innerHTML=a.avgs.map(x=>`<div class="n7-stat"><span class="n7-color-chip" style="background:${N7_COLOR_CSS[x.color]};color:${x.color==='ROJO'||x.color==='MORADO'?'#fff':'#111'}">${x.color}</span><strong style="display:block;margin-top:5px">${x.avg.toFixed(2)}</strong></div>`).join('');
- const title=mode==='high'?'PROMEDIO MÁS ALTO':mode==='low'?'PROMEDIO MÁS BAJO':'PROMEDIOS MÁS PARECIDOS';
- let text=`${title}\n`+chosen.map(c=>`${c.color}: ${c.avg.toFixed(2)}`).join(' · ')+'\n\n';
- chosen.forEach(c=>{text+=`POLLA ${c.color}\n`;a.rows.forEach(r=>{text+=`• ${r.localName} vs ${r.visitorName}: ${n7SignedLabel(r.goals[c.index])}\n`});text+='\n'});
- document.getElementById('n7ScoredResult').textContent=text.trim();
- const chosenSet=new Set(chosen.map(c=>c.color)),highSet=new Set(cls.high.map(c=>c.color)),lowSet=new Set(cls.low.map(c=>c.color)),closeSet=new Set(cls.closest.map(c=>c.color)),excludedSet=new Set(cls.excluded.map(c=>c.color));
- const stamp={branch:'scored',mode,createdAt:new Date().toISOString(),colors:chosen.map(c=>({color:c.color,avg:c.avg,index:c.index})),matches:a.rows.map(r=>({id:r.id,localName:r.localName,visitorName:r.visitorName,competition:r.competition,picks:chosen.map(c=>({color:c.color,value:r.goals[c.index],label:n7SignedLabel(r.goals[c.index])})),allPicks:N7_COLORS.map((color,i)=>({color,value:r.goals[i],label:n7SignedLabel(r.goals[i]),selected:chosenSet.has(color),high:highSet.has(color),low:lowSet.has(color),closest:closeSet.has(color),excluded:excludedSet.has(color)}))}))};
- localStorage.setItem('nucleo7_last_scored',JSON.stringify(stamp));n7AttachSelectionsToPoolHistory(stamp);
-}
-function n7AttachSelectionsToPoolHistory(stamp){
- const items=getHistory();let changed=false;
- stamp.matches.forEach(m=>{const it=items.find(x=>x.status==='pendiente'&&x.localName===m.localName&&x.visitorName===m.visitorName);if(it){it.n7Selections=it.n7Selections||[];it.n7Selections=it.n7Selections.filter(s=>s.branch!=='scored'||s.mode!==stamp.mode);it.n7Selections.push({branch:'scored',mode:stamp.mode,picks:m.picks,allPicks:m.allPicks,createdAt:stamp.createdAt});changed=true}});
- if(changed)setHistory(items);
-}
-function n7SelectionsForCurrent(){
- const ln=document.getElementById('L_name').value.trim()||'Local',vn=document.getElementById('V_name').value.trim()||'Visitante',out=[];
- try{const s=JSON.parse(localStorage.getItem('nucleo7_last_scored')||'null');const m=s?.matches?.find(x=>x.localName===ln&&x.visitorName===vn);if(m)out.push({branch:'scored',mode:s.mode,picks:m.picks,allPicks:m.allPicks,createdAt:s.createdAt})}catch(_){}return out;
+function n7FromHistoryItem(item){
+ if(item?.n7Favoritism?.local&&item?.n7Favoritism?.visitor)return item.n7Favoritism;
+ if(!item?.inputs?.local||!item?.inputs?.visitor)return null;
+ return n7AnalyzePrediction(item);
 }
 function n7HistorySummary(){
- const closed=getHistory().filter(x=>x.status==='cerrado'&&Array.isArray(x.n7Selections)&&x.n7Selections.length),box=document.getElementById('n7HistoryStats');if(!box)return;
- const modes={high:{n:0,h:0},low:{n:0,h:0},closest:{n:0,h:0}},excluded={n:0,h:0},colors=Object.fromEntries(N7_COLORS.map(c=>[c,{n:0,h:0}]));
- const countedCriteria=new Set(),countedColors=new Set(),countedExcluded=new Set();
+ const box=document.getElementById('n7HistoryStats');if(!box)return;
+ const closed=getHistory().filter(x=>x.status==='cerrado');
+ const letter={A:{g:0,w:0,d:0,l:0},B:{g:0,w:0,d:0,l:0},C:{g:0,w:0,d:0,l:0}};
+ let usable=0,domN=0,domW=0,domD=0,domL=0,noFavN=0,lowW=0,highW=0,noFavD=0,abcN=0,bcW=0,aW=0,abcD=0;
  closed.forEach(it=>{
-   const total=Number(it.homeGoals)+Number(it.awayGoals);
-   (it.n7Selections||[]).filter(s=>s.branch==='scored').forEach(s=>{
-     const all=Array.isArray(s.allPicks)?s.allPicks:[];
-     if(all.length){
-       all.forEach(p=>{
-         const ck=`${it.id||it.localName+'|'+it.visitorName}|${p.color}`;
-         if(!countedColors.has(ck)&&colors[p.color]){countedColors.add(ck);colors[p.color].n++;if(n7Hit(p.value,total))colors[p.color].h++;}
-         if(p.excluded===true){const ek=`${it.id||it.localName+'|'+it.visitorName}|${p.color}`;if(!countedExcluded.has(ek)){countedExcluded.add(ek);excluded.n++;if(n7Hit(p.value,total))excluded.h++;}}
-       });
-     }
-     (s.picks||[]).forEach(p=>{const key=`${it.id||it.localName+'|'+it.visitorName}|${s.mode}|${p.color}`;if(modes[s.mode]&&!countedCriteria.has(key)){countedCriteria.add(key);modes[s.mode].n++;if(n7Hit(p.value,total))modes[s.mode].h++;}});
-   });
+   const a=n7FromHistoryItem(it);if(!a)return;usable++;
+   const hg=Number(it.homeGoals),ag=Number(it.awayGoals);const real=hg>ag?it.localName:ag>hg?it.visitorName:'Empate';
+   [[a.local,it.localName],[a.visitor,it.visitorName]].forEach(([t,name])=>{const s=letter[t.letter];s.g++;if(real==='Empate')s.d++;else if(real===name)s.w++;else s.l++;});
+   if(a.distance>=4){domN++;if(real==='Empate')domD++;else if(real===a.dominator)domW++;else domL++;}
+   else{noFavN++;if(real==='Empate')noFavD++;else if(real===a.lowerValueTeam)lowW++;else highW++;}
+   const la=a.local.letter,va=a.visitor.letter;
+   if((la==='A'&&['B','C'].includes(va))||(va==='A'&&['B','C'].includes(la))){abcN++;const bcName=la==='A'?it.visitorName:it.localName,aName=la==='A'?it.localName:it.visitorName;if(real==='Empate')abcD++;else if(real===bcName)bcW++;else if(real===aName)aW++;}
  });
- const line=(label,v)=>`${label}: ${v.n?pct(v.h,v.n):'—'} (${v.h}/${v.n})`;
- const lines=[line('Promedio más alto',modes.high),line('Promedio más bajo',modes.low),line('Promedios más parecidos',modes.closest),line('Filas excluidas',excluded),'','COLORES — aciertos de pollas:'];
- N7_COLORS.forEach(c=>lines.push('• '+line(c[0]+c.slice(1).toLowerCase(),colors[c])));
- box.textContent=(countedColors.size||countedCriteria.size)?lines.join('\n'):'Aún no hay selecciones de goles anotados de NÚCLEO 7 cerradas.';
+ if(!usable){box.textContent='Aún no hay partidos cerrados con datos completos para evaluar el nuevo NÚCLEO 7.';return;}
+ const lp=l=>{const s=letter[l];return `${l}: ${s.w}/${s.g} victorias (${pct(s.w,s.g)}) · ${s.d} empates · ${s.l} derrotas`;};
+ const lines=[`PARTIDOS UTILIZABLES: ${usable}`,'',lp('A'),lp('B'),lp('C'),''];
+ lines.push(`DOMINADORES (4+): ${domN?`${domW}/${domN} ganaron (${pct(domW,domN)}) · ${domD} empataron · ${domL} perdieron`:'—'}`);
+ lines.push(`ZONA SIN FAVORITO (0–3): ${noFavN?`menor valor ganó ${lowW}/${noFavN} (${pct(lowW,noFavN)}) · mayor valor ganó ${highW}/${noFavN} (${pct(highW,noFavN)}) · empates ${noFavD}`:'—'}`);
+ lines.push(`A vs B/C: ${abcN?`B/C ganó ${bcW}/${abcN} (${pct(bcW,abcN)}) · A ganó ${aW}/${abcN} (${pct(aW,abcN)}) · empates ${abcD}`:'—'}`);
+ box.textContent=lines.join('\n');
 }
 
 function getStrategy(){
@@ -2039,7 +2382,7 @@ function renderStrategy(strategy){
    "INSTRUCCIONES ESTRATÉGICAS:",
    ...((strategy.recommendations&&strategy.recommendations.length)?strategy.recommendations:["No hubo criterios suficientes para generar recomendaciones."]),
    "",
-   "El NÚCLEO 4 utiliza estos datos para subir, bajar o descartar alternativas en las apuestas A, B y C."
+   "El NÚCLEO 4 utiliza estos datos como evidencia para construir y diversificar sus pollas integradas."
  ];
  if(reportEl)reportEl.textContent=lines.join("\n");
 
@@ -2215,35 +2558,58 @@ function analyzeAdjustments(){
  renderAdaptive();renderProposal();
 }
 function exportHistory(){
- const data={app:"NUCLEO 1 V1.3.2 N7 ANOTADOS",exportedAt:new Date().toISOString(),history:getHistory(),nucleus7:{pool:n7GetPool(),lastScored:JSON.parse(localStorage.getItem("nucleo7_last_scored")||"null")}};
+ const data={app:"APP DEPORTES NUCLEO 1 V1.4.5 BETA N4 N5 POLLAS INTEGRADAS",exportedAt:new Date().toISOString(),history:getHistory(),nucleus7:{pool:n7GetPool(),lastScored:JSON.parse(localStorage.getItem("nucleo7_last_scored")||"null")}};
  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
  const a=document.createElement("a");a.href=URL.createObjectURL(blob);
  a.download=`nucleo1_historial_${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(a.href);
 }
 function importHistory(event){
  const file=event.target.files?.[0];if(!file)return;
+ const status=document.getElementById("importStatus");
+ if(status)status.textContent="Leyendo archivo…";
  const reader=new FileReader();
  reader.onload=()=>{
    try{
-     const parsed=JSON.parse(reader.result),incoming=Array.isArray(parsed)?parsed:parsed.history;
-     if(!Array.isArray(incoming))throw new Error();
-     if(!confirm(`¿Importar ${incoming.length} registros y reemplazar el historial actual?`))return;
+     const parsed=JSON.parse(reader.result);
+     const incoming=Array.isArray(parsed)?parsed:parsed?.history;
+     if(!Array.isArray(incoming))throw new Error("El JSON no contiene history");
+     if(!confirm(`¿Importar ${incoming.length} registro(s) y reemplazar el historial actual?`)){
+       if(status)status.textContent="Importación cancelada";
+       return;
+     }
+     createAutomaticSafetyPoint();
      setHistory(incoming);
-     if(parsed.adaptive)setAdaptive(parsed.adaptive);
-     if(parsed.analysisList) localStorage.setItem(ANALYSIS_LIST_KEY,JSON.stringify(parsed.analysisList));
-     if(parsed.strategy) localStorage.setItem(STRATEGY_KEY,JSON.stringify(parsed.strategy));
-     if(parsed.qualitative) localStorage.setItem(QUAL_ANALYSIS_KEY,JSON.stringify(parsed.qualitative));
-     if(parsed.threeBets) localStorage.setItem(THREE_BETS_KEY,JSON.stringify(parsed.threeBets));
-     if(parsed.financePlan) localStorage.setItem(FINANCE_PLAN_KEY,JSON.stringify(parsed.financePlan));
-     if(parsed.financeHistory) localStorage.setItem(FINANCE_HISTORY_KEY,JSON.stringify(parsed.financeHistory));
-     if(parsed.versions) localStorage.setItem(VERSION_KEY,JSON.stringify(parsed.versions));
-     if(parsed.activeVersion) localStorage.setItem(ACTIVE_VERSION_KEY,parsed.activeVersion);
-     if(parsed.nucleus7?.pool) localStorage.setItem(N7_POOL_KEY,JSON.stringify(parsed.nucleus7.pool));
-     if(parsed.nucleus7?.lastScored) localStorage.setItem("nucleo7_last_scored",JSON.stringify(parsed.nucleus7.lastScored));
-     if(parsed.nucleus7?.lastReceived) localStorage.setItem("nucleo7_last_received",JSON.stringify(parsed.nucleus7.lastReceived));
-     refreshAllModules();
-     alert("Historial y datos compatibles importados.");
-   }catch(_){alert("El archivo no contiene un respaldo válido.");}
+     if(parsed && !Array.isArray(parsed)){
+       if(parsed.adaptive)setAdaptive(parsed.adaptive);
+       if(parsed.analysisList) localStorage.setItem(ANALYSIS_LIST_KEY,JSON.stringify(parsed.analysisList));
+       if(parsed.strategy) localStorage.setItem(STRATEGY_KEY,JSON.stringify(parsed.strategy));
+       if(parsed.qualitative) localStorage.setItem(QUAL_ANALYSIS_KEY,JSON.stringify(parsed.qualitative));
+       if(parsed.threeBets) localStorage.setItem(THREE_BETS_KEY,JSON.stringify(parsed.threeBets));
+       if(parsed.financePlan) localStorage.setItem(FINANCE_PLAN_KEY,JSON.stringify(parsed.financePlan));
+       if(parsed.financeHistory) localStorage.setItem(FINANCE_HISTORY_KEY,JSON.stringify(parsed.financeHistory));
+       if(parsed.versions) localStorage.setItem(VERSION_KEY,JSON.stringify(parsed.versions));
+       if(parsed.activeVersion) localStorage.setItem(ACTIVE_VERSION_KEY,parsed.activeVersion);
+       if(parsed.pendingProposal)localStorage.setItem("nucleo1_pending_proposal_v10",JSON.stringify(parsed.pendingProposal));
+       if(parsed.nucleus7?.pool) localStorage.setItem(N7_POOL_KEY,JSON.stringify(parsed.nucleus7.pool));
+       if(parsed.nucleus7?.lastScored) localStorage.setItem("nucleo7_last_scored",JSON.stringify(parsed.nucleus7.lastScored));
+     }
+     refreshAllModules();n7RenderPool();n7HistorySummary();refreshAutocompleteSuggestions();
+     // Abrir automáticamente el historial para que el usuario vea que sí cargó.
+     const tray=document.getElementById("historyTray");
+     if(tray)tray.classList.add("open");
+     if(status)status.textContent=`✓ ${incoming.length} partido(s) importados`;
+     alert(`Importación terminada correctamente. Se cargaron ${incoming.length} partido(s).`);
+   }catch(err){
+     console.error(err);
+     if(status)status.textContent="Error al importar";
+     alert("El archivo no contiene un respaldo JSON compatible de APP DEPORTES/NÚCLEO 1.");
+   }finally{
+     event.target.value="";
+   }
+ };
+ reader.onerror=()=>{
+   if(status)status.textContent="Error al leer archivo";
+   alert("No se pudo leer el archivo seleccionado.");
    event.target.value="";
  };
  reader.readAsText(file);
@@ -2256,6 +2622,8 @@ refreshAutocompleteSuggestions();
 renderAdaptive();
 updateN2Summary();
 renderAnalysisList();
+updateN4MarketDash(getAnalysisList(),getThreeBets());
+renderCurrentMarketReading();
 renderVersions();
 renderProposal();
 if("serviceWorker" in navigator){
