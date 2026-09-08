@@ -1,12 +1,17 @@
-APP DEPORTES V1.4.8 — PAQUETE COMPLETO PARA GITHUB
+APP DEPORTES V1.4.11 — N4 SOLO N7
 
-Archivos incluidos:
+Versión completa para prueba / GitHub.
+
+Cambio principal:
+- NÚCLEO 4 construye sus pollas usando únicamente la información ya integrada por NÚCLEO 7.
+- Los demás núcleos continúan funcionando y alimentando el sistema, pero NÚCLEO 4 no los consulta directamente.
+- NÚCLEO 5 continúa evaluando las pollas generadas.
+
+Archivos:
 - index.html
 - manifest.json
 - service-worker.js
 - icon-192.png
 - icon-512.png
 
-Para GitHub Pages, sube estos archivos a la RAÍZ del repositorio nucleo-1.
-No subas el ZIP sin descomprimir.
-No borres los datos del navegador ni el almacenamiento local de la app: ahí está tu historial.
+Importante: no borres el almacenamiento local ni el historial antes de actualizar.

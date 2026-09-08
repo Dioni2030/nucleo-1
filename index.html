@@ -413,13 +413,14 @@ button{transition:.15s transform,.15s box-shadow,.15s background}button:hover{tr
     <button class="secondary small-btn" onclick="toggleFold('nucleus7Tray',this,'ABRIR NÚCLEO 7','CERRAR NÚCLEO 7')">ABRIR NÚCLEO 7</button>
   </div>
   <div id="nucleus7Tray" class="fold-body">
-    <div class="notice"><strong>Nuevo NÚCLEO 7 experimental.</strong> Usa automáticamente los mismos goles marcados, goles recibidos y resultado cualitativo ya calculados por los otros núcleos. No tienes que volver a escribir el partido.</div>
+    <div class="notice"><strong>NÚCLEO 7 transversal.</strong> Cruza automáticamente letras, coeficientes, distancia, cualitativo y los partidos cerrados. Al calcular un partido entrega de inmediato una lectura transversal de 1X2 y goles. No tienes que volver a escribir datos.</div>
 
     <div class="n7-panel">
       <div class="fold-head"><h3 style="margin:0">Resultado del partido actual</h3><button class="secondary small-btn" onclick="toggleFold('n7CurrentTray',this,'ABRIR','CERRAR')">ABRIR</button></div>
       <div id="n7CurrentTray" class="fold-body open">
         <div class="n7-controls"><button class="primary" onclick="n7RenderCurrent()">ACTUALIZAR CON PARTIDO ACTUAL</button></div>
         <div id="n7CurrentResult" class="n7-result">Calcula primero el partido en NÚCLEO 1 para que NÚCLEO 7 use esos mismos datos.</div>
+        <div id="n7TransversalResult" class="n7-result" style="margin-top:12px">La lectura transversal aparecerá aquí al calcular el partido.</div>
       </div>
     </div>
 
@@ -432,9 +433,9 @@ button{transition:.15s transform,.15s box-shadow,.15s background}button:hover{tr
     </div>
 
     <div class="n7-panel">
-      <div class="fold-head"><h3 style="margin:0">Aprendizaje histórico A / B / C</h3><button class="secondary small-btn" onclick="toggleFold('n7HistoryTray',this,'ABRIR','CERRAR')">ABRIR</button></div>
+      <div class="fold-head"><h3 style="margin:0">Lectura histórica transversal</h3><button class="secondary small-btn" onclick="toggleFold('n7HistoryTray',this,'ABRIR','CERRAR')">ABRIR</button></div>
       <div id="n7HistoryTray" class="fold-body">
-        <p class="goal-detail">Mide la teoría con partidos cerrados: comportamiento de A, B y C; enfrentamientos A contra B/C; zona sin favorito (0–3) y dominadores (4+).</p>
+        <p class="goal-detail">Cruza cada partido cerrado por <strong>letras + coeficientes + cualitativo + distancia</strong> y mide al mismo tiempo resultado 1X2 y goles. Aquí ya no se muestran las letras aisladas.</p>
         <div id="n7HistoryStats" class="n7-result">Aún no hay partidos cerrados suficientes para evaluar el nuevo NÚCLEO 7.</div>
       </div>
     </div>
@@ -487,17 +488,17 @@ button{transition:.15s transform,.15s box-shadow,.15s background}button:hover{tr
 </section>
 
 <section class="card module-card" id="analysisListSection">
-  <div class="fold-head"><h2 style="margin:0">NÚCLEO 4 — Mezclador de pollas integradas · variabilidad de mercados <span class="module-tag">INTEGRA</span></h2><button class="secondary" onclick="toggleFold('nucleus4Tray',this,'ABRIR NÚCLEO 4','CERRAR NÚCLEO 4')">ABRIR NÚCLEO 4</button></div>
+  <div class="fold-head"><h2 style="margin:0">NÚCLEO 4 — PRUEBA · 6 pollas usando SOLO NÚCLEO 7 <span class="module-tag">INTEGRA</span></h2><button class="secondary" onclick="toggleFold('nucleus4Tray',this,'ABRIR NÚCLEO 4','CERRAR NÚCLEO 4')">ABRIR NÚCLEO 4</button></div>
   <div id="nucleus4Tray" class="fold-body">
-    <div class="notice"><strong>Nueva función:</strong> NÚCLEO 4 toma todos los partidos agregados y mezcla las evidencias disponibles de goles, histórico, cualitativo y NÚCLEO 7. Cada polla incluye <strong>todos</strong> los partidos, pero puede usar un mercado diferente en cada uno.</div>
+    <div class="notice"><strong>PRUEBA AISLADA:</strong> en esta versión NÚCLEO 4 <strong>NO toma información directa de NÚCLEO 1, 2, 3, 5 ni 6</strong>. Para construir las pollas utiliza exclusivamente la salida de <strong>NÚCLEO 7 transversal</strong>: letras A/B/C, coeficientes, distancia, cualitativo ya incorporado dentro de N7 y antecedentes transversales parecidos. Así podremos medir cuánto valor aporta N7 por sí solo.</div>
     <div class="form-three" style="align-items:end">
       <label>Cantidad de pollas (máximo 6)
         <select id="n4PollCount" style="width:100%;padding:10px;border:1px solid #b8c2cc;border-radius:8px;margin-top:4px">
           <option value="1">1 polla</option><option value="2">2 pollas</option><option value="3">3 pollas</option>
-          <option value="4" selected>4 pollas</option><option value="5">5 pollas</option><option value="6">6 pollas</option>
+          <option value="4">4 pollas</option><option value="5">5 pollas</option><option value="6" selected>6 pollas</option>
         </select>
       </label>
-      <div class="goal-detail">Cada polla debe ser diferente de las demás. La app conserva las selecciones sólidas cuando puede y cambia primero los partidos con alternativas razonables, sin inventar mercados sin respaldo.</div>
+      <div class="goal-detail">Cada polla debe ser diferente. Para esta prueba la variación se obtiene solamente de los mercados que NÚCLEO 7 transversal encuentra respaldados en antecedentes parecidos del historial.</div>
       <div class="goal-detail">Mercados posibles según evidencia: ganador, doble oportunidad y líneas de goles. N7 entra como evidencia adicional, no reemplaza los demás núcleos.</div>
     </div>
     <div class="history-toolbar">
@@ -1315,63 +1316,74 @@ function teamTotals(item,side){
 }
 function n4DoubleChance(team,item){return team===item.localName?`${item.localName} o empate (1X)`:team===item.visitorName?`${item.visitorName} o empate (X2)`:"";}
 function n4CandidateUniverse(item,strategy,qualAnalysis){
- const league=item.competition||"Sin liga",leagueInfo=strategy?.leagues?.[league],sample=strategy?.sample||0,globalRates=strategy?.rates||overallRates();
- const q=qualitativeRateForMatch(item,qualAnalysis),n7=item.n7Favoritism||n7AnalyzePrediction(item),result=[];
- const push=(market,source,rate,evidence=[],kind="mixed")=>{if(!market||rate==null||Number.isNaN(rate))return;result.push({analysisId:item.analysisId,match:`${item.localName} vs ${item.visitorName}`,league,market,source,kind,rate:Math.max(.20,Math.min(.96,rate)),evidence:[...evidence]});};
- const hist=(key,fallback)=>leagueRateFromStrategy(strategy,league,key,fallback);
- const addHistoric=(key,market,base,evidence,kind)=>{if(base==null)return;const t=adjustedByTrend(base,strategy?.trends?.[key],leagueInfo?.trend?.[key]);push(market,key,scoreCandidate(t.rate,sample,0,leagueInfo?.n||0),[...evidence,...t.evidence,`Liga: ${league}`,`Muestra histórica: ${sample}`],kind);};
- // Rutas de goles ya calculadas por NÚCLEO 1 y aprendidas por NÚCLEO 2.
- const sm=goalMarket(item.sumGoals),dm=goalMarket(item.diffGoals);
- if(sm)addHistoric("sum",sm.label,hist("sum",globalRates.sum),[`Ruta suma N1: ${item.sumGoals}`],"goals");
- if(dm)addHistoric("diff",dm.label,hist("diff",globalRates.diff),[`Ruta resta N1: ${item.diffGoals}`],"goals");
- // Favoritismo histórico del sistema.
- if(item.favored&&item.favored!=="Sin selección"){
-   const wr=hist("winner",globalRates.winner);
-   if(wr!=null){
-     push(n4DoubleChance(item.favored,item),"winner_dc",Math.min(.94,wr+.08),[`Favorito interno: ${item.favored}`,`No derrota histórica: ${rateLabel(wr)}`],"favorite");
-     if(wr>=.58)push(`${item.favored} gana`,"winner",Math.max(.35,wr-.08),[`Favorito interno: ${item.favored}`,`Base histórica: ${rateLabel(wr)}`],"favorite");
+ // PRUEBA V1.4.11: NÚCLEO 4 usa EXCLUSIVAMENTE la información producida por NÚCLEO 7.
+ // No usa rutas de goles de N1/N2, favorito general, cualitativo independiente ni perfiles GF/GC externos.
+ const league=item.competition||"Sin liga",result=[];
+ const a=item.n7Favoritism||n7AnalyzePrediction(item);
+ const tx=n7TransversalAnalyze(item);
+ const push=(market,source,rate,evidence=[],kind="n7")=>{
+   if(!market||rate==null||Number.isNaN(Number(rate)))return;
+   result.push({analysisId:item.analysisId,match:`${item.localName} vs ${item.visitorName}`,league,market,source,kind,rate:Math.max(.20,Math.min(.96,Number(rate))),evidence:[...evidence],sources:[source]});
+ };
+ if(!a)return result;
+ const op=n7Operation(a),qrel=n7QualRelation(a.local.qualitative,a.visitor.qualitative);
+ const baseEvidence=[
+   `N7: ${a.local.value.toFixed(1)} ${a.local.letter} vs ${a.visitor.value.toFixed(1)} ${a.visitor.letter}`,
+   `Distancia N7: ${a.distance}`,
+   op.label,
+   `Cualitativo dentro de N7: ${qrel}`
+ ];
+
+ // 1) Lectura transversal histórica de N7: fuente PRINCIPAL para todos los mercados.
+ if(tx&&tx.n>0){
+   tx.markets.slice(0,12).forEach(m=>{
+     // En prueba dejamos entrar mercados desde 30% para permitir que las 6 pollas exploren
+     // alternativas distintas; el porcentaje queda visible para que el usuario valore su fuerza.
+     if(m.rate<.30)return;
+     const kind=m.kind==='GOLES'?'goals':m.kind==='AMBOS'?'btts':'n7';
+     const samplePenalty=tx.n<5?.08:tx.n<10?.04:0;
+     push(m.market,'n7_transversal',Math.max(.20,m.rate-samplePenalty),[
+       ...baseEvidence,
+       `Antecedentes transversales parecidos: ${tx.n}`,
+       `Frecuencia N7 del mercado: ${rateLabel(m.rate)}`
+     ],kind);
+   });
+ }
+
+ // 2) Respaldo estructural de N7, solo como complemento si ayuda a diversificar.
+ if(a.classification==='DOMINADOR'&&a.dominator){
+   const dom=a.local.name===a.dominator?a.local:a.visitor;
+   const dc=n4DoubleChance(a.dominator,item);
+   // Si el transversal trae frecuencia exacta del mismo mercado, se usa esa; de lo contrario
+   // se deja una valoración prudente basada únicamente en la distancia/letra de N7.
+   const txDC=tx?.markets?.find(m=>m.market===dc)?.rate;
+   const txWin=tx?.markets?.find(m=>m.market===`${a.dominator} gana`)?.rate;
+   push(dc,'n7_estructura',txDC??Math.min(.76,.56+Math.max(0,a.distance-4)*.015+(dom.letter==='A'?-.04:.02)),[
+     ...baseEvidence,`DOMINADOR N7: ${a.dominator}`,`Letra del dominador: ${dom.letter}`
+   ],'n7');
+   push(`${a.dominator} gana`,'n7_estructura',txWin??Math.min(.68,.46+Math.max(0,a.distance-4)*.012+(dom.letter==='A'?-.04:.02)),[
+     ...baseEvidence,`DOMINADOR N7: ${a.dominator}`,`Letra del dominador: ${dom.letter}`
+   ],'n7');
+ }else{
+   const low=a.lowerValueTeam,dc=n4DoubleChance(low,item);
+   const txDC=tx?.markets?.find(m=>m.market===dc)?.rate;
+   if(dc)push(dc,'n7_estructura',txDC??.50,[...baseEvidence,`Zona N7 sin favorito 0–3`,`Menor coeficiente: ${low}`],'n7');
+   if(a.distance<=1){
+     const txDraw=tx?.markets?.find(m=>m.market==='Empate')?.rate;
+     push('Empate','n7_estructura',txDraw??.34,[...baseEvidence,`Distancia N7 muy corta: ${a.distance}`],'n7');
    }
  }
- // Cualitativo como evidencia independiente.
- if(q.rate!=null&&q.better){
-   push(n4DoubleChance(q.better,item),"qualitative",Math.min(.93,q.rate+.05),[...q.evidence,`Mejor estado: ${q.better}`],"qualitative");
-   if(q.rate>=.65)push(`${q.better} gana`,"qualitative_win",Math.max(.38,q.rate-.10),[...q.evidence,`Ventaja cualitativa: ${q.better}`],"qualitative");
- }
- // NÚCLEO 7: dominador / zona sin favorito + letras como evidencia experimental.
- if(n7){
-   if(n7.classification==="DOMINADOR"&&n7.dominator){
-     const domTeam=n7.local.name===n7.dominator?n7.local:n7.visitor;
-     const base=.59+Math.min(.16,(n7.distance-4)*.018)+(domTeam.letter==="A"?-.05:.03);
-     push(n4DoubleChance(n7.dominator,item),"n7_dc",base+.12,[`N7: DOMINADOR por ${n7.distance} casillas`,`Letra final ${domTeam.letter}`],"n7");
-     push(`${n7.dominator} gana`,"n7_win",base,[`N7: DOMINADOR por ${n7.distance} casillas`,`Letra final ${domTeam.letter}`],"n7");
-   }else{
-     const low=n7.lowerValueTeam;
-     push(n4DoubleChance(low,item),"n7_nofav",.52,[`N7: NO HAY FAVORITO · distancia ${n7.distance}`,`Menor valor: ${low}`],"n7");
-     if(n7.distance<=1)push("Empate", "n7_draw", .38,[`N7: equipos muy próximos · ${n7.distance} casilla(s)`],"n7");
-   }
- }
- // Perfil ofensivo/defensivo de los 6 partidos para ampliar mercados de goles.
- const L=teamTotals(item,"local"),V=teamTotals(item,"visitor");
- const attack=(L.gf+V.gf)/12,concede=(L.gc+V.gc)/12,goalIndex=attack+concede;
- if(goalIndex>=2.15)push("Más de 1.5 goles","goal_profile_15",Math.min(.84,.55+(goalIndex-2.0)*.10),[`Índice combinado de gol: ${goalIndex.toFixed(2)}`],"goals");
- if(goalIndex>=2.85)push("Más de 2.5 goles","goal_profile_25",Math.min(.80,.50+(goalIndex-2.6)*.09),[`Índice combinado de gol: ${goalIndex.toFixed(2)}`],"goals");
- if(goalIndex>=3.55)push("Más de 3.5 goles","goal_profile_35",Math.min(.74,.46+(goalIndex-3.2)*.08),[`Índice combinado de gol muy alto: ${goalIndex.toFixed(2)}`],"goals");
- if(goalIndex<=2.45)push("Menos de 3.5 goles","goal_profile_u35",Math.min(.82,.60+(2.45-goalIndex)*.08),[`Índice combinado de gol: ${goalIndex.toFixed(2)}`],"goals");
- if(goalIndex<=1.95)push("Menos de 2.5 goles","goal_profile_u25",Math.min(.76,.52+(2.05-goalIndex)*.10),[`Índice combinado de gol bajo: ${goalIndex.toFixed(2)}`],"goals");
- // Ambos marcan / no ambos marcan: usa capacidad anotadora y vulnerabilidad de los dos equipos.
- const lGF=L.gf/6,vGF=V.gf/6,lGC=L.gc/6,vGC=V.gc/6;
- const bttsIndex=(lGF+vGF+vGC+lGC)/4;
- if(lGF>=1.0&&vGF>=1.0&&lGC>=.8&&vGC>=.8)push("Ambos equipos marcan","btts_yes",Math.min(.78,.50+(bttsIndex-1.0)*.10),[`Local GF ${lGF.toFixed(2)} · Visitante GF ${vGF.toFixed(2)}`,`Concesión local ${lGC.toFixed(2)} · visitante ${vGC.toFixed(2)}`],"btts");
- if((lGF<.85||vGF<.85)&&goalIndex<=2.55)push("No marcan ambos equipos","btts_no",Math.min(.76,.55+(2.55-goalIndex)*.07),[`Ataque local ${lGF.toFixed(2)} · visitante ${vGF.toFixed(2)}`,`Índice combinado ${goalIndex.toFixed(2)}`],"btts");
- // Bonificación por coincidencias entre fuentes que terminan recomendando el mismo mercado.
- const grouped={};result.forEach(c=>{const k=c.market.toLowerCase();(grouped[k]??=[]).push(c);});
- const merged=Object.values(grouped).map(group=>{
-   group.sort((a,b)=>b.rate-a.rate);const best={...group[0]};
+
+ // Unifica mercados repetidos conservando el mejor respaldo N7.
+ const grouped={};
+ result.forEach(c=>{const k=c.market.toLowerCase();(grouped[k]??=[]).push(c);});
+ return Object.values(grouped).map(group=>{
+   group.sort((x,y)=>y.rate-x.rate);const best={...group[0]};
    const sources=[...new Set(group.map(x=>x.source))];
-   if(sources.length>=2){best.rate=Math.min(.96,best.rate+.04);best.evidence=[...best.evidence,`Coinciden ${sources.length} fuentes: ${sources.join(", ")}`];}
-   best.sources=sources;return best;
- });
- return merged.sort((a,b)=>b.rate-a.rate);
+   best.sources=sources;
+   if(group.length>1)best.evidence=[...best.evidence,`Coinciden ${group.length} lecturas internas de N7 para este mercado`];
+   return best;
+ }).sort((x,y)=>y.rate-x.rate);
 }
 function n4ProfileScore(c,profile,usage){
  const weights={
@@ -1479,7 +1491,7 @@ function generateIntegratedPolls(){
  }
  localStorage.setItem(THREE_BETS_KEY,JSON.stringify(polls));
  renderIntegratedPolls(polls);
- document.getElementById("combinedRecommendation").textContent=`NÚCLEO 4 tomó ${list.length} partido(s) y generó ${polls.length} polla(s) completas. Cada polla contiene todos los partidos y usa familias de mercado distintas cuando la evidencia lo permite: ganador/doble oportunidad, goles, ambos marcan y N7. NÚCLEO 4 penaliza repetir la misma clase de apuesta para un mismo partido, de modo que la variabilidad sea visible y no solamente una diferencia mínima. Ninguna polla completa se repite.`;
+ document.getElementById("combinedRecommendation").textContent=`PRUEBA SOLO N7: NÚCLEO 4 tomó ${list.length} partido(s) y generó ${polls.length} polla(s) completas usando únicamente la salida de NÚCLEO 7 transversal. Las diferencias entre pollas provienen de mercados N7 distintos: 1X2, doble oportunidad, goles y ambos marcan, siempre con su frecuencia histórica transversal visible. Ninguna polla completa se repite.`;
  try{evaluateN5Polls(false);}catch(_){/* N5 se puede abrir después */}
  alert(polls.length===count?`NÚCLEO 4 generó ${polls.length} pollas DIFERENTES y con MAYOR VARIABILIDAD DE MERCADOS. NÚCLEO 5 ya puede evaluarlas.`:`NÚCLEO 4 pudo generar ${polls.length} de ${count} pollas sin repetir combinaciones y sin inventar mercados sin respaldo.`);
 }
@@ -2057,10 +2069,80 @@ function n7BuildScale(){
  for(let r=1;r<=21;r++){const pos=11-r,letter=N7_LETTERS[(r-1)%3],value=1+r/10;rows+=`<tr><td>${r}</td><td>${n7LetterBadge(letter)}</td><td>${pos}</td><td>${n7Val(value)}</td></tr>`;}
  box.innerHTML=rows;
 }
+
+function n7QualRelation(a,b){
+ const A=String(a||'ORIGEN').toUpperCase(),B=String(b||'ORIGEN').toUpperCase();
+ return A===B?'IGUALES':'DIFERENTES';
+}
+function n7Operation(a){
+ if(!a)return {type:'—',value:null,label:'Sin operación'};
+ const L=a.local.letter,V=a.visitor.letter,lv=a.local.value,vv=a.visitor.value;
+ if(L==='B'||V==='B')return {type:'RESTA',value:Math.abs(lv-vv),label:`B presente → resta |${n7Val(lv)} − ${n7Val(vv)}| = ${n7Val(Math.abs(lv-vv))}`};
+ if((L==='A'&&V==='C')||(L==='C'&&V==='A'))return {type:'SUMA',value:lv+vv,label:`A + C → suma ${n7Val(lv)} + ${n7Val(vv)} = ${n7Val(lv+vv)}`};
+ return {type:'CRUCE',value:Math.abs(lv-vv),label:`${L} + ${V} → cruce por coeficientes; distancia decimal ${n7Val(Math.abs(lv-vv))}`};
+}
+function n7Similarity(current,hist,swap=false){
+ const cL=current.local,cV=current.visitor,hL=swap?hist.visitor:hist.local,hV=swap?hist.local:hist.visitor;
+ let score=0;
+ if(cL.letter===hL.letter)score+=4;if(cV.letter===hV.letter)score+=4;
+ const cd1=Math.abs(cL.value-hL.value),cd2=Math.abs(cV.value-hV.value);
+ score+=Math.max(0,2.5-cd1*5)+Math.max(0,2.5-cd2*5);
+ const dd=Math.abs(current.distance-hist.distance);score+=dd===0?3:dd===1?2:dd===2?1:0;
+ const cr=n7QualRelation(cL.qualitative,cV.qualitative),hr=n7QualRelation(hL.qualitative,hV.qualitative);if(cr===hr)score+=3;
+ if(String(cL.qualitative).toUpperCase()===String(hL.qualitative).toUpperCase())score+=1.5;
+ if(String(cV.qualitative).toUpperCase()===String(hV.qualitative).toUpperCase())score+=1.5;
+ const co=n7Operation(current),ho=n7Operation({local:hL,visitor:hV});
+ if(co.type===ho.type)score+=2;
+ if(co.value!=null&&ho.value!=null){const od=Math.abs(co.value-ho.value);score+=od<.051?2:od<=.11?1.4:od<=.21?.7:0;}
+ return score;
+}
+function n7TransversalAnalyze(pred){
+ const current=n7AnalyzePrediction(pred);if(!current)return null;
+ const rows=[];
+ getHistory().filter(x=>x.status==='cerrado'&&Number.isFinite(Number(x.homeGoals))&&Number.isFinite(Number(x.awayGoals))).forEach(it=>{
+   const h=n7FromHistoryItem(it);if(!h)return;
+   const direct=n7Similarity(current,h,false),swapped=n7Similarity(current,h,true),swap=swapped>direct,score=Math.max(direct,swapped);
+   if(score<10)return;
+   const hg=Number(it.homeGoals),ag=Number(it.awayGoals),homeGoals=swap?ag:hg,awayGoals=swap?hg:ag,total=hg+ag;
+   rows.push({score,weight:Math.max(1,score-8),homeGoals,awayGoals,total,btts:hg>0&&ag>0});
+ });
+ if(!rows.length)return {current,operation:n7Operation(current),n:0,effective:0};
+ rows.sort((a,b)=>b.score-a.score);const use=rows.slice(0,80),W=use.reduce((a,r)=>a+r.weight,0)||1;
+ const sum=fn=>use.reduce((a,r)=>a+r.weight*(fn(r)?1:0),0)/W;
+ const home=sum(r=>r.homeGoals>r.awayGoals),draw=sum(r=>r.homeGoals===r.awayGoals),away=sum(r=>r.awayGoals>r.homeGoals);
+ const over15=sum(r=>r.total>=2),over25=sum(r=>r.total>=3),over35=sum(r=>r.total>=4),btts=sum(r=>r.btts);
+ const avgGoals=use.reduce((a,r)=>a+r.weight*r.total,0)/W;
+ const dcHome=home+draw,dcAway=away+draw;
+ const markets=[
+   {market:`${pred.localName} gana`,rate:home,kind:'1X2'}, {market:'Empate',rate:draw,kind:'1X2'}, {market:`${pred.visitorName} gana`,rate:away,kind:'1X2'},
+   {market:`${pred.localName} o empate (1X)`,rate:dcHome,kind:'DOBLE'}, {market:`${pred.visitorName} o empate (X2)`,rate:dcAway,kind:'DOBLE'},
+   {market:'Más de 1.5 goles',rate:over15,kind:'GOLES'}, {market:'Más de 2.5 goles',rate:over25,kind:'GOLES'}, {market:'Menos de 2.5 goles',rate:1-over25,kind:'GOLES'},
+   {market:'Más de 3.5 goles',rate:over35,kind:'GOLES'}, {market:'Menos de 3.5 goles',rate:1-over35,kind:'GOLES'},
+   {market:'Ambos equipos marcan',rate:btts,kind:'AMBOS'}, {market:'No marcan ambos equipos',rate:1-btts,kind:'AMBOS'}
+ ].sort((a,b)=>b.rate-a.rate);
+ return {current,operation:n7Operation(current),n:use.length,effective:W,home,draw,away,dcHome,dcAway,over15,over25,over35,btts,avgGoals,markets,top:markets[0],qualRelation:n7QualRelation(current.local.qualitative,current.visitor.qualitative)};
+}
+function n7RenderTransversal(pred){
+ const box=document.getElementById('n7TransversalResult');if(!box)return;
+ const t=n7TransversalAnalyze(pred);
+ if(!t){box.innerHTML='Calcula el partido para obtener la lectura transversal.';return;}
+ const a=t.current,op=t.operation;
+ if(!t.n){box.innerHTML=`<strong>LECTURA TRANSVERSAL</strong><br>${escapeHtml(op.label)}<br><small>Todavía no hay partidos históricos suficientemente parecidos para estimar este cruce.</small>`;return;}
+ const p=x=>`${(x*100).toFixed(1).replace('.',',')}%`;
+ const strength=t.n>=30?'ALTA':t.n>=15?'MEDIA':'PRELIMINAR';
+ box.innerHTML=`<strong style="font-size:19px">LECTURA TRANSVERSAL · ${strength}</strong><br>
+ <strong>${n7LetterBadge(a.local.letter)} ${n7Val(a.local.value)} ${escapeHtml(a.local.name)} ↔ ${escapeHtml(a.visitor.name)} ${n7Val(a.visitor.value)} ${n7LetterBadge(a.visitor.letter)}</strong><br>
+ <small>${escapeHtml(op.label)} · Cualitativo: ${escapeHtml(t.qualRelation)} · Distancia: ${a.distance}</small><hr style="border:none;border-top:1px solid #ddd;margin:9px 0">
+ <strong>1X2 transversal:</strong> ${escapeHtml(a.local.name)} ${p(t.home)} · Empate ${p(t.draw)} · ${escapeHtml(a.visitor.name)} ${p(t.away)}<br>
+ <strong>No pierde:</strong> ${escapeHtml(a.local.name)} ${p(t.dcHome)} · ${escapeHtml(a.visitor.name)} ${p(t.dcAway)}<br>
+ <strong>Goles:</strong> +1.5 ${p(t.over15)} · +2.5 ${p(t.over25)} · +3.5 ${p(t.over35)} · Ambos marcan ${p(t.btts)} · promedio ${t.avgGoals.toFixed(2).replace('.',',')}<br>
+ <strong>Señal más fuerte ahora:</strong> ${escapeHtml(t.top.market)} · ${p(t.top.rate)}<br>
+ <small>Se comparó este partido con ${t.n} antecedentes históricos más parecidos, cruzando letras + coeficientes + distancia + cualitativo. Los porcentajes son frecuencias internas de tu historial, no garantías.</small>`;
+}
 function n7RenderCurrent(){
  n7BuildScale();const box=document.getElementById('n7CurrentResult');if(!box)return;
  const a=n7AnalyzePrediction(currentPrediction);
- if(!a){box.innerHTML='Calcula primero el partido en NÚCLEO 1 para que NÚCLEO 7 use automáticamente goles a favor, goles recibidos y cualitativo.';return;}
+ if(!a){box.innerHTML='Calcula primero el partido en NÚCLEO 1 para que NÚCLEO 7 cruce automáticamente goles, letras, coeficientes, distancia y cualitativo.';return;}
  const teamCard=t=>`<div class="n7-stat"><strong>${escapeHtml(t.name)}</strong><br><small>GF ${t.gf} − GC ${t.gc} = ${t.diff>=0?'+':''}${t.diff}</small><br><small>Base en recta: ${t.basePos}</small><br><small>${escapeHtml(t.qualitative)}: +${t.moves} movimientos</small><br><strong style="display:block;margin-top:6px">${n7Val(t.value)} · ${n7LetterBadge(t.letter)}</strong><small>Posición final ${t.finalPos} · fila ${t.row}</small></div>`;
  let verdict='';
  if(a.distance>=4){
@@ -2073,6 +2155,7 @@ function n7RenderCurrent(){
    verdict+=`<br><small>Equipo con menor valor: ${escapeHtml(a.lowerValueTeam)}. Se registra solo para estudiar si en esta zona suele imponerse el que aparentemente debía perder.</small>`;
  }
  box.innerHTML=`<div class="n7-stats">${teamCard(a.local)}${teamCard(a.visitor)}<div class="n7-stat">${verdict}</div></div>`;
+ n7RenderTransversal(currentPrediction);
 }
 function n7FromHistoryItem(item){
  if(item?.n7Favoritism?.local&&item?.n7Favoritism?.visitor)return item.n7Favoritism;
@@ -2081,25 +2164,49 @@ function n7FromHistoryItem(item){
 }
 function n7HistorySummary(){
  const box=document.getElementById('n7HistoryStats');if(!box)return;
- const closed=getHistory().filter(x=>x.status==='cerrado');
- const letter={A:{g:0,w:0,d:0,l:0},B:{g:0,w:0,d:0,l:0},C:{g:0,w:0,d:0,l:0}};
- let usable=0,domN=0,domW=0,domD=0,domL=0,noFavN=0,lowW=0,highW=0,noFavD=0,abcN=0,bcW=0,aW=0,abcD=0;
+ const closed=getHistory().filter(x=>x.status==='cerrado'&&Number.isFinite(Number(x.homeGoals))&&Number.isFinite(Number(x.awayGoals)));
+ const rows=[];
  closed.forEach(it=>{
-   const a=n7FromHistoryItem(it);if(!a)return;usable++;
-   const hg=Number(it.homeGoals),ag=Number(it.awayGoals);const real=hg>ag?it.localName:ag>hg?it.visitorName:'Empate';
-   [[a.local,it.localName],[a.visitor,it.visitorName]].forEach(([t,name])=>{const s=letter[t.letter];s.g++;if(real==='Empate')s.d++;else if(real===name)s.w++;else s.l++;});
-   if(a.distance>=4){domN++;if(real==='Empate')domD++;else if(real===a.dominator)domW++;else domL++;}
-   else{noFavN++;if(real==='Empate')noFavD++;else if(real===a.lowerValueTeam)lowW++;else highW++;}
-   const la=a.local.letter,va=a.visitor.letter;
-   if((la==='A'&&['B','C'].includes(va))||(va==='A'&&['B','C'].includes(la))){abcN++;const bcName=la==='A'?it.visitorName:it.localName,aName=la==='A'?it.localName:it.visitorName;if(real==='Empate')abcD++;else if(real===bcName)bcW++;else if(real===aName)aW++;}
+   const a=n7FromHistoryItem(it);if(!a)return;
+   const hg=Number(it.homeGoals),ag=Number(it.awayGoals),total=hg+ag;
+   const letters=[a.local.letter,a.visitor.letter].sort().join('–');
+   const qrel=n7QualRelation(a.local.qualitative,a.visitor.qualitative);
+   const op=n7Operation(a);
+   let lowerResult='EMPATE_COEF';
+   if(a.local.value<a.visitor.value) lowerResult=hg>ag?'MENOR':hg<ag?'MAYOR':'EMPATE';
+   else if(a.visitor.value<a.local.value) lowerResult=ag>hg?'MENOR':ag<hg?'MAYOR':'EMPATE';
+   else lowerResult=hg===ag?'EMPATE':'IGUALES';
+   rows.push({letters,qrel,opType:op.type,opValue:op.value,distance:a.distance,total,btts:hg>0&&ag>0,homeWin:hg>ag,draw:hg===ag,awayWin:ag>hg,lowerResult});
  });
- if(!usable){box.textContent='Aún no hay partidos cerrados con datos completos para evaluar el nuevo NÚCLEO 7.';return;}
- const lp=l=>{const s=letter[l];return `${l}: ${s.w}/${s.g} victorias (${pct(s.w,s.g)}) · ${s.d} empates · ${s.l} derrotas`;};
- const lines=[`PARTIDOS UTILIZABLES: ${usable}`,'',lp('A'),lp('B'),lp('C'),''];
- lines.push(`DOMINADORES (4+): ${domN?`${domW}/${domN} ganaron (${pct(domW,domN)}) · ${domD} empataron · ${domL} perdieron`:'—'}`);
- lines.push(`ZONA SIN FAVORITO (0–3): ${noFavN?`menor valor ganó ${lowW}/${noFavN} (${pct(lowW,noFavN)}) · mayor valor ganó ${highW}/${noFavN} (${pct(highW,noFavN)}) · empates ${noFavD}`:'—'}`);
- lines.push(`A vs B/C: ${abcN?`B/C ganó ${bcW}/${abcN} (${pct(bcW,abcN)}) · A ganó ${aW}/${abcN} (${pct(aW,abcN)}) · empates ${abcD}`:'—'}`);
- box.textContent=lines.join('\n');
+ if(!rows.length){box.textContent='Aún no hay partidos cerrados con datos completos para construir la lectura transversal.';return;}
+ const p=(n,d)=>d?`${(100*n/d).toFixed(1).replace('.',',')}%`:'—';
+ const esc=escapeHtml;
+ const groups={};
+ rows.forEach(r=>{const k=`${r.letters}|${r.qrel}`;(groups[k]||(groups[k]=[])).push(r);});
+ const order=['A–A','A–B','A–C','B–B','B–C','C–C'];
+ const groupRows=Object.entries(groups).sort((a,b)=>{
+   const [la,qa]=a[0].split('|'),[lb,qb]=b[0].split('|');
+   return order.indexOf(la)-order.indexOf(lb)||(qa==='IGUALES'?-1:1)-(qb==='IGUALES'?-1:1);
+ }).map(([k,g])=>{
+   const [letters,qrel]=k.split('|'),n=g.length;
+   const lower=g.filter(x=>x.lowerResult==='MENOR').length,draw=g.filter(x=>x.lowerResult==='EMPATE').length,higher=g.filter(x=>x.lowerResult==='MAYOR').length;
+   const o15=g.filter(x=>x.total>=2).length,o25=g.filter(x=>x.total>=3).length,o35=g.filter(x=>x.total>=4).length,bt=g.filter(x=>x.btts).length;
+   const avg=(g.reduce((s,x)=>s+x.total,0)/n).toFixed(2).replace('.',',');
+   const opTypes=[...new Set(g.map(x=>x.opType))].join('/');
+   const vals=g.filter(x=>Number.isFinite(x.opValue));
+   const opAvg=vals.length?(vals.reduce((s,x)=>s+x.opValue,0)/vals.length).toFixed(2).replace('.',','):'—';
+   return `<tr><td><strong>${esc(letters)}</strong><br><small>${esc(qrel)}</small></td><td>${n}</td><td>${esc(opTypes)}<br><small>valor prom. ${opAvg}</small></td><td>${p(lower,n)} / ${p(draw,n)} / ${p(higher,n)}</td><td>${p(o15,n)} / ${p(o25,n)} / ${p(o35,n)}</td><td>${p(bt,n)}</td><td>${avg}</td></tr>`;
+ }).join('');
+ const dist={};rows.forEach(r=>(dist[r.distance]||(dist[r.distance]=[])).push(r));
+ const distRows=Object.keys(dist).map(Number).sort((a,b)=>a-b).map(d=>{
+   const g=dist[d],n=g.length,lower=g.filter(x=>x.lowerResult==='MENOR').length,draw=g.filter(x=>x.lowerResult==='EMPATE').length,higher=g.filter(x=>x.lowerResult==='MAYOR').length;
+   const o25=g.filter(x=>x.total>=3).length;return `<tr><td>${d}</td><td>${n}</td><td>${p(lower,n)}</td><td>${p(draw,n)}</td><td>${p(higher,n)}</td><td>${p(lower+draw,n)}</td><td>${p(o25,n)}</td></tr>`;
+ }).join('');
+ box.innerHTML=`<strong style="font-size:18px">PARTIDOS TRANSVERSALES UTILIZABLES: ${rows.length}</strong>
+ <p style="margin:8px 0 12px"><small>Cada fila cruza letras, coeficientes y relación cualitativa. Resultado: <strong>menor / empate / mayor coeficiente</strong>. Goles: +1.5 / +2.5 / +3.5.</small></p>
+ <div class="n7-pool"><table><thead><tr><th>Cruce</th><th>N</th><th>Operación coef.</th><th>1X2 N7<br><small>menor / X / mayor</small></th><th>Goles<br><small>+1.5 / +2.5 / +3.5</small></th><th>Ambos</th><th>Prom.</th></tr></thead><tbody>${groupRows}</tbody></table></div>
+ <details style="margin-top:12px"><summary><strong>VER DISTANCIA EXACTA 0, 1, 2, 3, 4…</strong></summary><div class="n7-pool" style="margin-top:8px"><table><thead><tr><th>Dist.</th><th>N</th><th>Menor gana</th><th>Empate</th><th>Mayor gana</th><th>Menor no pierde</th><th>+2.5</th></tr></thead><tbody>${distRows}</tbody></table></div></details>
+ <p style="margin-top:10px"><small>La lectura específica del partido actual aparece arriba, en <strong>Resultado del partido actual → LECTURA TRANSVERSAL</strong>, usando los antecedentes más parecidos por coeficientes, letras, distancia y cualitativo.</small></p>`;
 }
 
 function getStrategy(){
