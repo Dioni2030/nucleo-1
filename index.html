@@ -1559,10 +1559,12 @@ function n4BuildPollsInPointRange(universes,minPoints,maxPoints,count,avoidSigna
  const pool=fresh.length>=count?fresh:(fresh.length?[...fresh,...unique.filter(x=>avoidSignatures.has(x.signature))]:unique);
  // Mezcla determinística por generación para que cada pulsación explore combinaciones distintas.
  function hash(str){let h=2166136261>>>0;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
- const ranked=[...pool].sort((a,b)=>{
-   const ha=hash(a.signature+'|'+generationSalt),hb=hash(b.signature+'|'+generationSalt);
-   return ha-hb;
- });
+ // En cada generación usamos una semilla distinta y, si se pidió NUEVAS POLLAS,
+ // excluimos de verdad las firmas que estaban visibles. La aleatoriedad tiene
+ // peso suficiente para que no vuelva a escoger siempre las mismas 6.
+ const seed=(Date.now() ^ Math.imul(generationSalt+1,2654435761))>>>0;
+ function randFor(str){return (hash(str+'|'+seed)%1000000)/1000000;}
+ const ranked=[...pool].sort((a,b)=>randFor(a.signature)-randFor(b.signature));
  const chosen=[],used=new Set(),matchUse=new Map(),marketUse=new Map();
  while(chosen.length<count && chosen.length<ranked.length){
    let best=null,bestScore=-Infinity;
@@ -1571,12 +1573,13 @@ function n4BuildPollsInPointRange(universes,minPoints,maxPoints,count,avoidSigna
      let diversity=0;
      for(const s of c.selections){
        const mk=(s.match||'')+'|'+(s.market||'');
-       diversity += 2/(1+(matchUse.get(s.match)||0));
-       diversity += 1.5/(1+(marketUse.get(mk)||0));
+       diversity += 2.2/(1+(matchUse.get(s.match)||0));
+       diversity += 1.8/(1+(marketUse.get(mk)||0));
      }
-     // favorece respaldo, diversidad y puntajes repartidos dentro del rango
      const center=(minPoints+maxPoints)/2;
-     const score=diversity+(c.rate||0)*3-Math.abs(c.points-center)*0.02 + (hash(c.signature+'#'+generationSalt)%1000)/100000;
+     // La parte aleatoria vale hasta 3 puntos: suficiente para explorar otras
+     // combinaciones, sin ignorar por completo el respaldo de N7.
+     const score=diversity+(c.rate||0)*2.2-Math.abs(c.points-center)*0.015 + randFor(c.signature+'#pick')*3;
      if(score>bestScore){bestScore=score;best=c;}
    }
    if(!best)break;

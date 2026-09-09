@@ -1,4 +1,4 @@
-APP DEPORTES V1.4.16 — N4 SOLO N7
+APP DEPORTES V1.4.17 — N4 SOLO N7
 
 Versión completa para prueba / GitHub.
 
@@ -15,3 +15,5 @@ Archivos:
 - icon-512.png
 
 Importante: no borres el almacenamiento local ni el historial antes de actualizar.
+
+V1.4.17: NUEVAS POLLAS ahora excluye las pollas visibles y usa una semilla nueva para explorar combinaciones diferentes en cada pulsación.
