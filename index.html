@@ -459,7 +459,7 @@ button{transition:.15s transform,.15s box-shadow,.15s background}button:hover{tr
   <div class="history-toolbar">
     <button class="secondary small-btn" onclick="exportHistory()">Exportar respaldo</button>
     <button class="secondary small-btn" type="button" onclick="document.getElementById('importFile').click()">Importar datos</button>
-    <input id="importFile" type="file" accept=".json,application/json" onchange="importHistory(event)" style="display:none">
+    <input id="importFile" type="file" accept=".json,.txt,application/json,text/plain,*/*" onchange="importHistory(event)" style="display:none">
     <span id="importStatus" class="goal-detail" style="align-self:center"></span>
     <button class="secondary small-btn" onclick="renderHistory()">Actualizar historial</button>
     <button id="autoAdjustBtn" class="primary small-btn locked" disabled onclick="generateStrategy()">GENERAR ESTRATEGIA</button>
@@ -488,9 +488,10 @@ button{transition:.15s transform,.15s box-shadow,.15s background}button:hover{tr
 </section>
 
 <section class="card module-card" id="analysisListSection">
-  <div class="fold-head"><h2 style="margin:0">NÚCLEO 4 — PRUEBA · 6 pollas usando SOLO NÚCLEO 7 <span class="module-tag">INTEGRA</span></h2><button class="secondary" onclick="toggleFold('nucleus4Tray',this,'ABRIR NÚCLEO 4','CERRAR NÚCLEO 4')">ABRIR NÚCLEO 4</button></div>
+  <div class="fold-head"><h2 style="margin:0">NÚCLEO 4 — SOLO NÚCLEO 7 · FILTRAR VALORES <span class="module-tag">INTEGRA</span></h2><button class="secondary" onclick="toggleFold('nucleus4Tray',this,'ABRIR NÚCLEO 4','CERRAR NÚCLEO 4')">ABRIR NÚCLEO 4</button></div>
   <div id="nucleus4Tray" class="fold-body">
     <div class="notice"><strong>PRUEBA AISLADA:</strong> en esta versión NÚCLEO 4 <strong>NO toma información directa de NÚCLEO 1, 2, 3, 5 ni 6</strong>. Para construir las pollas utiliza exclusivamente la salida de <strong>NÚCLEO 7 transversal</strong>: letras A/B/C, coeficientes, distancia, cualitativo ya incorporado dentro de N7 y antecedentes transversales parecidos. Así podremos medir cuánto valor aporta N7 por sí solo.</div>
+    <div class="notice" style="margin-top:8px"><strong>PRUEBA DE PUNTAJES:</strong> cada selección de cada polla muestra ahora el puntaje asignado al mercado y, arriba de la polla, aparece el <strong>PUNTAJE TOTAL</strong>. Escala: Empate 8 · Ambos NO marcan 6 · +1.5 goles 3 · +2.5 goles 8 · Local gana 5 · Visitante gana 7 · Local o empate 4 · -2.5 goles 7 · -3.5 goles 5 · Visitante o empate 6 · -4.5 goles 8. Los mercados sin valor definido aparecen como <strong>sin puntaje</strong> y no se inventa una cifra.</div>
     <div class="form-three" style="align-items:end">
       <label>Cantidad de pollas (máximo 6)
         <select id="n4PollCount" style="width:100%;padding:10px;border:1px solid #b8c2cc;border-radius:8px;margin-top:4px">
@@ -499,11 +500,25 @@ button{transition:.15s transform,.15s box-shadow,.15s background}button:hover{tr
         </select>
       </label>
       <div class="goal-detail">Cada polla debe ser diferente. Para esta prueba la variación se obtiene solamente de los mercados que NÚCLEO 7 transversal encuentra respaldados en antecedentes parecidos del historial.</div>
-      <div class="goal-detail">Mercados posibles según evidencia: ganador, doble oportunidad y líneas de goles. N7 entra como evidencia adicional, no reemplaza los demás núcleos.</div>
+      <div class="goal-detail">Mercados posibles según evidencia: ganador, doble oportunidad y líneas de goles. NÚCLEO 4 sigue recibiendo únicamente la salida de NÚCLEO 7.</div>
+    </div>
+    <div class="notice" style="margin-top:8px"><strong>IMPORTACIÓN PARA PRUEBA:</strong> usa el botón <strong>IMPORTAR RESPALDO PARA PRUEBA</strong> dentro de NÚCLEO 4. Acepta respaldo completo, historial simple, punto de restauración exportado y formatos anteriores compatibles. Antes de reemplazar el historial crea una copia automática de seguridad.</div>
+    <div class="notice" style="margin-top:10px"><strong>FILTRAR VALORES:</strong> puedes indicar el puntaje total mínimo y máximo que debe tener cada polla. NÚCLEO 4 buscará combinaciones dentro de ese intervalo. <strong>Una polla ya no está obligada a incluir todos los partidos cargados:</strong> algunos pueden quedar fuera de una polla y aparecer en otra. Si un equipo/partido se repite entre pollas, puede hacerlo con un mercado diferente. El mínimo de la escala es 3 puntos.</div>
+    <div class="form-three" style="align-items:end;margin-top:8px">
+      <label>Valor mínimo de la polla
+        <input id="n4MinPoints" type="number" min="3" step="1" value="3" style="width:100%;padding:10px;border:1px solid #b8c2cc;border-radius:8px;margin-top:4px">
+      </label>
+      <label>Valor máximo de la polla
+        <input id="n4MaxPoints" type="number" min="3" step="1" value="18" style="width:100%;padding:10px;border:1px solid #b8c2cc;border-radius:8px;margin-top:4px">
+      </label>
+      <div class="goal-detail" id="n4PossibleRange"><strong>Rango posible:</strong> se calculará al generar las pollas.</div>
     </div>
     <div class="history-toolbar">
+      <button class="secondary" type="button" onclick="document.getElementById('n4ImportFile').click()">IMPORTAR RESPALDO PARA PRUEBA</button>
+      <input id="n4ImportFile" type="file" accept=".json,.txt,application/json,text/plain,*/*" onchange="importHistory(event)" style="display:none">
       <button class="primary" onclick="addCurrentToAnalysis()">AGREGAR PARTIDO ACTUAL</button>
-      <button class="secondary" onclick="generateIntegratedPolls()">GENERAR POLLAS</button>
+      <button class="secondary" onclick="generateIntegratedPolls(false)">GENERAR POLLAS</button>
+      <button class="secondary" onclick="generateIntegratedPolls(true)">NUEVAS POLLAS</button>
       <button class="danger" onclick="clearAnalysisList()">VACIAR LISTA</button>
     </div>
     <div id="analysisList"></div>
@@ -581,7 +596,7 @@ button{transition:.15s transform,.15s box-shadow,.15s background}button:hover{tr
       <button class="primary" onclick="createRestorePoint()">CREAR PUNTO DE RESTAURACIÓN</button>
       <button class="secondary" onclick="exportFullBackup()">EXPORTAR RESPALDO COMPLETO</button>
       <button class="secondary" type="button" onclick="document.getElementById('fullImportFile').click()">IMPORTAR RESPALDO COMPLETO</button>
-      <input id="fullImportFile" type="file" accept=".json,application/json" onchange="importFullBackup(event)" style="display:none">
+      <input id="fullImportFile" type="file" accept=".json,.txt,application/json,text/plain,*/*" onchange="importFullBackup(event)" style="display:none">
       <button class="secondary" onclick="verifySystemIntegrity()">VERIFICAR INTEGRIDAD</button>
     </div>
     <div id="memoryReport" class="memory-report">NÚCLEO 6 listo. Crea un punto de restauración antes de una actualización importante.</div>
@@ -1449,51 +1464,161 @@ function n4MakePollUnique(selections,universes,profile,usedSignatures){
  }
  return null;
 }
+function n4MarketPoints(selection){
+ const market=String(selection?.market||'').trim();
+ const item=getAnalysisList().find(x=>x.analysisId===selection?.analysisId);
+ if(market==='Empate')return {points:8,label:'Empate'};
+ if(/no marcan ambos equipos/i.test(market)||/ambos\s+no\s+marcan/i.test(market))return {points:6,label:'Ambos NO marcan'};
+ if(/más de 1\.5 goles/i.test(market))return {points:3,label:'+1.5 goles'};
+ if(/más de 2\.5 goles/i.test(market))return {points:8,label:'+2.5 goles'};
+ if(/menos de 2\.5 goles/i.test(market))return {points:7,label:'-2.5 goles'};
+ if(/menos de 3\.5 goles/i.test(market))return {points:5,label:'-3.5 goles'};
+ if(/menos de 4\.5 goles/i.test(market))return {points:8,label:'-4.5 goles'};
+ if(/\(1X\)\s*$/i.test(market)||/gana o empata local/i.test(market))return {points:4,label:'Local o empate'};
+ if(/\(X2\)\s*$/i.test(market)||/gana o empate visitante/i.test(market)||/gana o empata visitante/i.test(market))return {points:6,label:'Visitante o empate'};
+ if(item){
+   if(market===`${item.localName} gana`)return {points:5,label:'Local gana'};
+   if(market===`${item.visitorName} gana`)return {points:7,label:'Visitante gana'};
+ }
+ return {points:null,label:'Sin puntaje asignado'};
+}
+function n4PollPointSummary(poll){
+ const details=(poll?.selections||[]).map(s=>({selection:s,...n4MarketPoints(s)}));
+ const scored=details.filter(x=>Number.isFinite(x.points));
+ return {
+   total:scored.reduce((acc,x)=>acc+x.points,0),
+   scored:scored.length,
+   unscored:details.length-scored.length,
+   details
+ };
+}
 function renderIntegratedPolls(polls){
  const box=document.getElementById("threeBetResults");
- box.innerHTML=polls.length?polls.map((p,i)=>`<div class="bet-tier ${i%3===0?'bet-tier-a':i%3===1?'bet-tier-b':'bet-tier-c'}">
+ box.innerHTML=polls.length?polls.map((p,i)=>{
+   const ps=n4PollPointSummary(p);
+   const pointNote=ps.unscored?` · ${ps.unscored} mercado(s) sin puntaje asignado`:'';
+   return `<div class="bet-tier ${i%3===0?'bet-tier-a':i%3===1?'bet-tier-b':'bet-tier-c'}">
    <h3>POLLA ${i+1}</h3>
+   <div class="tier-score" style="font-size:1.15rem"><strong>PUNTAJE TOTAL: ${ps.total} PUNTOS</strong>${pointNote}</div>
    <div class="tier-score">Respaldo conjunto ${rateLabel(p.rate)}</div>
    <div class="goal-detail">${escapeHtml(p.profileLabel)} · ${p.selections.length} partido(s)</div>
-   <ol class="evidence-list">${p.selections.map(s=>`<li><strong>${escapeHtml(s.match)}</strong><br>${escapeHtml(s.market)} <small>(${rateLabel(s.rate)})</small><br><small>${escapeHtml(s.evidence.slice(0,2).join(' · '))}</small></li>`).join("")}</ol>
- </div>`).join(""):"";
- document.getElementById("threeBetTechnical").textContent=polls.length?polls.map((p,i)=>`POLLA ${i+1} — ${p.profileLabel}\nRespaldo conjunto: ${rateLabel(p.rate)}\n`+p.selections.map((s,j)=>`${j+1}. ${s.match}\n   ${s.market} · ${rateLabel(s.rate)}\n   Fuentes: ${(s.sources||[s.source]).join(', ')}\n   Evidencia: ${s.evidence.join(' | ')}`).join("\n")).join("\n\n====================\n\n"):"Sin pollas generadas.";
+   <ol class="evidence-list">${ps.details.map(d=>`<li><strong>${escapeHtml(d.selection.match)}</strong><br>${escapeHtml(d.selection.market)} <small>(${rateLabel(d.selection.rate)})</small><br><strong>${d.points===null?'Puntaje: SIN VALOR ASIGNADO':`Puntaje: ${d.points}`}</strong><br><small>${escapeHtml(d.selection.evidence.slice(0,2).join(' · '))}</small></li>`).join("")}</ol>
+ </div>`;
+ }).join(""):"";
+ document.getElementById("threeBetTechnical").textContent=polls.length?polls.map((p,i)=>{
+   const ps=n4PollPointSummary(p);
+   return `POLLA ${i+1} — ${p.profileLabel}\nPUNTAJE TOTAL: ${ps.total} PUNTOS${ps.unscored?` · ${ps.unscored} mercado(s) sin puntaje`:''}\nRespaldo conjunto: ${rateLabel(p.rate)}\n`+ps.details.map((d,j)=>`${j+1}. ${d.selection.match}\n   ${d.selection.market} · ${rateLabel(d.selection.rate)}\n   PUNTAJE: ${d.points===null?'SIN VALOR ASIGNADO':d.points}\n   Fuentes: ${(d.selection.sources||[d.selection.source]).join(', ')}\n   Evidencia: ${d.selection.evidence.join(' | ')}`).join("\n");
+ }).join("\n\n====================\n\n"):"Sin pollas generadas.";
 }
-function generateIntegratedPolls(){
- const list=getAnalysisList();if(!list.length){alert("Agrega al menos un partido a la lista.");return;}
- const count=Math.max(1,Math.min(6,Number(document.getElementById("n4PollCount")?.value||4)));
- const strategy=getStrategy();
- const qualAnalysis=getQualitativeAnalysis();
- const profiles=[
-   ["integrated","Integrada: cruza todas las evidencias"],
-   ["goals","Goles: prioriza mercados de anotación cuando tienen respaldo"],
-   ["favoritism","Favoritismo: pondera ganador/doble oportunidad"],
-   ["n7","N7: aumenta el peso del dominador y la distancia"],
-   ["contrast","Contraste: busca alternativas razonables donde las señales discrepan"],
-   ["mixed","Mixta: equilibrio y diversidad controlada"]
- ];
- const universes=list.map(item=>({item,cands:n4CandidateUniverse(item,strategy,qualAnalysis)}));
- const usageByMatch={};list.forEach(x=>usageByMatch[x.analysisId]={market:{},kind:{}});
- const polls=[],usedSignatures=new Set();
- for(let p=0;p<count;p++){
-   const [profile,profileLabel]=profiles[p%profiles.length],initial=[];
-   universes.forEach(({item,cands})=>{
-     const usage=usageByMatch[item.analysisId];let pick=n4PickForPoll(cands,profile,usage,p);
-     if(!pick){pick={analysisId:item.analysisId,match:`${item.localName} vs ${item.visitorName}`,league:item.competition||"Sin liga",market:"Sin selección suficientemente sustentada",source:"none",kind:"mixed",rate:.20,evidence:["Faltan evidencias suficientes"],sources:["none"]};}
-     initial.push({...pick});
-   });
-   const unique=n4MakePollUnique(initial,universes,profile,usedSignatures);
-   if(!unique)continue;
-   const selections=unique.selections; usedSignatures.add(unique.signature);
-   selections.forEach((pick,i)=>{const id=universes[i].item.analysisId;const usage=usageByMatch[id];usage.market[pick.market]=(usage.market[pick.market]||0)+1; usage.kind[pick.kind]=(usage.kind[pick.kind]||0)+1;});
-   const valid=selections.filter(x=>x.source!=="none"),rate=valid.length?valid.reduce((a,b)=>a+b.rate,0)/valid.length:0;
-   polls.push({id:`n4-poll-${Date.now()}-${p}`,createdAt:new Date().toISOString(),profile,profileLabel,rate,selections,evidence:[`Construida con ${list.length} partido(s)`,`Perfil ${profileLabel}`,unique.changed?"Ajustada para no repetir otra polla":"Combinación única"]});
+function n4ScoredCandidatesForFilter(item,strategy,qualAnalysis){
+ const raw=n4CandidateUniverse(item,strategy,qualAnalysis)||[];
+ const seen=new Set(),out=[];
+ raw.forEach(c=>{
+   const pm=n4MarketPoints(c);
+   if(!Number.isFinite(pm.points))return;
+   const key=String(c.market||'').trim().toLowerCase();
+   if(!key||seen.has(key))return;
+   seen.add(key);out.push({...c,_points:pm.points,_pointLabel:pm.label});
+ });
+ return out.sort((a,b)=>(b.rate||0)-(a.rate||0));
+}
+function n4BuildPollsInPointRange(universes,minPoints,maxPoints,count,avoidSignatures=new Set(),generationSalt=0){
+ // IMPORTANTE: una polla puede usar solo una PARTE de los partidos cargados.
+ // Cada partido puede aportar como máximo una selección a una polla.
+ const allPoints=universes.flatMap(u=>u.cands.map(c=>c._points)).filter(Number.isFinite);
+ const possibleMin=allPoints.length?Math.min(...allPoints):0;
+ const maxs=universes.map(u=>u.cands.length?Math.max(...u.cands.map(c=>c._points)):0);
+ const possibleMax=maxs.reduce((a,b)=>a+b,0);
+ const combos=[]; let visited=0; const LIMIT=140000, MAX_COMBOS=12000;
+ const suffixMax=new Array(universes.length+1).fill(0);
+ for(let i=universes.length-1;i>=0;i--)suffixMax[i]=suffixMax[i+1]+maxs[i];
+ function walk(i,total,sel,rateSum){
+   if(visited++>LIMIT||combos.length>=MAX_COMBOS)return;
+   if(total>maxPoints)return;
+   if(total+suffixMax[i]<minPoints)return;
+   if(i===universes.length){
+     if(sel.length && total>=minPoints && total<=maxPoints){
+       const signature=n4PollSignature(sel);
+       combos.push({selections:sel.map(x=>({...x})),points:total,signature,rate:rateSum/sel.length});
+     }
+     return;
+   }
+   // Opción 1: este partido queda FUERA de esta polla.
+   walk(i+1,total,sel,rateSum);
+   // Opción 2: entra con uno de los mercados permitidos por N7.
+   const cands=[...universes[i].cands].sort((a,b)=>((b.rate||0)-(a.rate||0)) || (a._points-b._points));
+   for(const c of cands){
+     walk(i+1,total+c._points,[...sel,c],rateSum+(c.rate||0));
+     if(combos.length>=MAX_COMBOS||visited>LIMIT)break;
+   }
  }
+ walk(0,0,[],0);
+ const unique=[...new Map(combos.map(x=>[x.signature,x])).values()];
+ // NUEVAS POLLAS: preferimos firmas distintas a las que estaban visibles.
+ const fresh=unique.filter(x=>!avoidSignatures.has(x.signature));
+ const pool=fresh.length>=count?fresh:(fresh.length?[...fresh,...unique.filter(x=>avoidSignatures.has(x.signature))]:unique);
+ // Mezcla determinística por generación para que cada pulsación explore combinaciones distintas.
+ function hash(str){let h=2166136261>>>0;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
+ const ranked=[...pool].sort((a,b)=>{
+   const ha=hash(a.signature+'|'+generationSalt),hb=hash(b.signature+'|'+generationSalt);
+   return ha-hb;
+ });
+ const chosen=[],used=new Set(),matchUse=new Map(),marketUse=new Map();
+ while(chosen.length<count && chosen.length<ranked.length){
+   let best=null,bestScore=-Infinity;
+   for(const c of ranked){
+     if(used.has(c.signature))continue;
+     let diversity=0;
+     for(const s of c.selections){
+       const mk=(s.match||'')+'|'+(s.market||'');
+       diversity += 2/(1+(matchUse.get(s.match)||0));
+       diversity += 1.5/(1+(marketUse.get(mk)||0));
+     }
+     // favorece respaldo, diversidad y puntajes repartidos dentro del rango
+     const center=(minPoints+maxPoints)/2;
+     const score=diversity+(c.rate||0)*3-Math.abs(c.points-center)*0.02 + (hash(c.signature+'#'+generationSalt)%1000)/100000;
+     if(score>bestScore){bestScore=score;best=c;}
+   }
+   if(!best)break;
+   used.add(best.signature);chosen.push(best);
+   best.selections.forEach(s=>{
+     matchUse.set(s.match,(matchUse.get(s.match)||0)+1);
+     const mk=(s.match||'')+'|'+(s.market||'');marketUse.set(mk,(marketUse.get(mk)||0)+1);
+   });
+ }
+ return {chosen,possibleMin,possibleMax,found:unique.length,freshFound:fresh.length};
+}
+let n4GenerationSalt=0;
+function generateIntegratedPolls(forceNew=false){
+ const list=getAnalysisList();if(!list.length){alert("Agrega al menos un partido a la lista.");return;}
+ const count=Math.max(1,Math.min(6,Number(document.getElementById("n4PollCount")?.value||6)));
+ let minPoints=Number(document.getElementById('n4MinPoints')?.value||3);
+ let maxPoints=Number(document.getElementById('n4MaxPoints')?.value||18);
+ if(!Number.isFinite(minPoints))minPoints=3;if(!Number.isFinite(maxPoints))maxPoints=18;
+ minPoints=Math.max(3,minPoints);maxPoints=Math.max(3,maxPoints);
+ if(minPoints>maxPoints){[minPoints,maxPoints]=[maxPoints,minPoints];}
+ document.getElementById('n4MinPoints').value=minPoints;document.getElementById('n4MaxPoints').value=maxPoints;
+ const strategy=getStrategy(),qualAnalysis=getQualitativeAnalysis();
+ const universes=list.map(item=>({item,cands:n4ScoredCandidatesForFilter(item,strategy,qualAnalysis)}));
+ const usable=universes.filter(u=>u.cands.length);
+ if(!usable.length){alert('Ningún partido cargado tiene todavía mercados de N7 con puntuación asignada.');return;}
+ const oldPolls=forceNew?getN4Polls():[];
+ const avoid=new Set(oldPolls.map(p=>n4PollSignature(p.selections||[])));
+ n4GenerationSalt++;
+ const built=n4BuildPollsInPointRange(usable,minPoints,maxPoints,count,avoid,n4GenerationSalt);
+ const rangeBox=document.getElementById('n4PossibleRange');
+ if(rangeBox)rangeBox.innerHTML=`<strong>Escala mínima:</strong> 3 puntos · <strong>Mínimo disponible ahora:</strong> ${built.possibleMin} · <strong>Máximo posible con todos los partidos:</strong> ${built.possibleMax} · <strong>Filtro:</strong> ${minPoints} a ${maxPoints}`;
+ const labels=['Filtro N7 A','Filtro N7 B','Filtro N7 C','Filtro N7 D','Filtro N7 E','Filtro N7 F'];
+ const polls=built.chosen.map((c,i)=>({id:`n4-poll-${Date.now()}-${i}`,createdAt:new Date().toISOString(),profile:'n7-filter',profileLabel:labels[i]||'Filtro N7',rate:c.rate,selections:c.selections.map(({_points,_pointLabel,...x})=>x),evidence:[`SOLO NÚCLEO 7`,`Filtro de ${minPoints} a ${maxPoints} puntos`,`Puntaje total ${c.points}`,`${c.selections.length} partido(s) incluidos de ${list.length} cargados`]}));
  localStorage.setItem(THREE_BETS_KEY,JSON.stringify(polls));
  renderIntegratedPolls(polls);
- document.getElementById("combinedRecommendation").textContent=`PRUEBA SOLO N7: NÚCLEO 4 tomó ${list.length} partido(s) y generó ${polls.length} polla(s) completas usando únicamente la salida de NÚCLEO 7 transversal. Las diferencias entre pollas provienen de mercados N7 distintos: 1X2, doble oportunidad, goles y ambos marcan, siempre con su frecuencia histórica transversal visible. Ninguna polla completa se repite.`;
- try{evaluateN5Polls(false);}catch(_){/* N5 se puede abrir después */}
- alert(polls.length===count?`NÚCLEO 4 generó ${polls.length} pollas DIFERENTES y con MAYOR VARIABILIDAD DE MERCADOS. NÚCLEO 5 ya puede evaluarlas.`:`NÚCLEO 4 pudo generar ${polls.length} de ${count} pollas sin repetir combinaciones y sin inventar mercados sin respaldo.`);
+ const excludedNote=polls.length?` Cada polla puede incluir solo los partidos necesarios para quedar dentro del rango; los demás quedan excluidos únicamente de esa polla.`:'';
+ document.getElementById('combinedRecommendation').innerHTML=polls.length?`<strong>FILTRO DE VALORES ACTIVO:</strong> ${polls.length} polla(s) entre <strong>${minPoints}</strong> y <strong>${maxPoints}</strong> puntos.${excludedNote} Pulsa <strong>NUEVAS POLLAS</strong> para explorar otras combinaciones sin cambiar los partidos cargados.`:`<strong>NO HAY POLLAS EN ESE RANGO.</strong> Con los mercados N7 puntuados disponibles, el mínimo de una selección es <strong>${built.possibleMin}</strong> y el máximo acumulable es <strong>${built.possibleMax}</strong>.`;
+ try{evaluateN5Polls(false);}catch(_){}
+ if(!polls.length)alert(`No encontré combinaciones entre ${minPoints} y ${maxPoints} puntos con las señales N7 disponibles.`);
+ else if(polls.length<count)alert(`Se construyeron ${polls.length} pollas diferentes dentro de ${minPoints}–${maxPoints}. Puedes pulsar NUEVAS POLLAS para volver a combinar.`);
+ else if(forceNew)alert(`Listo: generé ${polls.length} NUEVAS pollas dentro de ${minPoints}–${maxPoints} puntos.`);
+ else alert(`Listo: ${polls.length} pollas dentro de ${minPoints}–${maxPoints} puntos.`);
 }
 function generateThreeBets(){generateIntegratedPolls();}
 function generateCombinedRecommendation(){generateIntegratedPolls();}
@@ -1767,46 +1892,60 @@ function renderRestorePoints(){
    </div>
  </div>`).join(""):"Sin puntos de restauración.";
 }
-function importFullBackup(event){
- const file=event.target.files?.[0];if(!file)return;
+function normalizeImportedBackup(data){
+ // Compatibilidad amplia: historial directo, respaldo completo, punto de restauración
+ // y envoltorios usados por versiones anteriores.
+ if(Array.isArray(data)) return {history:data};
+ if(!data || typeof data!=="object") return null;
+ if(Array.isArray(data.history)) return data;
+ if(data.state && Array.isArray(data.state.history)) return data.state;
+ if(data.data && Array.isArray(data.data.history)) return data.data;
+ if(data.backup && Array.isArray(data.backup.history)) return data.backup;
+ if(data.systemState && Array.isArray(data.systemState.history)) return data.systemState;
+ if(data.payload && Array.isArray(data.payload.history)) return data.payload;
+ // Algunos respaldos guardan el historial bajo nombres antiguos.
+ const legacyKeys=["matches","partidos","records","historial"];
+ for(const key of legacyKeys){
+   if(Array.isArray(data[key])) return {...data,history:data[key]};
+ }
+ return null;
+}
+function readBackupFile(file,onOk,onError){
  const reader=new FileReader();
  reader.onload=()=>{
    try{
-     const data=JSON.parse(reader.result);
-     const incoming=Array.isArray(data)?data:(Array.isArray(data.history)?data.history:null);
-     if(!incoming)throw new Error("No hay historial compatible");
+     let text=String(reader.result??"").replace(/^\uFEFF/,"").trim();
+     if(!text) throw new Error("Archivo vacío");
+     const parsed=JSON.parse(text);
+     const normalized=normalizeImportedBackup(parsed);
+     if(!normalized || !Array.isArray(normalized.history)) throw new Error("No contiene historial compatible");
+     onOk(normalized,parsed);
+   }catch(err){onError(err);}
+ };
+ reader.onerror=()=>onError(new Error("No se pudo leer el archivo"));
+ reader.readAsText(file);
+}
+function importFullBackup(event){
+ const file=event.target.files?.[0];if(!file)return;
+ const input=event.target;
+ readBackupFile(file,(data)=>{
+   try{
+     const incoming=data.history;
      if(confirm(`El archivo contiene ${incoming.length} partido(s). ¿Importarlos y reemplazar los datos actuales?`)){
        createAutomaticSafetyPoint();
-       if(Array.isArray(data)){
-         setHistory(data);
-       }else{
-         // Acepta tanto respaldo completo como exportación simple del historial de versiones anteriores.
-         setHistory(incoming);
-         if(data.adaptive)setAdaptive(data.adaptive);
-         if(data.analysisList) localStorage.setItem(ANALYSIS_LIST_KEY,JSON.stringify(data.analysisList));
-         if(data.strategy) localStorage.setItem(STRATEGY_KEY,JSON.stringify(data.strategy));
-         if(data.qualitative) localStorage.setItem(QUAL_ANALYSIS_KEY,JSON.stringify(data.qualitative));
-         if(data.threeBets) localStorage.setItem(THREE_BETS_KEY,JSON.stringify(data.threeBets));
-         if(data.financePlan) localStorage.setItem(FINANCE_PLAN_KEY,JSON.stringify(data.financePlan));
-         if(data.financeHistory) localStorage.setItem(FINANCE_HISTORY_KEY,JSON.stringify(data.financeHistory));
-         if(data.versions) localStorage.setItem(VERSION_KEY,JSON.stringify(data.versions));
-         if(data.activeVersion) localStorage.setItem(ACTIVE_VERSION_KEY,data.activeVersion);
-         if(data.pendingProposal)localStorage.setItem("nucleo1_pending_proposal_v10",JSON.stringify(data.pendingProposal));
-         if(data.nucleus7?.pool) localStorage.setItem(N7_POOL_KEY,JSON.stringify(data.nucleus7.pool));
-         if(data.nucleus7?.lastScored) localStorage.setItem("nucleo7_last_scored",JSON.stringify(data.nucleus7.lastScored));
-       }
-       refreshAllModules();n7RenderPool();n7HistorySummary();refreshAutocompleteSuggestions();
+       applyFullSystemState(data);
+       const tray=document.getElementById("historyTray");if(tray)tray.classList.add("open");
        alert(`Importación completada: ${incoming.length} partido(s) cargados.`);
      }
    }catch(err){
      console.error(err);
-     alert("No pude importar ese archivo. Debe ser un respaldo JSON de APP DEPORTES/NÚCLEO 1.");
-   }finally{
-     event.target.value="";
-   }
- };
- reader.onerror=()=>{alert("No se pudo leer el archivo seleccionado.");event.target.value="";};
- reader.readAsText(file);
+     alert("No pude aplicar ese respaldo. No se modificaron los datos actuales.");
+   }finally{input.value="";}
+ },(err)=>{
+   console.error(err);
+   alert("No pude importar ese archivo. Selecciona un respaldo JSON exportado por APP DEPORTES. También se aceptan respaldos de versiones anteriores y puntos de restauración exportados.");
+   input.value="";
+ });
 }
 function createAutomaticSafetyPoint(){
  const points=getRestorePoints();
@@ -2672,54 +2811,37 @@ function exportHistory(){
 }
 function importHistory(event){
  const file=event.target.files?.[0];if(!file)return;
+ const input=event.target;
  const status=document.getElementById("importStatus");
  if(status)status.textContent="Leyendo archivo…";
- const reader=new FileReader();
- reader.onload=()=>{
+ readBackupFile(file,(data)=>{
    try{
-     const parsed=JSON.parse(reader.result);
-     const incoming=Array.isArray(parsed)?parsed:parsed?.history;
-     if(!Array.isArray(incoming))throw new Error("El JSON no contiene history");
+     const incoming=data.history;
      if(!confirm(`¿Importar ${incoming.length} registro(s) y reemplazar el historial actual?`)){
        if(status)status.textContent="Importación cancelada";
+       input.value="";
        return;
      }
      createAutomaticSafetyPoint();
-     setHistory(incoming);
-     if(parsed && !Array.isArray(parsed)){
-       if(parsed.adaptive)setAdaptive(parsed.adaptive);
-       if(parsed.analysisList) localStorage.setItem(ANALYSIS_LIST_KEY,JSON.stringify(parsed.analysisList));
-       if(parsed.strategy) localStorage.setItem(STRATEGY_KEY,JSON.stringify(parsed.strategy));
-       if(parsed.qualitative) localStorage.setItem(QUAL_ANALYSIS_KEY,JSON.stringify(parsed.qualitative));
-       if(parsed.threeBets) localStorage.setItem(THREE_BETS_KEY,JSON.stringify(parsed.threeBets));
-       if(parsed.financePlan) localStorage.setItem(FINANCE_PLAN_KEY,JSON.stringify(parsed.financePlan));
-       if(parsed.financeHistory) localStorage.setItem(FINANCE_HISTORY_KEY,JSON.stringify(parsed.financeHistory));
-       if(parsed.versions) localStorage.setItem(VERSION_KEY,JSON.stringify(parsed.versions));
-       if(parsed.activeVersion) localStorage.setItem(ACTIVE_VERSION_KEY,parsed.activeVersion);
-       if(parsed.pendingProposal)localStorage.setItem("nucleo1_pending_proposal_v10",JSON.stringify(parsed.pendingProposal));
-       if(parsed.nucleus7?.pool) localStorage.setItem(N7_POOL_KEY,JSON.stringify(parsed.nucleus7.pool));
-       if(parsed.nucleus7?.lastScored) localStorage.setItem("nucleo7_last_scored",JSON.stringify(parsed.nucleus7.lastScored));
-     }
-     refreshAllModules();n7RenderPool();n7HistorySummary();refreshAutocompleteSuggestions();
-     // Abrir automáticamente el historial para que el usuario vea que sí cargó.
-     const tray=document.getElementById("historyTray");
-     if(tray)tray.classList.add("open");
+     // Si es respaldo completo conserva también los demás módulos; si es historial simple,
+     // solo reemplaza historial y conserva el resto de la app.
+     const hasFullState=["adaptive","analysisList","strategy","qualitative","threeBets","financePlan","financeHistory","versions","nucleus7"].some(k=>data[k]!==undefined);
+     if(hasFullState) applyFullSystemState(data);
+     else {setHistory(incoming);refreshAllModules();n7RenderPool();n7HistorySummary();refreshAutocompleteSuggestions();}
+     const tray=document.getElementById("historyTray");if(tray)tray.classList.add("open");
      if(status)status.textContent=`✓ ${incoming.length} partido(s) importados`;
      alert(`Importación terminada correctamente. Se cargaron ${incoming.length} partido(s).`);
    }catch(err){
      console.error(err);
-     if(status)status.textContent="Error al importar";
-     alert("El archivo no contiene un respaldo JSON compatible de APP DEPORTES/NÚCLEO 1.");
-   }finally{
-     event.target.value="";
-   }
- };
- reader.onerror=()=>{
-   if(status)status.textContent="Error al leer archivo";
-   alert("No se pudo leer el archivo seleccionado.");
-   event.target.value="";
- };
- reader.readAsText(file);
+     if(status)status.textContent="Error al aplicar respaldo";
+     alert("El respaldo se pudo leer, pero no se pudo aplicar. No se borraron los datos actuales.");
+   }finally{input.value="";}
+ },(err)=>{
+   console.error(err);
+   if(status)status.textContent="Archivo incompatible";
+   alert("No pude leer ese respaldo. Selecciona el archivo JSON exportado por APP DEPORTES. Se aceptan respaldos completos, historial, puntos de restauración y formatos antiguos compatibles.");
+   input.value="";
+ });
 }
 document.getElementById("matchDate").value=new Date().toISOString().slice(0,10);
 renderHistory();
