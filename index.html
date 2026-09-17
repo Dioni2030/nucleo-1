@@ -488,22 +488,16 @@ button{transition:.15s transform,.15s box-shadow,.15s background}button:hover{tr
 </section>
 
 <section class="card module-card" id="analysisListSection">
-  <div class="fold-head"><h2 style="margin:0">NÚCLEO 4 — SOLO NÚCLEO 7 · FILTRAR VALORES <span class="module-tag">INTEGRA</span></h2><button class="secondary" onclick="toggleFold('nucleus4Tray',this,'ABRIR NÚCLEO 4','CERRAR NÚCLEO 4')">ABRIR NÚCLEO 4</button></div>
+  <div class="fold-head"><h2 style="margin:0">NÚCLEO 4 — POLLAS <span class="module-tag">INTEGRA</span></h2><button class="secondary" onclick="toggleFold('nucleus4Tray',this,'ABRIR NÚCLEO 4','CERRAR NÚCLEO 4')">ABRIR NÚCLEO 4</button></div>
   <div id="nucleus4Tray" class="fold-body">
-    <div class="notice"><strong>PRUEBA AISLADA:</strong> en esta versión NÚCLEO 4 <strong>NO toma información directa de NÚCLEO 1, 2, 3, 5 ni 6</strong>. Para construir las pollas utiliza exclusivamente la salida de <strong>NÚCLEO 7 transversal</strong>: letras A/B/C, coeficientes, distancia, cualitativo ya incorporado dentro de N7 y antecedentes transversales parecidos. Así podremos medir cuánto valor aporta N7 por sí solo.</div>
-    <div class="notice" style="margin-top:8px"><strong>PRUEBA DE PUNTAJES:</strong> cada selección de cada polla muestra ahora el puntaje asignado al mercado y, arriba de la polla, aparece el <strong>PUNTAJE TOTAL</strong>. Escala: Empate 8 · Ambos NO marcan 6 · +1.5 goles 3 · +2.5 goles 8 · Local gana 5 · Visitante gana 7 · Local o empate 4 · -2.5 goles 7 · -3.5 goles 5 · Visitante o empate 6 · -4.5 goles 8. Los mercados sin valor definido aparecen como <strong>sin puntaje</strong> y no se inventa una cifra.</div>
-    <div class="form-three" style="align-items:end">
-      <label>Cantidad de pollas (máximo 6)
+    <div style="margin-top:8px">
+      <label>Cantidad de pollas por conjunto (máximo 6)
         <select id="n4PollCount" style="width:100%;padding:10px;border:1px solid #b8c2cc;border-radius:8px;margin-top:4px">
           <option value="1">1 polla</option><option value="2">2 pollas</option><option value="3">3 pollas</option>
           <option value="4">4 pollas</option><option value="5">5 pollas</option><option value="6" selected>6 pollas</option>
         </select>
       </label>
-      <div class="goal-detail">Cada polla debe ser diferente. Para esta prueba la variación se obtiene solamente de los mercados que NÚCLEO 7 transversal encuentra respaldados en antecedentes parecidos del historial.</div>
-      <div class="goal-detail">Mercados posibles según evidencia: ganador, doble oportunidad y líneas de goles. NÚCLEO 4 sigue recibiendo únicamente la salida de NÚCLEO 7.</div>
     </div>
-    <div class="notice" style="margin-top:8px"><strong>IMPORTACIÓN PARA PRUEBA:</strong> usa el botón <strong>IMPORTAR RESPALDO PARA PRUEBA</strong> dentro de NÚCLEO 4. Acepta respaldo completo, historial simple, punto de restauración exportado y formatos anteriores compatibles. Antes de reemplazar el historial crea una copia automática de seguridad.</div>
-    <div class="notice" style="margin-top:10px"><strong>FILTRAR VALORES:</strong> puedes indicar el puntaje total mínimo y máximo que debe tener cada polla. NÚCLEO 4 buscará combinaciones dentro de ese intervalo. <strong>Una polla ya no está obligada a incluir todos los partidos cargados:</strong> algunos pueden quedar fuera de una polla y aparecer en otra. Si un equipo/partido se repite entre pollas, puede hacerlo con un mercado diferente. El mínimo de la escala es 3 puntos.</div>
     <div class="form-three" style="align-items:end;margin-top:8px">
       <label>Valor mínimo de la polla
         <input id="n4MinPoints" type="number" min="3" step="1" value="3" style="width:100%;padding:10px;border:1px solid #b8c2cc;border-radius:8px;margin-top:4px">
@@ -523,7 +517,9 @@ button{transition:.15s transform,.15s box-shadow,.15s background}button:hover{tr
     </div>
     <div id="analysisList"></div>
     <div id="combinedRecommendation" class="analysis-box">Agrega partidos y elige cuántas pollas quieres construir.</div>
-    <div id="threeBetResults" class="bet-tier-grid"></div>
+    <div id="n4SameGroup" style="margin-top:12px"><h3 style="margin:6px 0">CONJUNTO 1 — MISMA LETRA</h3><div class="goal-detail">Solo partidos A-A, B-B o C-C. No se mezclan con letras diferentes.</div><div id="n4SameResults" class="bet-tier-grid"></div></div>
+    <div id="n4DifferentGroup" style="margin-top:16px"><h3 style="margin:6px 0">CONJUNTO 2 — LETRAS DIFERENTES</h3><div class="goal-detail">Solo partidos A-B, A-C o B-C. No se mezclan con partidos de la misma letra.</div><div id="n4DifferentResults" class="bet-tier-grid"></div></div>
+    <div id="threeBetResults" class="bet-tier-grid" style="display:none"></div>
     <div class="fold-head" style="margin-top:12px">
       <h3 style="margin:0">Detalle técnico y evidencias</h3>
       <button class="secondary small-btn" onclick="toggleFold('threeBetDetail',this,'ABRIR','OCULTAR')">ABRIR</button>
@@ -1469,6 +1465,7 @@ function n4MarketPoints(selection){
  const item=getAnalysisList().find(x=>x.analysisId===selection?.analysisId);
  if(market==='Empate')return {points:8,label:'Empate'};
  if(/no marcan ambos equipos/i.test(market)||/ambos\s+no\s+marcan/i.test(market))return {points:6,label:'Ambos NO marcan'};
+ if(/ambos equipos marcan/i.test(market)||/ambos\s+(anotan|marcan)/i.test(market))return {points:7,label:'Ambos anotan'};
  if(/más de 1\.5 goles/i.test(market))return {points:3,label:'+1.5 goles'};
  if(/más de 2\.5 goles/i.test(market))return {points:8,label:'+2.5 goles'};
  if(/menos de 2\.5 goles/i.test(market))return {points:7,label:'-2.5 goles'};
@@ -1492,23 +1489,39 @@ function n4PollPointSummary(poll){
    details
  };
 }
-function renderIntegratedPolls(polls){
- const box=document.getElementById("threeBetResults");
- box.innerHTML=polls.length?polls.map((p,i)=>{
-   const ps=n4PollPointSummary(p);
-   const pointNote=ps.unscored?` · ${ps.unscored} mercado(s) sin puntaje asignado`:'';
-   return `<div class="bet-tier ${i%3===0?'bet-tier-a':i%3===1?'bet-tier-b':'bet-tier-c'}">
+function n4CompatibilityOfSelection(selection){
+ const item=getAnalysisList().find(x=>x.analysisId===selection?.analysisId);
+ if(!item)return 'unknown';
+ const a=item.n7Favoritism||n7AnalyzePrediction(item);
+ if(!a?.local?.letter||!a?.visitor?.letter)return 'unknown';
+ return a.local.letter===a.visitor.letter?'same':'different';
+}
+function n4PollCompatibility(poll){
+ const kinds=[...new Set((poll?.selections||[]).map(n4CompatibilityOfSelection).filter(x=>x!=='unknown'))];
+ return kinds.length===1?kinds[0]:'mixed';
+}
+function n4PollCard(p,i){
+ const ps=n4PollPointSummary(p);
+ const pointNote=ps.unscored?` · ${ps.unscored} mercado(s) sin puntaje asignado`:'';
+ return `<div class="bet-tier ${i%3===0?'bet-tier-a':i%3===1?'bet-tier-b':'bet-tier-c'}">
    <h3>POLLA ${i+1}</h3>
    <div class="tier-score" style="font-size:1.15rem"><strong>PUNTAJE TOTAL: ${ps.total} PUNTOS</strong>${pointNote}</div>
-   <div class="tier-score">Respaldo conjunto ${rateLabel(p.rate)}</div>
+   <div class="tier-score"><strong>RESPALDO CONJUNTO ${rateLabel(p.rate)}</strong> ${Number(p.rate)>=.66?'✓ ≥66%':'✗'}</div>
    <div class="goal-detail">${escapeHtml(p.profileLabel)} · ${p.selections.length} partido(s)</div>
-   <ol class="evidence-list">${ps.details.map(d=>`<li><strong>${escapeHtml(d.selection.match)}</strong><br>${escapeHtml(d.selection.market)} <small>(${rateLabel(d.selection.rate)})</small><br><strong>${d.points===null?'Puntaje: SIN VALOR ASIGNADO':`Puntaje: ${d.points}`}</strong><br><small>${escapeHtml(d.selection.evidence.slice(0,2).join(' · '))}</small></li>`).join("")}</ol>
+   <ol class="evidence-list">${ps.details.map(d=>`<li><strong>${escapeHtml(d.selection.match)}</strong><br>${escapeHtml(d.selection.market)} <small>(${rateLabel(d.selection.rate)})</small><br><strong>${d.points===null?'Puntaje: SIN VALOR ASIGNADO':`Puntaje: ${d.points}`}</strong><br><small>${escapeHtml(d.selection.evidence.slice(0,2).join(' · '))}</small></li>`).join('')}</ol>
  </div>`;
- }).join(""):"";
- document.getElementById("threeBetTechnical").textContent=polls.length?polls.map((p,i)=>{
-   const ps=n4PollPointSummary(p);
-   return `POLLA ${i+1} — ${p.profileLabel}\nPUNTAJE TOTAL: ${ps.total} PUNTOS${ps.unscored?` · ${ps.unscored} mercado(s) sin puntaje`:''}\nRespaldo conjunto: ${rateLabel(p.rate)}\n`+ps.details.map((d,j)=>`${j+1}. ${d.selection.match}\n   ${d.selection.market} · ${rateLabel(d.selection.rate)}\n   PUNTAJE: ${d.points===null?'SIN VALOR ASIGNADO':d.points}\n   Fuentes: ${(d.selection.sources||[d.selection.source]).join(', ')}\n   Evidencia: ${d.selection.evidence.join(' | ')}`).join("\n");
- }).join("\n\n====================\n\n"):"Sin pollas generadas.";
+}
+function renderIntegratedPolls(polls){
+ const same=polls.filter(p=>p.compatibility==='same'||n4PollCompatibility(p)==='same');
+ const different=polls.filter(p=>p.compatibility==='different'||n4PollCompatibility(p)==='different');
+ const sb=document.getElementById('n4SameResults'),db=document.getElementById('n4DifferentResults');
+ if(sb)sb.innerHTML=same.length?same.map(n4PollCard).join(''):'<div class="analysis-box">No se generaron pollas válidas de MISMA LETRA con este rango y respaldo ≥66%.</div>';
+ if(db)db.innerHTML=different.length?different.map(n4PollCard).join(''):'<div class="analysis-box">No se generaron pollas válidas de LETRAS DIFERENTES con este rango y respaldo ≥66%.</div>';
+ const box=document.getElementById('threeBetResults');if(box)box.innerHTML='';
+ document.getElementById('threeBetTechnical').textContent=polls.length?polls.map((p,i)=>{
+   const ps=n4PollPointSummary(p);const comp=p.compatibility==='same'?'MISMA LETRA':'LETRAS DIFERENTES';
+   return `${comp} — POLLA ${i+1}\nPUNTAJE TOTAL: ${ps.total} PUNTOS\nRespaldo conjunto: ${rateLabel(p.rate)}\n`+ps.details.map((d,j)=>`${j+1}. ${d.selection.match}\n   ${d.selection.market} · ${rateLabel(d.selection.rate)}\n   PUNTAJE: ${d.points===null?'SIN VALOR ASIGNADO':d.points}`).join('\n');
+ }).join('\n\n====================\n\n'):'Sin pollas generadas.';
 }
 function n4ScoredCandidatesForFilter(item,strategy,qualAnalysis){
  const raw=n4CandidateUniverse(item,strategy,qualAnalysis)||[];
@@ -1523,13 +1536,11 @@ function n4ScoredCandidatesForFilter(item,strategy,qualAnalysis){
  return out.sort((a,b)=>(b.rate||0)-(a.rate||0));
 }
 function n4BuildPollsInPointRange(universes,minPoints,maxPoints,count,avoidSignatures=new Set(),generationSalt=0){
- // IMPORTANTE: una polla puede usar solo una PARTE de los partidos cargados.
- // Cada partido puede aportar como máximo una selección a una polla.
  const allPoints=universes.flatMap(u=>u.cands.map(c=>c._points)).filter(Number.isFinite);
  const possibleMin=allPoints.length?Math.min(...allPoints):0;
  const maxs=universes.map(u=>u.cands.length?Math.max(...u.cands.map(c=>c._points)):0);
  const possibleMax=maxs.reduce((a,b)=>a+b,0);
- const combos=[]; let visited=0; const LIMIT=140000, MAX_COMBOS=12000;
+ const combos=[];let visited=0;const LIMIT=180000,MAX_COMBOS=18000;
  const suffixMax=new Array(universes.length+1).fill(0);
  for(let i=universes.length-1;i>=0;i--)suffixMax[i]=suffixMax[i+1]+maxs[i];
  function walk(i,total,sel,rateSum){
@@ -1537,91 +1548,66 @@ function n4BuildPollsInPointRange(universes,minPoints,maxPoints,count,avoidSigna
    if(total>maxPoints)return;
    if(total+suffixMax[i]<minPoints)return;
    if(i===universes.length){
-     if(sel.length && total>=minPoints && total<=maxPoints){
+     if(sel.length&&total>=minPoints&&total<=maxPoints){
+       const rate=rateSum/sel.length; // mismo RESPALDO CONJUNTO usado por la app
+       if(rate<.66)return; // REGLA: 66% INCLUIDO
        const signature=n4PollSignature(sel);
-       combos.push({selections:sel.map(x=>({...x})),points:total,signature,rate:rateSum/sel.length});
-     }
-     return;
+       combos.push({selections:sel.map(x=>({...x})),points:total,signature,rate});
+     }return;
    }
-   // Opción 1: este partido queda FUERA de esta polla.
-   walk(i+1,total,sel,rateSum);
-   // Opción 2: entra con uno de los mercados permitidos por N7.
-   const cands=[...universes[i].cands].sort((a,b)=>((b.rate||0)-(a.rate||0)) || (a._points-b._points));
-   for(const c of cands){
-     walk(i+1,total+c._points,[...sel,c],rateSum+(c.rate||0));
-     if(combos.length>=MAX_COMBOS||visited>LIMIT)break;
-   }
+   walk(i+1,total,sel,rateSum); // partido puede quedar fuera de ESTA polla
+   const cands=[...universes[i].cands].sort((a,b)=>(b.rate||0)-(a.rate||0));
+   for(const c of cands){walk(i+1,total+c._points,[...sel,c],rateSum+(c.rate||0));if(combos.length>=MAX_COMBOS||visited>LIMIT)break;}
  }
  walk(0,0,[],0);
  const unique=[...new Map(combos.map(x=>[x.signature,x])).values()];
- // NUEVAS POLLAS: preferimos firmas distintas a las que estaban visibles.
  const fresh=unique.filter(x=>!avoidSignatures.has(x.signature));
  const pool=fresh.length>=count?fresh:(fresh.length?[...fresh,...unique.filter(x=>avoidSignatures.has(x.signature))]:unique);
- // Mezcla determinística por generación para que cada pulsación explore combinaciones distintas.
  function hash(str){let h=2166136261>>>0;for(let i=0;i<str.length;i++){h^=str.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
- // En cada generación usamos una semilla distinta y, si se pidió NUEVAS POLLAS,
- // excluimos de verdad las firmas que estaban visibles. La aleatoriedad tiene
- // peso suficiente para que no vuelva a escoger siempre las mismas 6.
- const seed=(Date.now() ^ Math.imul(generationSalt+1,2654435761))>>>0;
- function randFor(str){return (hash(str+'|'+seed)%1000000)/1000000;}
+ const seed=(Date.now()^Math.imul(generationSalt+1,2654435761))>>>0;
+ const randFor=str=>(hash(str+'|'+seed)%1000000)/1000000;
  const ranked=[...pool].sort((a,b)=>randFor(a.signature)-randFor(b.signature));
  const chosen=[],used=new Set(),matchUse=new Map(),marketUse=new Map();
- while(chosen.length<count && chosen.length<ranked.length){
+ while(chosen.length<count&&chosen.length<ranked.length){
    let best=null,bestScore=-Infinity;
-   for(const c of ranked){
-     if(used.has(c.signature))continue;
-     let diversity=0;
-     for(const s of c.selections){
-       const mk=(s.match||'')+'|'+(s.market||'');
-       diversity += 2.2/(1+(matchUse.get(s.match)||0));
-       diversity += 1.8/(1+(marketUse.get(mk)||0));
-     }
+   for(const c of ranked){if(used.has(c.signature))continue;let diversity=0;
+     for(const x of c.selections){const mk=(x.match||'')+'|'+(x.market||'');diversity+=2.2/(1+(matchUse.get(x.match)||0));diversity+=1.8/(1+(marketUse.get(mk)||0));}
      const center=(minPoints+maxPoints)/2;
-     // La parte aleatoria vale hasta 3 puntos: suficiente para explorar otras
-     // combinaciones, sin ignorar por completo el respaldo de N7.
-     const score=diversity+(c.rate||0)*2.2-Math.abs(c.points-center)*0.015 + randFor(c.signature+'#pick')*3;
+     const score=diversity+(c.rate||0)*3-Math.abs(c.points-center)*.015+randFor(c.signature+'#pick')*3;
      if(score>bestScore){bestScore=score;best=c;}
    }
-   if(!best)break;
-   used.add(best.signature);chosen.push(best);
-   best.selections.forEach(s=>{
-     matchUse.set(s.match,(matchUse.get(s.match)||0)+1);
-     const mk=(s.match||'')+'|'+(s.market||'');marketUse.set(mk,(marketUse.get(mk)||0)+1);
-   });
+   if(!best)break;used.add(best.signature);chosen.push(best);
+   best.selections.forEach(x=>{matchUse.set(x.match,(matchUse.get(x.match)||0)+1);const mk=(x.match||'')+'|'+(x.market||'');marketUse.set(mk,(marketUse.get(mk)||0)+1);});
  }
  return {chosen,possibleMin,possibleMax,found:unique.length,freshFound:fresh.length};
 }
 let n4GenerationSalt=0;
 function generateIntegratedPolls(forceNew=false){
- const list=getAnalysisList();if(!list.length){alert("Agrega al menos un partido a la lista.");return;}
- const count=Math.max(1,Math.min(6,Number(document.getElementById("n4PollCount")?.value||6)));
- let minPoints=Number(document.getElementById('n4MinPoints')?.value||3);
- let maxPoints=Number(document.getElementById('n4MaxPoints')?.value||18);
- if(!Number.isFinite(minPoints))minPoints=3;if(!Number.isFinite(maxPoints))maxPoints=18;
- minPoints=Math.max(3,minPoints);maxPoints=Math.max(3,maxPoints);
- if(minPoints>maxPoints){[minPoints,maxPoints]=[maxPoints,minPoints];}
+ const list=getAnalysisList();if(!list.length){alert('Agrega al menos un partido a la lista.');return;}
+ const count=Math.max(1,Math.min(6,Number(document.getElementById('n4PollCount')?.value||6)));
+ let minPoints=Number(document.getElementById('n4MinPoints')?.value||3),maxPoints=Number(document.getElementById('n4MaxPoints')?.value||18);
+ if(!Number.isFinite(minPoints))minPoints=3;if(!Number.isFinite(maxPoints))maxPoints=18;minPoints=Math.max(3,minPoints);maxPoints=Math.max(3,maxPoints);if(minPoints>maxPoints)[minPoints,maxPoints]=[maxPoints,minPoints];
  document.getElementById('n4MinPoints').value=minPoints;document.getElementById('n4MaxPoints').value=maxPoints;
  const strategy=getStrategy(),qualAnalysis=getQualitativeAnalysis();
- const universes=list.map(item=>({item,cands:n4ScoredCandidatesForFilter(item,strategy,qualAnalysis)}));
- const usable=universes.filter(u=>u.cands.length);
- if(!usable.length){alert('Ningún partido cargado tiene todavía mercados de N7 con puntuación asignada.');return;}
- const oldPolls=forceNew?getN4Polls():[];
- const avoid=new Set(oldPolls.map(p=>n4PollSignature(p.selections||[])));
+ const universes=list.map(item=>{const a=item.n7Favoritism||n7AnalyzePrediction(item);return {item,a,cands:n4ScoredCandidatesForFilter(item,strategy,qualAnalysis)};}).filter(u=>u.cands.length&&u.a);
+ if(!universes.length){alert('Ningún partido cargado tiene mercados de N7 con puntuación asignada.');return;}
+ // REGLA DE LETRAS: jamás mezclar ambos sistemas en una misma polla.
+ const sameU=universes.filter(u=>u.a.local.letter===u.a.visitor.letter);
+ const diffU=universes.filter(u=>u.a.local.letter!==u.a.visitor.letter);
+ const old=forceNew?getN4Polls():[],avoidSame=new Set(),avoidDiff=new Set();
+ old.forEach(p=>(p.compatibility==='same'?avoidSame:avoidDiff).add(n4PollSignature(p.selections||[])));
  n4GenerationSalt++;
- const built=n4BuildPollsInPointRange(usable,minPoints,maxPoints,count,avoid,n4GenerationSalt);
- const rangeBox=document.getElementById('n4PossibleRange');
- if(rangeBox)rangeBox.innerHTML=`<strong>Escala mínima:</strong> 3 puntos · <strong>Mínimo disponible ahora:</strong> ${built.possibleMin} · <strong>Máximo posible con todos los partidos:</strong> ${built.possibleMax} · <strong>Filtro:</strong> ${minPoints} a ${maxPoints}`;
- const labels=['Filtro N7 A','Filtro N7 B','Filtro N7 C','Filtro N7 D','Filtro N7 E','Filtro N7 F'];
- const polls=built.chosen.map((c,i)=>({id:`n4-poll-${Date.now()}-${i}`,createdAt:new Date().toISOString(),profile:'n7-filter',profileLabel:labels[i]||'Filtro N7',rate:c.rate,selections:c.selections.map(({_points,_pointLabel,...x})=>x),evidence:[`SOLO NÚCLEO 7`,`Filtro de ${minPoints} a ${maxPoints} puntos`,`Puntaje total ${c.points}`,`${c.selections.length} partido(s) incluidos de ${list.length} cargados`]}));
- localStorage.setItem(THREE_BETS_KEY,JSON.stringify(polls));
- renderIntegratedPolls(polls);
- const excludedNote=polls.length?` Cada polla puede incluir solo los partidos necesarios para quedar dentro del rango; los demás quedan excluidos únicamente de esa polla.`:'';
- document.getElementById('combinedRecommendation').innerHTML=polls.length?`<strong>FILTRO DE VALORES ACTIVO:</strong> ${polls.length} polla(s) entre <strong>${minPoints}</strong> y <strong>${maxPoints}</strong> puntos.${excludedNote} Pulsa <strong>NUEVAS POLLAS</strong> para explorar otras combinaciones sin cambiar los partidos cargados.`:`<strong>NO HAY POLLAS EN ESE RANGO.</strong> Con los mercados N7 puntuados disponibles, el mínimo de una selección es <strong>${built.possibleMin}</strong> y el máximo acumulable es <strong>${built.possibleMax}</strong>.`;
+ const same=n4BuildPollsInPointRange(sameU,minPoints,maxPoints,count,avoidSame,n4GenerationSalt);
+ const diff=n4BuildPollsInPointRange(diffU,minPoints,maxPoints,count,avoidDiff,n4GenerationSalt+101);
+ const make=(built,compat,label)=>built.chosen.map((c,i)=>({id:`n4-${compat}-${Date.now()}-${i}`,createdAt:new Date().toISOString(),profile:'n7-filter',profileLabel:label,compatibility:compat,rate:c.rate,selections:c.selections.map(({_points,_pointLabel,...x})=>x),evidence:['SOLO NÚCLEO 7',`Sistema ${label}`,`Filtro ${minPoints}–${maxPoints} puntos`,`Respaldo conjunto mínimo 66%`,`Puntaje total ${c.points}`]}));
+ const polls=[...make(same,'same','MISMA LETRA'),...make(diff,'different','LETRAS DIFERENTES')];
+ localStorage.setItem(THREE_BETS_KEY,JSON.stringify(polls));renderIntegratedPolls(polls);
+ const possibleMax=Math.max(same.possibleMax||0,diff.possibleMax||0),possibleMin=[same.possibleMin,diff.possibleMin].filter(x=>x>0).sort((a,b)=>a-b)[0]||0;
+ const rangeBox=document.getElementById('n4PossibleRange');if(rangeBox)rangeBox.innerHTML=`<strong>Escala mínima:</strong> 3 · <strong>Mínimo disponible:</strong> ${possibleMin||'—'} · <strong>Máximo:</strong> ${possibleMax||'—'} · <strong>Filtro:</strong> ${minPoints}–${maxPoints} · <strong>Respaldo:</strong> ≥66%`;
+ document.getElementById('combinedRecommendation').innerHTML=`<strong>REGLAS ACTIVAS:</strong> rango ${minPoints}–${maxPoints} · respaldo conjunto ≥66% · MISMA LETRA y LETRAS DIFERENTES se generan por separado. <strong>Misma letra:</strong> ${same.chosen.length}/${count}. <strong>Diferentes:</strong> ${diff.chosen.length}/${count}.`;
  try{evaluateN5Polls(false);}catch(_){}
- if(!polls.length)alert(`No encontré combinaciones entre ${minPoints} y ${maxPoints} puntos con las señales N7 disponibles.`);
- else if(polls.length<count)alert(`Se construyeron ${polls.length} pollas diferentes dentro de ${minPoints}–${maxPoints}. Puedes pulsar NUEVAS POLLAS para volver a combinar.`);
- else if(forceNew)alert(`Listo: generé ${polls.length} NUEVAS pollas dentro de ${minPoints}–${maxPoints} puntos.`);
- else alert(`Listo: ${polls.length} pollas dentro de ${minPoints}–${maxPoints} puntos.`);
+ if(!polls.length)alert('No encontré pollas que cumplan simultáneamente el rango de puntos, respaldo conjunto ≥66% y compatibilidad de letras.');
+ else if(forceNew)alert(`Nuevas pollas: ${same.chosen.length} de MISMA LETRA y ${diff.chosen.length} de LETRAS DIFERENTES.`);
 }
 function generateThreeBets(){generateIntegratedPolls();}
 function generateCombinedRecommendation(){generateIntegratedPolls();}

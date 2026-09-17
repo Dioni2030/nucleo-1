@@ -1,19 +1,15 @@
-APP DEPORTES V1.4.17 — N4 SOLO N7
+APP DEPORTES V1.4.19 — N4 DOS CONJUNTOS
 
-Versión completa para prueba / GitHub.
+Cambios:
+- N4 sigue recibiendo exclusivamente N7.
+- Dos sistemas incompatibles: MISMA LETRA (A-A/B-B/C-C) y LETRAS DIFERENTES (A-B/A-C/B-C).
+- No se mezclan ambos sistemas dentro de una polla.
+- Cada conjunto genera hasta la cantidad solicitada (máximo 6).
+- Se mantienen visibles cantidad de pollas, valor mínimo y valor máximo.
+- Toda polla debe tener RESPALDO CONJUNTO >= 66%. 66% sí cuenta.
+- Se mantiene el filtro flexible de puntos y NUEVAS POLLAS.
+- Ambos anotan = 7 puntos. Menos de 4.5 goles = 8 puntos.
+- Los bloques explicativos largos de N4 fueron retirados de la vista para ahorrar espacio.
 
-Cambio principal:
-- NÚCLEO 4 construye sus pollas usando únicamente la información ya integrada por NÚCLEO 7.
-- Los demás núcleos continúan funcionando y alimentando el sistema, pero NÚCLEO 4 no los consulta directamente.
-- NÚCLEO 5 continúa evaluando las pollas generadas.
-
-Archivos:
-- index.html
-- manifest.json
-- service-worker.js
-- icon-192.png
-- icon-512.png
-
-Importante: no borres el almacenamiento local ni el historial antes de actualizar.
-
-V1.4.17: NUEVAS POLLAS ahora excluye las pollas visibles y usa una semilla nueva para explorar combinaciones diferentes en cada pulsación.
+Para GitHub: suba los archivos DESCOMPRIMIDOS a la raíz del repositorio.
+No borre datos/localStorage antes de tener respaldo.
