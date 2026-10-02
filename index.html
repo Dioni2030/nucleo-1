@@ -1719,6 +1719,7 @@ function exportFinanceHistory(){
 function calculateStake(){calculateAutomaticAllocation();}
 // ===== V1.4.20 EXPERIMENTAL · NÚCLEO 5 SIMULACIONES =====
 const N5_SIM_KEY='nucleo5_simulations_github_v1';
+// AISLAMIENTO: N5 solo usa N5_SIM_KEY. Nunca escribe, elimina ni reinicia HISTORY_KEY.
 function n5ClampGoal(v){return Math.max(0,Math.min(8,Math.round(Number(v)||0)));}
 function n5Totals(x){return {gf:Number(x?.gfA||0)+Number(x?.gfB||0),gc:Number(x?.gcA||0)+Number(x?.gcB||0)};}
 function n5ToScore(h,a,mode){
