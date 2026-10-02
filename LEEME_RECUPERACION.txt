@@ -1,0 +1,2 @@
+APP DEPORTES V1.4.19 — RECUPERACIÓN DE HISTORIAL
+Respaldo verificado: 268 partidos. Use Historial > RECUPERAR HISTORIAL DESDE RESPALDO y seleccione el JSON original.

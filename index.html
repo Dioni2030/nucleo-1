@@ -458,7 +458,7 @@ button{transition:.15s transform,.15s box-shadow,.15s background}button:hover{tr
   </div>
   <div class="history-toolbar">
     <button class="secondary small-btn" onclick="exportHistory()">Exportar respaldo</button>
-    <button class="secondary small-btn" type="button" onclick="document.getElementById('importFile').click()">Importar datos</button>
+    <button class="secondary small-btn" type="button" onclick="document.getElementById('importFile').click()">RECUPERAR HISTORIAL DESDE RESPALDO</button>
     <input id="importFile" type="file" accept=".json,.txt,application/json,text/plain,*/*" onchange="importHistory(event)" style="display:none">
     <span id="importStatus" class="goal-detail" style="align-self:center"></span>
     <button class="secondary small-btn" onclick="renderHistory()">Actualizar historial</button>
@@ -529,31 +529,49 @@ button{transition:.15s transform,.15s box-shadow,.15s background}button:hover{tr
 </section>
 
 <section class="card module-card" id="bankrollSection">
-  <div class="fold-head"><h2 style="margin:0">NÚCLEO 5 — SIMULACIONES <span class="module-tag">7.º PARTIDO</span></h2><button class="secondary" onclick="toggleFold('nucleus5Tray',this,'ABRIR NÚCLEO 5','CERRAR NÚCLEO 5')">ABRIR NÚCLEO 5</button></div>
+  <div class="fold-head"><h2 style="margin:0">NÚCLEO 5 — Gerente financiero <span class="module-tag">ADMINISTRA EL CAPITAL</span></h2><button class="secondary" onclick="toggleFold('nucleus5Tray',this,'ABRIR NÚCLEO 5','CERRAR NÚCLEO 5')">ABRIR NÚCLEO 5</button></div>
   <div id="nucleus5Tray" class="fold-body">
-    <div class="notice"><strong>Laboratorio experimental:</strong> crea posibles séptimos partidos a partir de los seis partidos reales ya cargados. Cada simulación se prueba por separado en NÚCLEO 7. El marcador simulado NO se guarda como resultado histórico real.</div>
-    <div class="form-three" style="margin-top:10px">
-      <label class="form-check"><input id="simS1" type="checkbox" checked> S1 · Ataque de los 6</label>
-      <label class="form-check"><input id="simS2" type="checkbox" checked> S2 · Ataque × defensa rival</label>
-      <label class="form-check"><input id="simS3" type="checkbox" checked> S3 · Lectura transversal N7</label>
-      <label class="form-check"><input id="simS4" type="checkbox" checked> S4 · Tendencia neta GF−GC</label>
-    </div>
+  <div class="notice"><strong>Nueva función:</strong> NÚCLEO 5 recibe las pollas completas creadas por NÚCLEO 4, evalúa cada una como una unidad y después puede distribuir el capital entre ellas. No analiza un partido aislado: calcula la solidez conjunta, detecta las selecciones débiles y compara una polla contra otra.</div>
+  <div class="history-toolbar">
+    <button class="primary" onclick="evaluateN5Polls(true)">EVALUAR POLLAS DE NÚCLEO 4</button>
+    <button class="secondary" onclick="showSavedFinancialPlan()">VER ÚLTIMO PLAN</button>
+  </div>
+  <div id="n5PollEvaluation" class="analysis-box">Primero genera las pollas integradas en NÚCLEO 4. Después NÚCLEO 5 las evaluará una por una.</div>
+  <div class="form-three">
+    <label>Capital disponible (COP)<input id="bankroll" type="number" min="0" step="1000" placeholder="20000"></label>
+    <label>Máximo del capital que puede utilizarse (%)<input id="maxExposure" type="number" min="1" max="100" step="1" value="50"></label>
+    <label>Perfil financiero
+      <select id="financeProfile" style="width:100%;padding:10px;border:1px solid #b8c2cc;border-radius:8px;margin-top:4px">
+        <option value="conservative">Conservador</option>
+        <option value="balanced" selected>Equilibrado</option>
+        <option value="aggressive">Agresivo</option>
+      </select>
+    </label>
+  </div>
+  <div class="history-toolbar">
+    <button class="primary" onclick="calculateAutomaticAllocation()">DISTRIBUIR CAPITAL ENTRE POLLAS</button>
+    <button class="success" onclick="saveFinancialPlan()">GUARDAR PLAN</button>
+  </div>
+  <div class="finance-grid">
+    <div class="finance-card"><small>Capital disponible</small><strong id="fCapital">—</strong></div>
+    <div class="finance-card"><small>Total recomendado</small><strong id="fInvested">—</strong></div>
+    <div class="finance-card"><small>Reserva</small><strong id="fReserve">—</strong></div>
+    <div class="finance-card"><small>Riesgo conjunto</small><strong id="fRisk">—</strong></div>
+    <div class="finance-card"><small>Mejor polla evaluada</small><strong id="fBestPoll">—</strong></div>
+  </div>
+  <div id="stakeResult" class="analysis-box">Primero genera las pollas integradas en el NÚCLEO 4.</div>
+  <div id="financeExplanation" class="finance-report">Todavía no existe una distribución financiera.</div>
+  <div class="fold-head" style="margin-top:12px">
+    <h3 style="margin:0">Historial de planes financieros</h3>
+    <button class="secondary small-btn" onclick="toggleFold('financeHistoryTray',this,'ABRIR','OCULTAR')">ABRIR</button>
+  </div>
+  <div id="financeHistoryTray" class="fold-body">
     <div class="history-toolbar">
-      <button class="primary" type="button" onclick="runSelectedSimulations()">PROBAR SELECCIONADAS</button>
-      <button class="secondary" type="button" onclick="runAllSimulations()">PROBAR TODAS</button>
-      <button class="danger" type="button" onclick="clearSimulationResults()">LIMPIAR</button>
+      <button class="secondary small-btn" onclick="exportFinanceHistory()">EXPORTAR HISTORIAL</button>
+      <button class="danger small-btn" onclick="clearFinanceHistory()">BORRAR HISTORIAL</button>
     </div>
-    <div id="n5SimulationStatus" class="analysis-box">Calcula primero un partido en NÚCLEO 1. Después abre este núcleo para crear y comparar sus séptimos partidos simulados.</div>
-    <div id="n5SimulationResults"></div>
-    <div id="n5Dispersion" class="analysis-box">La coincidencia entre simulaciones aparecerá aquí. Resultados dispersos se marcarán como señal experimental de riesgo.</div>
-    <div class="fold-head" style="margin-top:12px"><h3 style="margin:0">Raíz de las simulaciones</h3><button class="secondary small-btn" onclick="toggleFold('simRootTray',this,'ABRIR','OCULTAR')">ABRIR</button></div>
-    <div id="simRootTray" class="fold-body">
-      <div class="goal-detail"><strong>S1:</strong> promedio de goles anotados por cada equipo en sus 6 antecedentes.</div>
-      <div class="goal-detail"><strong>S2:</strong> cruza el ataque propio con los goles recibidos por el rival en los 6 antecedentes.</div>
-      <div class="goal-detail"><strong>S3:</strong> usa la lectura transversal histórica de N7 para repartir su promedio de goles según la fuerza 1X2 observada. Si no hay antecedentes comparables, S3 queda no disponible.</div>
-      <div class="goal-detail"><strong>S4:</strong> parte del promedio total de goles y lo reparte según la diferencia neta GF−GC de ambos equipos. Es una raíz independiente de S1/S2/S3.</div>
-      <div class="goal-detail"><strong>Regla:</strong> las fórmulas se calculan desde la fotografía original de 6 partidos y se congelan antes de introducir el séptimo simulado. No se retroalimentan.</div>
-    </div>
+    <div id="financeHistory">Sin planes guardados.</div>
+  </div>
   </div>
 </section>
 
@@ -1717,65 +1735,6 @@ function exportFinanceHistory(){
  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=`historial_financiero_pollas_${new Date().toISOString().slice(0,10)}.json`;a.click();URL.revokeObjectURL(a.href);
 }
 function calculateStake(){calculateAutomaticAllocation();}
-// ===== V1.4.20 EXPERIMENTAL · NÚCLEO 5 SIMULACIONES =====
-const N5_SIM_KEY='nucleo5_simulations_github_v1';
-function n5ClampGoal(v){return Math.max(0,Math.min(8,Math.round(Number(v)||0)));}
-function n5Totals(x){return {gf:Number(x?.gfA||0)+Number(x?.gfB||0),gc:Number(x?.gcA||0)+Number(x?.gcB||0)};}
-function n5ToScore(h,a,mode){
- h=Math.max(0,Math.min(5.5,Number(h)||0));a=Math.max(0,Math.min(5.5,Number(a)||0));
- const conv=(x,bias=0)=>{const y=x+bias;if(y<0.42)return 0;if(y<1.18)return 1;if(y<2.02)return 2;if(y<2.88)return 3;if(y<3.72)return 4;return Math.min(6,Math.round(y));};
- let hg=conv(h,mode==='S2'?0.08:mode==='S4'?-0.05:0),ag=conv(a,mode==='S3'?0.10:0);
- // conserva una diferencia material cuando las raíces están separadas; no fuerza diferencias si son realmente parejas
- if(Math.abs(h-a)>=0.70 && hg===ag){if(h>a)hg=Math.min(6,hg+1);else ag=Math.min(6,ag+1);}
- return [hg,ag];
-}
-function n5SimulationFormulas(pred){
- if(!pred?.inputs?.local||!pred?.inputs?.visitor)return [];
- const L=n5Totals(pred.inputs.local),V=n5Totals(pred.inputs.visitor),la=L.gf/6,va=V.gf/6,ld=L.gc/6,vd=V.gc/6;
- const mk=(id,name,h,a,detail)=>{const [home,away]=n5ToScore(h,a,id);return {id,name,home,away,rawHome:h,rawAway:a,root:`Raíz ${h.toFixed(2)}–${a.toFixed(2)} → ${home}–${away}. ${detail}`};};
- const s1=mk('S1','Ataque de los 6',la,va,`Promedios GF: ${pred.localName} ${L.gf}/6; ${pred.visitorName} ${V.gf}/6.`);
- const s2=mk('S2','Ataque × defensa rival',(la+vd)/2,(va+ld)/2,`Cruce: GF local ${la.toFixed(2)} con GC visitante ${vd.toFixed(2)}; GF visitante ${va.toFixed(2)} con GC local ${ld.toFixed(2)}.`);
- const t=n7TransversalAnalyze(pred);let s3=null;
- if(t&&t.n){const total=Math.max(.4,Math.min(5.5,Number(t.avgGoals)||2));const hf=Math.max(.01,t.home+t.draw*.45),af=Math.max(.01,t.away+t.draw*.45),den=hf+af;s3=mk('S3','Lectura transversal N7',total*hf/den,total*af/den,`N7: ${t.n} antecedentes; media ${t.avgGoals.toFixed(2)}; reparto 1X2 antes de insertar el 7.º.`);}
- const netL=(L.gf-L.gc)/6,netV=(V.gf-V.gc)/6,base=(la+va)/2;
- const s4=mk('S4','Tendencia neta GF−GC',Math.max(0,base+.45*(netL-netV)),Math.max(0,base+.45*(netV-netL)),`Base ${base.toFixed(2)}; neto/partido local ${netL.toFixed(2)}, visitante ${netV.toFixed(2)}.`);
- return [s1,s2,s3,s4].filter(Boolean);
-}
-function n5PredictionWithSeventh(pred,sim){
- const q=JSON.parse(JSON.stringify(pred)),L=q.inputs.local,V=q.inputs.visitor;
- // El 7.º partido modifica únicamente los totales que N7 usa (GF/GC). Se agrega a GF B/GC B sin tocar el historial real.
- L.gfB=Number(L.gfB||0)+sim.home;L.gcB=Number(L.gcB||0)+sim.away;
- V.gfB=Number(V.gfB||0)+sim.away;V.gcB=Number(V.gcB||0)+sim.home;
- q.simulation={...sim,experimental:true};q.createdAt=new Date().toISOString();return q;
-}
-function n5OutcomeLabel(t,pred){
- if(!t||!t.n)return 'SIN LECTURA';
- const opts=[{k:'LOCAL',v:t.home,label:`${pred.localName} gana`},{k:'EMPATE',v:t.draw,label:'Empate'},{k:'VISITANTE',v:t.away,label:`${pred.visitorName} gana`}].sort((a,b)=>b.v-a.v);
- return opts[0].label;
-}
-function n5Run(ids){
- if(!currentPrediction){alert('Primero calcula el partido en NÚCLEO 1.');return;}
- const formulas=n5SimulationFormulas(currentPrediction),wanted=formulas.filter(x=>ids.includes(x.id));
- if(!wanted.length){alert('No hay simulaciones disponibles para la selección actual.');return;}
- const results=wanted.map(sim=>{const pred=n5PredictionWithSeventh(currentPrediction,sim),fav=n7AnalyzePrediction(pred),trans=n7TransversalAnalyze(pred);return {sim,pred,fav,trans,outcome:n5OutcomeLabel(trans,currentPrediction)};});
- localStorage.setItem(N5_SIM_KEY,JSON.stringify({at:new Date().toISOString(),match:`${currentPrediction.localName} vs ${currentPrediction.visitorName}`,results:results.map(r=>({sim:r.sim,fav:r.fav,trans:r.trans,outcome:r.outcome}))}));
- n5RenderSimulationResults(results);
-}
-function runSelectedSimulations(){const ids=['S1','S2','S3','S4'].filter(id=>document.getElementById('sim'+id)?.checked);if(!ids.length){alert('Selecciona al menos una simulación.');return;}n5Run(ids);}
-function runAllSimulations(){['S1','S2','S3','S4'].forEach(id=>{const e=document.getElementById('sim'+id);if(e)e.checked=true;});n5Run(['S1','S2','S3','S4']);}
-function clearSimulationResults(){localStorage.removeItem(N5_SIM_KEY);const a=document.getElementById('n5SimulationResults'),b=document.getElementById('n5Dispersion'),c=document.getElementById('n5SimulationStatus');if(a)a.innerHTML='';if(b)b.textContent='La coincidencia entre simulaciones aparecerá aquí.';if(c)c.textContent='Simulaciones limpiadas. Calcula o conserva el partido actual y vuelve a probar.';}
-function n5RenderSimulationResults(results){
- const box=document.getElementById('n5SimulationResults'),status=document.getElementById('n5SimulationStatus'),disp=document.getElementById('n5Dispersion');if(!box)return;
- status.innerHTML=`<strong>${escapeHtml(currentPrediction.localName)} vs ${escapeHtml(currentPrediction.visitorName)}</strong><br>Se probaron ${results.length} séptimo(s) partido(s) simulado(s). Ninguno fue agregado al historial real.`;
- const p=x=>Number.isFinite(Number(x))?`${(Number(x)*100).toFixed(1).replace('.',',')}%`:'—';
- const baseFav=n7AnalyzePrediction(currentPrediction);
- box.innerHTML=results.map(r=>{const a=r.fav,t=r.trans,s=r.sim;const changed=!!(a&&baseFav&&(a.local.letter!==baseFav.local.letter||a.visitor.letter!==baseFav.visitor.letter||Math.abs(a.local.value-baseFav.local.value)>.0001||Math.abs(a.visitor.value-baseFav.visitor.value)>.0001||a.distance!==baseFav.distance));const impact=changed?'SÍ CAMBIÓ N7':'SIN CAMBIO EN N7';return `<div class="list-card"><strong>${s.id} · 7.º SIMULADO: ${escapeHtml(currentPrediction.localName)} ${s.home}–${s.away} ${escapeHtml(currentPrediction.visitorName)}</strong><div class="goal-detail">${escapeHtml(s.name)} · ${escapeHtml(s.root)}</div><div class="goal-detail"><strong>Impacto del 7.º:</strong> ${impact}${s.home===s.away?' · al ser empate simulado, puede no alterar el balance GF−GC':''}</div>${a?`<div class="market-mini"><strong>N7:</strong> ${n7LetterBadge(a.local.letter)} ${n7Val(a.local.value)} ${escapeHtml(a.local.name)} ↔ ${escapeHtml(a.visitor.name)} ${n7Val(a.visitor.value)} ${n7LetterBadge(a.visitor.letter)} · distancia ${a.distance} · ${escapeHtml(a.classification)}${a.dominator?` · dominador ${escapeHtml(a.dominator)}`:''}</div>`:''}${t&&t.n?`<div class="market-mini"><strong>Salida transversal:</strong> ${escapeHtml(currentPrediction.localName)} ${p(t.home)} · Empate ${p(t.draw)} · ${escapeHtml(currentPrediction.visitorName)} ${p(t.away)} · No pierde local ${p(t.dcHome)} · No pierde visitante ${p(t.dcAway)} · +1.5 ${p(t.over15)} · +2.5 ${p(t.over25)}</div><div class="goal-detail"><strong>Resultado principal de esta rama:</strong> ${escapeHtml(r.outcome)} · señal más fuerte: ${escapeHtml(t.top?.market||'—')} ${p(t.top?.rate)}</div>`:`<div class="goal-detail">N7 no encontró suficientes antecedentes transversales parecidos para esta rama.</div>`}</div>`;}).join('');
- const labels=results.map(r=>r.outcome),counts={};labels.forEach(x=>counts[x]=(counts[x]||0)+1);const max=Math.max(...Object.values(counts)),coinc=max/results.length;let risk=coinc===1?'BAJA DISPERSIÓN':coinc>=.67?'DISPERSIÓN MEDIA':'ALTA DISPERSIÓN · PARTIDO DE RIESGO EXPERIMENTAL';
- const markerSet=new Set(results.map(r=>`${r.sim.home}-${r.sim.away}`));const convergence=markerSet.size===1?'<br><small>⚠ Las fórmulas convergieron en el mismo marcador simulado; esto es convergencia real, no se cuenta como evidencia de sensibilidad entre fórmulas.</small>':'';
- disp.innerHTML=`<strong>COINCIDENCIA ENTRE SIMULACIONES: ${max}/${results.length}</strong><br>${escapeHtml(risk)}<br><small>${Object.entries(counts).map(([k,v])=>`${escapeHtml(k)}: ${v}`).join(' · ')}. Esta etiqueta es experimental; el historial deberá demostrar si la dispersión realmente anticipa mayor riesgo.</small>${convergence}`;
-}
-
-
 function defaultVersion(){
  return {id:"n1-v1.0-base",name:"NÚCLEO 1 v1.0 base",createdAt:new Date().toISOString(),protected:true,
  description:"Matriz original: tablas de origen, colores, ubicación, puntajes A/B, ABC, cualificación y reglas algebraicas.",active:true,config:{engine:"base"}};
@@ -2843,33 +2802,36 @@ function importHistory(event){
  const file=event.target.files?.[0];if(!file)return;
  const input=event.target;
  const status=document.getElementById("importStatus");
- if(status)status.textContent="Leyendo archivo…";
+ if(status)status.textContent="Leyendo respaldo…";
  readBackupFile(file,(data)=>{
    try{
-     const incoming=data.history;
-     if(!confirm(`¿Importar ${incoming.length} registro(s) y reemplazar el historial actual?`)){
-       if(status)status.textContent="Importación cancelada";
-       input.value="";
-       return;
+     const incoming=Array.isArray(data.history)?data.history:[];
+     if(!incoming.length) throw new Error("El respaldo no contiene partidos");
+     const valid=incoming.filter(x=>x&&typeof x==="object"&&x.id&&x.localName&&x.visitorName);
+     if(valid.length!==incoming.length) throw new Error(`Hay ${incoming.length-valid.length} registro(s) inválido(s)`);
+     if(!confirm(`RESPALDO DETECTADO: ${incoming.length} partido(s).\n\n¿Recuperar SOLO EL HISTORIAL? Los demás núcleos y configuraciones actuales no serán reemplazados.`)){
+       if(status)status.textContent="Recuperación cancelada";input.value="";return;
      }
-     createAutomaticSafetyPoint();
-     // Si es respaldo completo conserva también los demás módulos; si es historial simple,
-     // solo reemplaza historial y conserva el resto de la app.
-     const hasFullState=["adaptive","analysisList","strategy","qualitative","threeBets","financePlan","financeHistory","versions","nucleus7"].some(k=>data[k]!==undefined);
-     if(hasFullState) applyFullSystemState(data);
-     else {setHistory(incoming);refreshAllModules();n7RenderPool();n7HistorySummary();refreshAutocompleteSuggestions();}
+     const serialized=JSON.stringify(incoming);
+     localStorage.setItem(HISTORY_KEY,serialized);
+     const verify=JSON.parse(localStorage.getItem(HISTORY_KEY)||"[]");
+     if(!Array.isArray(verify)||verify.length!==incoming.length){
+       throw new Error(`Verificación fallida: se esperaban ${incoming.length} y se leyeron ${Array.isArray(verify)?verify.length:0}`);
+     }
+     refreshAllModules();
+     n7RenderPool();n7HistorySummary();refreshAutocompleteSuggestions();
      const tray=document.getElementById("historyTray");if(tray)tray.classList.add("open");
-     if(status)status.textContent=`✓ ${incoming.length} partido(s) importados`;
-     alert(`Importación terminada correctamente. Se cargaron ${incoming.length} partido(s).`);
+     if(status)status.textContent=`✓ RECUPERADOS Y VERIFICADOS: ${verify.length} partido(s)`;
+     alert(`RECUPERACIÓN CORRECTA.\n\n${verify.length} partido(s) fueron escritos y verificados en el historial.\n\nEl historial quedará abierto para que puedas comprobarlos.`);
    }catch(err){
      console.error(err);
-     if(status)status.textContent="Error al aplicar respaldo";
-     alert("El respaldo se pudo leer, pero no se pudo aplicar. No se borraron los datos actuales.");
+     if(status)status.textContent=`ERROR: ${err.message||err}`;
+     alert(`Error de recuperación: ${err.message||err}`);
    }finally{input.value="";}
  },(err)=>{
    console.error(err);
    if(status)status.textContent="Archivo incompatible";
-   alert("No pude leer ese respaldo. Selecciona el archivo JSON exportado por APP DEPORTES. Se aceptan respaldos completos, historial, puntos de restauración y formatos antiguos compatibles.");
+   alert("No pude leer el respaldo como historial compatible.");
    input.value="";
  });
 }
