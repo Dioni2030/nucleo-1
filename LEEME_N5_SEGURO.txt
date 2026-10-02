@@ -1,0 +1,9 @@
+APP DEPORTES V1.4.19-R268-N5 SEGURO
+
+- Base: versión de recuperación que funcionó con el respaldo del usuario.
+- Incluye una semilla verificada de 268 partidos.
+- La semilla solo se aplica una vez y únicamente si el historial está vacío.
+- NÚCLEO 5 fue construido de nuevo.
+- N5 ejecuta S1, S2, S3 y S4 únicamente en memoria.
+- N5 no usa localStorage y no puede escribir/borrar nucleo1_history_v03.
+- El importador de recuperación original permanece disponible.
