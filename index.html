@@ -1697,7 +1697,7 @@ function calculateAutomaticAllocation(){
  localStorage.setItem(FINANCE_PLAN_KEY,JSON.stringify(plan));renderFinancialPlan(plan);
 }
 function renderFinancialPlan(plan){
- if(!plan)return;
+ if(!plan || !document.getElementById("fCapital"))return;
  document.getElementById("fCapital").textContent=money(plan.capital);
  document.getElementById("fInvested").textContent=money(plan.invested);
  document.getElementById("fReserve").textContent=money(plan.reserve);
@@ -1720,6 +1720,7 @@ function saveFinancialPlan(){
 }
 function renderFinanceHistory(){
  const history=getFinanceHistory(),box=document.getElementById("financeHistory");
+ if(!box)return;
  box.innerHTML=history.length?history.map(p=>`<div class="list-card"><strong>${new Date(p.savedAt||p.createdAt).toLocaleString("es-CO")}</strong><div>Capital ${money(p.capital)} · Invertido ${money(p.invested)} · Reserva ${money(p.reserve)} · Riesgo ${escapeHtml(p.riskLabel||'—')}</div>${(p.allocations||[]).map(a=>`<div>${escapeHtml(a.pollLabel||('Polla '+(a.pollIndex||'')))} — respaldo ${rateLabel(a.confidence||0)} — ${money(a.amount)}</div>`).join("")}<button class="danger small-btn" onclick="deleteFinancePlan('${p.id}')">Eliminar</button></div>`).join(""):"Sin planes guardados.";
 }
 function deleteFinancePlan(id){localStorage.setItem(FINANCE_HISTORY_KEY,JSON.stringify(getFinanceHistory().filter(x=>x.id!==id)));renderFinanceHistory();}
@@ -1907,8 +1908,8 @@ function applyFullSystemState(data){
 }
 function refreshAllModules(){
  renderHistory();renderAdaptive();updateN2Summary();updateN3Summary();
- renderAnalysisList();showSavedThreeBets();renderFinanceHistory();
- if(getFinancePlan())renderFinancialPlan(getFinancePlan());
+ renderAnalysisList();showSavedThreeBets();
+ // N5 financiero anterior retirado: no renderizar sus elementos eliminados.
 renderMemoryStatus();
 renderRestorePoints();
  renderVersions();renderProposal();renderMemoryStatus();renderRestorePoints();
@@ -2191,8 +2192,7 @@ function renderHistory(){
 updateN3Summary();
 n7HistorySummary();
 showSavedThreeBets();
-renderFinanceHistory();
-if(getFinancePlan())renderFinancialPlan(getFinancePlan());
+// N5 financiero anterior retirado: no renderizar sus elementos eliminados.
  document.getElementById("historyRows").innerHTML=items.length?items.map(item=>{
    const e=evaluation(item),score=item.status==="cerrado"?`${item.homeGoals}–${item.awayGoals}`:"—";
    const notes=[item.notes,item.resultNotes,item.exceptional?"⚠ Partido excepcional":""].filter(Boolean).join(" | ");
